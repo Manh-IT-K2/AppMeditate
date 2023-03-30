@@ -79,6 +79,9 @@ flutter:
   assets:
     - assets/images/
     - assets/images/get_started_page_image/
+    - assets/images/signup_in_page_image/
+    - assets/images/course_detail_page_image/
+    - assets/images/container_page_image/
     - assets/musics/
     - assets/musics/friends/
     - assets/musics/pianos/
