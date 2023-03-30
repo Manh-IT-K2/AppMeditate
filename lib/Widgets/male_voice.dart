@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:meditation_app/Page/detail_favorite.dart';
+import 'package:meditation_app/Constant/colors.dart';
+import 'package:meditation_app/Pages/detail_favorite_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/model/musicmodel.dart';
 
 class MaleVoice extends StatelessWidget {
+  const MaleVoice({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

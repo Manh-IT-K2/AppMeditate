@@ -1,4 +1,3 @@
-
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:meditation_app/Utils/theme.dart';
@@ -42,7 +41,17 @@ class _AudioFileState extends State<AudioFile> {
   Widget btnStart() {
     return IconButton(
       padding: const EdgeInsets.only(bottom: 10),
-      icon: isPlaying == false ? Icon(_icons[0], size: 50,color: Colors.blue,) : Icon(_icons[1], size: 50,color: Colors.blue,),
+      icon: isPlaying == false
+          ? Icon(
+              _icons[0],
+              size: 50,
+              color: Colors.blue,
+            )
+          : Icon(
+              _icons[1],
+              size: 50,
+              color: Colors.blue,
+            ),
       onPressed: () {
         if (isPlaying == false) {
           widget.advancedPlayer.play(AssetSource(path));
@@ -60,55 +69,58 @@ class _AudioFileState extends State<AudioFile> {
   }
 
   Widget loadAsset() {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          btnStart(),
-        ],
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        btnStart(),
+      ],
     );
   }
 
-  Widget slider (){
+  Widget slider() {
     return Slider(
-    activeColor: Colors.red,
-    inactiveColor: Colors.grey,
-    value: _position.inSeconds.toDouble(), 
-    min: 0.0,
-    max: _duration.inSeconds.toDouble(),
-    onChanged: (double value){
-      setState(() {
-        changeToSecond(value.toInt());
-        value = value;
-      });
-    });
+        activeColor: Colors.red,
+        inactiveColor: Colors.grey,
+        value: _position.inSeconds.toDouble(),
+        min: 0.0,
+        max: _duration.inSeconds.toDouble(),
+        onChanged: (double value) {
+          setState(() {
+            changeToSecond(value.toInt());
+            value = value;
+          });
+        });
   }
-  void changeToSecond(int second){
+
+  void changeToSecond(int second) {
     Duration newDuration = Duration(seconds: second);
     widget.advancedPlayer.seek(newDuration);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.only(left: 20, right: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(_position.toString().split('.')[0],style: Primaryfont.bold(15).copyWith(color: Colors.grey),),
-                Text(_duration.toString().split('.')[0],style: Primaryfont.medium(15).copyWith(color: Colors.grey),),
-              ],
-            ),
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 20, right: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                _position.toString().split('.')[0],
+                style: Primaryfont.bold(15).copyWith(color: Colors.grey),
+              ),
+              Text(
+                _duration.toString().split('.')[0],
+                style: Primaryfont.medium(15).copyWith(color: Colors.grey),
+              ),
+            ],
           ),
-          slider(),
-          loadAsset(),
-        ],
-      ),
+        ),
+        slider(),
+        loadAsset(),
+      ],
     );
   }
 }

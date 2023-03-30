@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:meditation_app/Page/detail_favorite.dart';
+import 'package:meditation_app/Constant/colors.dart';
+import 'package:meditation_app/Pages/detail_favorite_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/model/musicmodel.dart';
 
@@ -61,7 +62,7 @@ class FavouriteMusic extends StatelessWidget {
                     onDoubleTap: () {
                       player.stop();
                     },
-                    child: Container(
+                    child: SizedBox(
                       width: 200,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

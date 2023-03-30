@@ -8,6 +8,12 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "_flutterfire_internals",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/_flutterfire_internals-1.0.18",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
       "name": "analyzer",
       "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/analyzer-5.6.0",
       "packageUri": "lib/",
@@ -224,6 +230,42 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "firebase_auth",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/firebase_auth-4.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "firebase_auth_platform_interface",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/firebase_auth_platform_interface-6.12.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "firebase_auth_web",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/firebase_auth_web-5.2.10",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "firebase_core",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/firebase_core-2.8.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "firebase_core_platform_interface",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/firebase_core_platform_interface-4.5.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "firebase_core_web",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/firebase_core_web-2.2.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
       "name": "fixnum",
       "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/fixnum-1.1.0",
       "packageUri": "lib/",
@@ -294,6 +336,12 @@
       "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/frontend_server_client-3.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "get",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/get-4.6.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
     },
     {
       "name": "glob",
@@ -728,7 +776,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-03-16T16:53:00.276820Z",
+  "generated": "2023-03-30T03:27:19.174519Z",
   "generator": "pub",
-  "generatorVersion": "2.19.2"
+  "generatorVersion": "2.19.5"
 }

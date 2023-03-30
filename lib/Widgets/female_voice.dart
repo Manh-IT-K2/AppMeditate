@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:meditation_app/Page/detail_favorite.dart';
+import 'package:meditation_app/Constant/colors.dart';
+import 'package:meditation_app/Pages/detail_favorite_page.dart';
 import 'package:meditation_app/model/musicmodel.dart';
 import '../Utils/theme.dart';
 
@@ -54,7 +55,7 @@ class FemaleVoice extends StatelessWidget {
                         ),
                       );
                     },
-                    child: Container(
+                    child: SizedBox(
                       width: 200,
                       child: Column(
                         children: [

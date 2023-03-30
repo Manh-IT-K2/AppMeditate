@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
 
-const kColorPrimary = Color(0xFF8E97FD);
-const kColorLightYellow = Color(0xFFFFECCC);
-const kColorLightGrey = Color(0xFFEBEAEC);
-const kColorDartGrey = Color(0xFF3F414E);
-const kColorDartPrimary = Color(0xFFA1A4B2);
-
 class Primaryfont{
 
   static String fontfamily ='HelveticaNeue';
