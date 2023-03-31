@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '$SingupOrSignin': (_) => const SingupOrSignin(),
         '$SignUp': (_) => const SignUp(),
-        '$SignIn': (_) => const SignIn(),
+        '$SignIn': (_) => SignIn(),
         '$GetstartedPage': (_) => const GetstartedPage(),
         '$ChooseTopicPage': (_) => const ChooseTopicPage(),
         '$RemindersPage': (_) => const RemindersPage(),
