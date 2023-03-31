@@ -29,3 +29,8 @@ String txtHaveRead = 'i have read the\t';
 // Text Login page
 String txtHeaderSigin = "welcome Back!";
 String txtForgotPassword = "Forgot Password";
+
+// Text Choose Topic
+String txtHeaderChooseTopicTitle1 = "What Brings you";
+String txtHeaderChooseTopicTitle2 = "to silent Moon?";
+String txtHeaderChooseTopicSubTitle1 = "Choose a topic to focus on:";
