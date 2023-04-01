@@ -34,3 +34,11 @@ String txtForgotPassword = "Forgot Password";
 String txtHeaderChooseTopicTitle1 = "What Brings you";
 String txtHeaderChooseTopicTitle2 = "to silent Moon?";
 String txtHeaderChooseTopicSubTitle1 = "Choose a topic to focus on:";
+
+// Text Reminder 
+String txtSave = "Save";
+String txtNothank = "NO THANKS";
+String txtReminderTitle1 = "What time would you\n like to meditate?";
+String txtReminderTitle2 = "What day would you\n like to meditate?";
+String txtReminderSubTitle1 = "Any time you can choose but we recommend\n firts thing in the morning.";
+String txtReminderSubTitle2 = "Everyday is best, but we recomend\n picking at least five.";
