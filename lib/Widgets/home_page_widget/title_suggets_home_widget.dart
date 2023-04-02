@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:meditation_app/Constant/image_string.dart';
 import 'package:meditation_app/Utils/theme.dart';
 
-class BodyHomeWidgetTwo extends StatelessWidget {
-  const BodyHomeWidgetTwo({
+class TitleSuggestHomeWidget extends StatelessWidget {
+  const TitleSuggestHomeWidget({
     super.key,
     required this.sHeight,
     required this.sWidth,

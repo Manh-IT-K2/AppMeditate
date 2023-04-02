@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/Widgets/home_page_widget/body_one_home_widget.dart';
-import 'package:meditation_app/Widgets/home_page_widget/body_two_home_widget.dart';
 import 'package:meditation_app/Widgets/home_page_widget/footer_home_widget.dart';
 import 'package:meditation_app/Widgets/home_page_widget/header_home_widget.dart';
+import 'package:meditation_app/Widgets/home_page_widget/title_suggets_home_widget.dart';
 import 'package:meditation_app/Widgets/reponsive_builder.dart';
 
 class HomePage extends StatelessWidget {
@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
                     aLeft: -0.55,
                     sbWidth: 20,
                   ),
-                  BodyHomeWidgetTwo(
+                  TitleSuggestHomeWidget(
                     sHeight: size.height * 0.093,
                     sWidth: size.width,
                   ),
@@ -62,7 +62,7 @@ class HomePage extends StatelessWidget {
                     aLeft: -0.70,
                     sbWidth: 150,
                   ),
-                  BodyHomeWidgetTwo(
+                 TitleSuggestHomeWidget(
                     sHeight: size.height * 0.25,
                     sWidth: size.width,
                   ),

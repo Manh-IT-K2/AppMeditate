@@ -37,3 +37,6 @@ String imgHomeBgHepiness = "assets/images/home_page_image/bg_hepiness.png";
 
 // Meditate Page Image
 String imgMeditateBgDailycalm = "assets/images/meditate_page_imge/bg_dailycalm.png";
+
+// Sleep Page Image
+String imgSleepBgTheOceanMoon = "assets/images/sleep_page_image/bg_sleeppage.png";

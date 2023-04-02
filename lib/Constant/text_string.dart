@@ -14,6 +14,7 @@ String txtMy = "My";
 String txtAnxious = "Anxious";
 String txtSleep = "Sleep";
 String txtKids = "Kids";
+String txtStart = "START";
 
 // text getstarted
 String tGetstartedButtonTitle = "GET STATED";
@@ -58,3 +59,9 @@ String txtMeditateHeaderTitle = "Meditate";
 String txtMeditateHeaderSubTitle = "We can learn how to recognize when our\n minds are doing their normal everyday\n acrobatics.";
 String txtMeditateBodyHeaderTitle = "Daily Calm";
 String txtMeditateBodyHeaderSubTitle = "APR 30 • PAUSE PRACTICE";
+
+// Text Sleep Page
+String txtSleepHeaderTitle = "Sleep Stories";
+String txtSleepHeaderSubTitle = "Soothing bedtime stories to help you fall\ninto a deep and natural sleep";
+String txtSleepSuggetTitle = "The ocean moon\n";
+String txtSleepSuggetSubTitle = "Non-stop 8- hour mixes of our\nmost popular sleep audio";

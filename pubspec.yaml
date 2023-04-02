@@ -85,6 +85,7 @@ flutter:
     - assets/images/home_page_image/
     - assets/images/meditate_page_imge/
     - assets/images/common_image/
+    - assets/images/sleep_page_image/
     - assets/musics/
     - assets/musics/friends/
     - assets/musics/pianos/
