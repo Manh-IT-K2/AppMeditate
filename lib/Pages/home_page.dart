@@ -15,62 +15,67 @@ class HomePage extends StatelessWidget {
     final size = context.screenSize;
     return Scaffold(
       backgroundColor: kColorLightGrey,
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: ReponsiveBuilder(
-            portrait: Column(
-              children: [
-                const HeaderHomeWidget(
-                  sTextSubTitle: 14, 
-                  sTextTitle: 24,
-                  sImgWidth: 200,),
-                BodyHomeWidgetOne(
-                  sWidth: size.width * 0.45,
-                  sHeight: size.height * 0.25,
-                  pLeft: 17,
-                  aLeft: -0.55,
-                  sbWidth: 20,
-                ),
-                BodyHomeWidgetTwo(
-                  sHeight: size.height * 0.093,
-                  sWidth: size.width,
-                ),
-                const FooterHomeWidget(
-                  imgHeight: 220, 
-                  imgWidth: 180, 
-                  sTextHeader: 24, 
-                  sTextSubTitle: 10,                  
-                  sTextTitle: 18, 
-                  sbWidth: 180,
-                  sContainerHeight: 220),
-              ],
-            ),
-            landscape: Column(
-              children: [
-                const HeaderHomeWidget(
-                  sTextSubTitle: 18, 
-                  sTextTitle: 30,
-                  sImgWidth: 250,),
-                BodyHomeWidgetOne(
-                  sWidth: size.width * 0.42,
-                  sHeight: size.height * 0.55,
-                  pLeft: 41,
-                  aLeft: -0.70,
-                  sbWidth: 150,
-                ),
-                BodyHomeWidgetTwo(
-                  sHeight: size.height * 0.25,
-                  sWidth: size.width,
-                ),
-                const FooterHomeWidget(
-                  imgHeight: 235, 
-                  imgWidth: 235, 
-                  sTextHeader: 30, 
-                  sTextSubTitle: 14,                  
-                  sTextTitle: 24, 
-                  sbWidth: 235,
-                  sContainerHeight: 235),
-              ],
+      body: Padding(
+        padding: const EdgeInsets.only(bottom: 20),
+        child: SingleChildScrollView(
+          child: SafeArea(
+            child: ReponsiveBuilder(
+              portrait: Column(
+                children: [
+                  const HeaderHomeWidget(
+                    sTextSubTitle: 14,
+                    sTextTitle: 24,
+                    sImgWidth: 200,
+                  ),
+                  BodyHomeWidgetOne(
+                    sWidth: size.width * 0.45,
+                    sHeight: size.height * 0.25,
+                    pLeft: 17,
+                    aLeft: -0.55,
+                    sbWidth: 20,
+                  ),
+                  BodyHomeWidgetTwo(
+                    sHeight: size.height * 0.093,
+                    sWidth: size.width,
+                  ),
+                  const FooterHomeWidget(
+                      imgHeight: 220,
+                      imgWidth: 180,
+                      sTextHeader: 24,
+                      sTextSubTitle: 10,
+                      sTextTitle: 18,
+                      sbWidth: 180,
+                      sContainerHeight: 220),
+                ],
+              ),
+              landscape: Column(
+                children: [
+                  const HeaderHomeWidget(
+                    sTextSubTitle: 18,
+                    sTextTitle: 30,
+                    sImgWidth: 250,
+                  ),
+                  BodyHomeWidgetOne(
+                    sWidth: size.width * 0.42,
+                    sHeight: size.height * 0.55,
+                    pLeft: 41,
+                    aLeft: -0.70,
+                    sbWidth: 150,
+                  ),
+                  BodyHomeWidgetTwo(
+                    sHeight: size.height * 0.25,
+                    sWidth: size.width,
+                  ),
+                  const FooterHomeWidget(
+                      imgHeight: 235,
+                      imgWidth: 235,
+                      sTextHeader: 30,
+                      sTextSubTitle: 14,
+                      sTextTitle: 24,
+                      sbWidth: 235,
+                      sContainerHeight: 235),
+                ],
+              ),
             ),
           ),
         ),

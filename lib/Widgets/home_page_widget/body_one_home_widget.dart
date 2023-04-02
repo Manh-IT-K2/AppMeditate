@@ -40,7 +40,7 @@ class BodyHomeWidgetOne extends StatelessWidget {
                       topRight: Radius.circular(20),
                     ),
                     child: Image.asset(
-                      imgHomeBGBasic,
+                      imgHomeBgBasic,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -125,7 +125,7 @@ class BodyHomeWidgetOne extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Image.asset(
-                      imgHomeBGRelextion,
+                      imgHomeBgRelextion,
                       fit: BoxFit.cover,
                     ),
                   ),

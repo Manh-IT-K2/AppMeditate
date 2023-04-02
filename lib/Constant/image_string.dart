@@ -1,10 +1,12 @@
 /* -- App Image String --*/
 
 
-// Global image
-String imgLogoBlack = "assets/images/ic_logoBlack.svg";
+// Global Image
+String imgLogoBlack = "assets/images/common_image/ic_logoBlack.svg";
+String imgIcMoon = "assets/images/common_image/ic_moon.png";
+String imgIcKids = "assets/images/common_image/ic_kids.png";
 
-// Getstarted screen image
+// Getstarted Page Image
 String tBackgroundGetstartedImage = 'assets/images/get_started_page_image/bg_get_started.png';
 String tLogoGetstartedImage = 'assets/images/get_started_page_image/logo_get_started.png';
 
@@ -26,9 +28,12 @@ String imgContainerMusic = "assets/images/container_page_image/ic_music.png";
 String imgContainerUser = "assets/images/container_page_image/ic_userafsar.png";
 
 // Home Page Image
-String imgHomeBGBasic = "assets/images/home_page_image/bg_basic.png";
-String imgHomeBGRelextion = "assets/images/home_page_image/bg_relexation.png";
-String imgHomeBGDailythounght = "assets/images/home_page_image/bg_dailythounght.png";
-String imgHomeICPlay = "assets/images/home_page_image/ic_play.png";
-String imgHomeBGFoucus = "assets/images/home_page_image/bg_foucus.png";
-String imgHomeBHepiness = "assets/images/home_page_image/bg_hepiness.png";
+String imgHomeBgBasic = "assets/images/home_page_image/bg_basic.png";
+String imgHomeBgRelextion = "assets/images/home_page_image/bg_relexation.png";
+String imgHomeBgDailythounght = "assets/images/home_page_image/bg_dailythounght.png";
+String imgHomeIcPlay = "assets/images/home_page_image/ic_play.png";
+String imgHomeBgFoucus = "assets/images/home_page_image/bg_foucus.png";
+String imgHomeBgHepiness = "assets/images/home_page_image/bg_hepiness.png";
+
+// Meditate Page Image
+String imgMeditateBgDailycalm = "assets/images/meditate_page_imge/bg_dailycalm.png";

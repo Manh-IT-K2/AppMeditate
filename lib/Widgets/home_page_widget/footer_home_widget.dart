@@ -29,51 +29,51 @@ class FooterHomeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     List<CardItem> items = [
       CardItem(
-          image: imgHomeBGFoucus,
+          image: imgHomeBgFoucus,
           title: 'Focus',
           subtitle: txtCaditemHomeSubTitle),
       CardItem(
-          image: imgHomeBHepiness,
+          image: imgHomeBgHepiness,
           title: 'Happiness',
           subtitle: txtCaditemHomeSubTitle),
       CardItem(
-          image: imgHomeBGFoucus,
+          image: imgHomeBgFoucus,
           title: 'Focus',
           subtitle: txtCaditemHomeSubTitle),
       CardItem(
-          image: imgHomeBHepiness,
+          image: imgHomeBgHepiness,
           title: 'Happiness',
           subtitle: txtCaditemHomeSubTitle),
       CardItem(
-          image: imgHomeBGFoucus,
+          image: imgHomeBgFoucus,
           title: 'Focus',
           subtitle: txtCaditemHomeSubTitle),
       CardItem(
-          image: imgHomeBHepiness,
+          image: imgHomeBgHepiness,
           title: 'Happiness',
           subtitle: txtCaditemHomeSubTitle),
       CardItem(
-          image: imgHomeBGFoucus,
+          image: imgHomeBgFoucus,
           title: 'Focus',
           subtitle: txtCaditemHomeSubTitle),
       CardItem(
-          image: imgHomeBHepiness,
+          image: imgHomeBgHepiness,
           title: 'Happiness',
           subtitle: txtCaditemHomeSubTitle),
       CardItem(
-          image: imgHomeBGFoucus,
+          image: imgHomeBgFoucus,
           title: 'Focus',
           subtitle: txtCaditemHomeSubTitle),
       CardItem(
-          image: imgHomeBHepiness,
+          image: imgHomeBgHepiness,
           title: 'Happiness',
           subtitle: txtCaditemHomeSubTitle),
       CardItem(
-          image: imgHomeBGFoucus,
+          image: imgHomeBgFoucus,
           title: 'Focus',
           subtitle: txtCaditemHomeSubTitle),
       CardItem(
-          image: imgHomeBHepiness,
+          image: imgHomeBgHepiness,
           title: 'Happiness',
           subtitle: txtCaditemHomeSubTitle),
     ];

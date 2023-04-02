@@ -15,7 +15,7 @@ class BodyHomeWidgetTwo extends StatelessWidget {
     return Container(
       height: sHeight,
       width: sWidth,
-      margin: const EdgeInsets.only(top: 30, left: 12, right: 12),
+      margin: const EdgeInsets.only(top: 20, left: 12, right: 12),
       decoration: BoxDecoration(
         color: const Color(0xFF333242),
         borderRadius: BorderRadius.circular(20),
@@ -25,8 +25,8 @@ class BodyHomeWidgetTwo extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Image.asset(
-              imgHomeBGDailythounght,
-              fit: BoxFit.cover,
+              imgHomeBgDailythounght,
+              fit: BoxFit.fill,
             ),
           ),
           Row(
@@ -62,7 +62,7 @@ class BodyHomeWidgetTwo extends StatelessWidget {
                   alignment: const Alignment(0.7, 0.0),
                   child: IconButton(
                     onPressed: () {},
-                    icon: Image.asset(imgHomeICPlay),
+                    icon: Image.asset(imgHomeIcPlay),
                     iconSize: 40,
                   ),
                 ),

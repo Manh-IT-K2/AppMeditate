@@ -9,6 +9,11 @@ String txtRePassword = "Repassword";
 String txtWithFacebook = "CONTINUE WITH FACEBOOK";
 String txtWithGoogle = "CONTINUE WITH GOOGLE";
 String txtwithEmail = "OR LOG IN WITH EMAIL";
+String txtAll = "All";
+String txtMy = "My";
+String txtAnxious = "Anxious";
+String txtSleep = "Sleep";
+String txtKids = "Kids";
 
 // text getstarted
 String tGetstartedButtonTitle = "GET STATED";
@@ -47,3 +52,9 @@ String txtReminderSubTitle2 = "Everyday is best, but we recomend\n picking at le
 String txtCaditemHomeSubTitle = "MEDITATION • 3-10 MIN'";
 String txtHomeHeaderTitle = "Good Morning, Afsar\n";
 String txtHomeHeaderSubTitle = "We Wish you have a good day";
+
+// Text Meditate page
+String txtMeditateHeaderTitle = "Meditate";
+String txtMeditateHeaderSubTitle = "We can learn how to recognize when our\n minds are doing their normal everyday\n acrobatics.";
+String txtMeditateBodyHeaderTitle = "Daily Calm";
+String txtMeditateBodyHeaderSubTitle = "APR 30 • PAUSE PRACTICE";

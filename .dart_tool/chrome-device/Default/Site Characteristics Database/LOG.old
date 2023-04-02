@@ -1,3 +1,4 @@
-2023/04/02-08:19:01.780 9503 Reusing MANIFEST /private/var/folders/z7/y11bcsjx3_l4xc854_m76hg80000gp/T/flutter_tools.lt3Ip2/flutter_tools_chrome_device.EE9kpw/Default/Site Characteristics Database/MANIFEST-000001
-2023/04/02-08:19:01.781 9503 Recovering log #3
-2023/04/02-08:19:01.781 9503 Reusing old log /private/var/folders/z7/y11bcsjx3_l4xc854_m76hg80000gp/T/flutter_tools.lt3Ip2/flutter_tools_chrome_device.EE9kpw/Default/Site Characteristics Database/000003.log 
+2023/04/02-20:07:15.184 7203 Reusing MANIFEST /private/var/folders/z7/y11bcsjx3_l4xc854_m76hg80000gp/T/flutter_tools.spr12K/flutter_tools_chrome_device.8PZ91A/Default/Site Characteristics Database/MANIFEST-000001
+2023/04/02-20:07:15.184 7203 Recovering log #3
+2023/04/02-20:07:15.184 7203 (ignoring error) /private/var/folders/z7/y11bcsjx3_l4xc854_m76hg80000gp/T/flutter_tools.spr12K/flutter_tools_chrome_device.8PZ91A/Default/Site Characteristics Database/000003.log: dropping 307 bytes; Corruption: checksum mismatch
+2023/04/02-20:07:15.184 7203 Reusing old log /private/var/folders/z7/y11bcsjx3_l4xc854_m76hg80000gp/T/flutter_tools.spr12K/flutter_tools_chrome_device.8PZ91A/Default/Site Characteristics Database/000003.log 

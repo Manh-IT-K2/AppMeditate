@@ -22,7 +22,7 @@ class SleepPage extends StatelessWidget {
             _backgroundSleep(),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.only(top: 20, bottom: 18),
+                padding: EdgeInsets.only(top: 20, bottom: 20),
                 child: _topicSleep(),
               ),
             ),

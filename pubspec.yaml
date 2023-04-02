@@ -83,6 +83,8 @@ flutter:
     - assets/images/course_detail_page_image/
     - assets/images/container_page_image/
     - assets/images/home_page_image/
+    - assets/images/meditate_page_imge/
+    - assets/images/common_image/
     - assets/musics/
     - assets/musics/friends/
     - assets/musics/pianos/
