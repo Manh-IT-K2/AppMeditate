@@ -24,7 +24,7 @@ class BodytextRowSignUpOrSignIn extends StatelessWidget {
             child: Align(
               alignment: const Alignment(0.0, -0.6),
               child: SvgPicture.asset(
-                imgLogoSignUpIn,
+                imgLogoBlack,
                 width: size.width * 0.3,
               ),
             ),

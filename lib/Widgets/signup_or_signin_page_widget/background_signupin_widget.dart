@@ -26,7 +26,7 @@ class BackgroundSignUpOrSignIn extends StatelessWidget {
         Align(
           alignment: Alignment.topCenter,
           child: SvgPicture.asset(
-            imgLogoSignUpIn,
+            imgLogoBlack,
             width: size.width * 0.5,
             alignment: Alignment.center,
           ),

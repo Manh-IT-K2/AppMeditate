@@ -42,3 +42,8 @@ String txtReminderTitle1 = "What time would you\n like to meditate?";
 String txtReminderTitle2 = "What day would you\n like to meditate?";
 String txtReminderSubTitle1 = "Any time you can choose but we recommend\n firts thing in the morning.";
 String txtReminderSubTitle2 = "Everyday is best, but we recomend\n picking at least five.";
+
+// Text Home Page
+String txtCaditemHomeSubTitle = "MEDITATION • 3-10 MIN'";
+String txtHomeHeaderTitle = "Good Morning, Afsar\n";
+String txtHomeHeaderSubTitle = "We Wish you have a good day";
