@@ -39,9 +39,11 @@ class ChooseTopicPage extends StatelessWidget {
                   ],
                 ),
               ),
-              const Flexible(
+              Flexible(
                 flex: 2,
-                child: BodyTopicGridWidget(),
+                child: Container(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: const BodyTopicGridWidget()),
               ),
             ],
           ),

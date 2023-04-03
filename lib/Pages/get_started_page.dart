@@ -54,7 +54,7 @@ class GetstartedPage extends StatelessWidget {
                           children: [
                             const GetStatedBackgound(),
                             Align(
-                              alignment: const Alignment(0.0, 0.7),
+                              alignment: const Alignment(0.0, 0.86),
                               child: GetStartedButton(
                                 fixedSize: MaterialStateProperty.all(
                                   Size(

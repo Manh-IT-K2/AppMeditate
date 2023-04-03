@@ -17,13 +17,18 @@ class _UserAfsarPageState extends State<UserAfsarPage> {
     return Scaffold(
       backgroundColor: kColorLightGrey,
       body: SafeArea(
-        child: Column(
-          children: const [
-            _appUser(),
-            _chartUser(),
-            _overviewUser(),
-            _otherUser(),
-          ],
+        child: Container(
+          padding: const EdgeInsets.only(top: 20, bottom: 20),
+          child: SingleChildScrollView(
+            child: Column(
+              children: const [
+                _appUser(),
+                _chartUser(),
+                _overviewUser(),
+                _otherUser(),
+              ],
+            ),
+          ),
         ),
       ),
     );

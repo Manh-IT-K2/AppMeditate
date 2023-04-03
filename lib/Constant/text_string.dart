@@ -65,3 +65,15 @@ String txtSleepHeaderTitle = "Sleep Stories";
 String txtSleepHeaderSubTitle = "Soothing bedtime stories to help you fall\ninto a deep and natural sleep";
 String txtSleepSuggetTitle = "The ocean moon\n";
 String txtSleepSuggetSubTitle = "Non-stop 8- hour mixes of our\nmost popular sleep audio";
+
+// Text DetaiSetting Page
+String txtDetailSettingAction1 = "Change Language";
+String txtDetailSettingAction2 = "Download Over Cellular";
+String txtDetailSettingAction3 = "Do not Disturb";
+String txtDetailSettingAction4 = "Log out";
+String txtDetailSettingInfomationUser1 = "Manage Subscription";
+String txtDetailSettingInfomationUser2 = "Account Info";
+String txtDetailSettingInfomationUser3 = "Change Password";
+String txtDetailSettingNotification1 = "Meditation Reminders";
+String txtDetailSettingNotification2 = "Bedtime Reminders";
+String txtSetting = "Settings";
