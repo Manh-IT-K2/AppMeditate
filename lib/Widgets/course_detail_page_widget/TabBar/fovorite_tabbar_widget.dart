@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:meditation_app/Constant/colors.dart';
-import 'package:meditation_app/Pages/detail_favorite_page.dart';
+import 'package:meditation_app/Pages/detail_music_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/model/musicmodel.dart';
 
@@ -50,7 +50,7 @@ class FavoriteTabbarWidget extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => DetailFavorite(
+                          builder: (context) => DetailMusic(
                             nameSong: listSong[i]['namesong'],
                             duration: listSong[i]["urlsong"],
                             image: 'assets/images/bg_favorite.jpeg',

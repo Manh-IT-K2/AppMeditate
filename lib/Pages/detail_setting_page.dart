@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meditation_app/Constant/colors.dart';
-import 'package:meditation_app/Pages/container_page.dart';
-import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/Widgets/detail_setting_page_widget/action_detail_setting_widget.dart';
 import 'package:meditation_app/Widgets/detail_setting_page_widget/header_detail_setting_widget.dart';
 import 'package:meditation_app/Widgets/detail_setting_page_widget/infomation_user_detail_setting_widget.dart';

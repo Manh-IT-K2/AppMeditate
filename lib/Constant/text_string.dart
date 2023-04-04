@@ -88,3 +88,12 @@ String txtCourseDetailBodyTitle = "Choose a Theme";
 String txtCourseDetailTabbarTitle1 = "RELAXPIANO";
 String txtCourseDetailTabbarTitle2 = "MUSICCHILL";
 String txtCourseDetailTabbarTitle3 = "FAVORITE";
+
+// Text User Page
+String txtUserFunction1 = "Be Premium";
+String txtUserFunction2 = "My favourite";
+String txtUserFunction3 = "My Offline";
+String txtUserOverview = "Overview";
+String txtUserOverview1 = "Overview";
+String txtUserOverview2 = "Overview";
+String txtUserOverview3 = "Overview";

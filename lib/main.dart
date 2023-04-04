@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Pages/course_details_page.dart';
+import 'package:meditation_app/Pages/detail_music_page.dart';
 import 'package:meditation_app/Pages/detail_setting_page.dart';
 import 'package:meditation_app/Pages/music_page.dart';
-import 'package:meditation_app/Pages/detail_favorite_page.dart';
 import 'package:meditation_app/Pages/home_page.dart';
 import 'package:meditation_app/Pages/meditate_page.dart';
 import 'package:meditation_app/Pages/sleep_page.dart';
@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
         '$MusicPage': (_) => const MusicPage(),
         '$UserAfsarPage': (_) => const UserAfsarPage(),
         '$CourseDetails': (_) => const CourseDetails(),
-        '$DetailFavorite': (_) =>  DetailFavorite(nameSong: '',), 
+        '$DetailMusic': (_) => DetailMusic(nameSong: '', duration: '', image: '',), 
         '$MeditatePage': (_) => const MeditatePage(),
         '$DetailSettingUser': (_) => const DetailSettingUser(),
       },

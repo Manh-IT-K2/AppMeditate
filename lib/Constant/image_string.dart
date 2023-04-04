@@ -45,3 +45,8 @@ String imgSleepBgTheOceanMoon = "assets/images/sleep_page_image/bg_sleeppage.png
 String imgCourseDetailBg = "assets/images/course_detail_page_image/bg_coursedetails.png";
 String imgCourseDetailHeart = "assets/images/course_detail_page_image/ic_heart.png";
 String imgCourseDetailDowload = "assets/images/course_detail_page_image/ic_dowload.png";
+
+// User Page Image
+String imgUserAlarmclock = "assets/images/user_page_image/ic_alarmclock.png";
+String imgUserTelevision = "assets/images/user_page_image/ic_television.png";
+String imgUserTodolist = "assets/images/user_page_image/ic_todolist.png";

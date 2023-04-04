@@ -22,7 +22,7 @@ class RemindersPage extends StatelessWidget {
                   Expanded(
                     flex: 2,
                     child: ReminderTitleWidget(
-                      title: txtReminderSubTitle1,
+                      title: txtReminderTitle1,
                       subtitle: txtReminderSubTitle1,
                     ),
                   ),
@@ -59,7 +59,7 @@ class RemindersPage extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.only(top: 30, left: 30),
                           child: ReminderTitleWidget(
-                            title: txtReminderSubTitle1,
+                            title: txtReminderTitle1,
                             subtitle: txtReminderSubTitle1,
                           ),
                         ),
@@ -82,7 +82,7 @@ class RemindersPage extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.only(top: 30),
                           child: ReminderTitleWidget(
-                            title: txtReminderSubTitle2,
+                            title: txtReminderTitle2,
                             subtitle: txtReminderSubTitle2,
                           ),
                         ),
