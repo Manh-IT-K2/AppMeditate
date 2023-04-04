@@ -77,3 +77,14 @@ String txtDetailSettingInfomationUser3 = "Change Password";
 String txtDetailSettingNotification1 = "Meditation Reminders";
 String txtDetailSettingNotification2 = "Bedtime Reminders";
 String txtSetting = "Settings";
+
+// Text Course Detail Page
+String txtCourseDetailHeaderTitle = "Happy Morning";
+String txtCourseDetailHeaderSubTitle1 = "COURSE";
+String txtCourseDetailHeaderSubTitle2 = "Ease the mind into a restful night’s sleep with\nthese deep, amblent tones.";
+String txtCourseDetailHeaderTitleFavorite = "favorits";
+String txtCourseDetailHeaderTitleListening = "listening";
+String txtCourseDetailBodyTitle = "Choose a Theme";
+String txtCourseDetailTabbarTitle1 = "RELAXPIANO";
+String txtCourseDetailTabbarTitle2 = "MUSICCHILL";
+String txtCourseDetailTabbarTitle3 = "FAVORITE";

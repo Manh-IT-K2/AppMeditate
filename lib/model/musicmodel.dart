@@ -1,12 +1,11 @@
-import 'package:flutter/material.dart';
 
-const List voice_music = [
+const List voiceMusic = [
   "MALE VOICE",
   "FEMALE VOICE",
   "FAVORITE",
 ];
 
-const List list_song = [
+const List listSong = [
   {
     "namesong": "2AM - JustaTee if Big Daddy ",
     "urlsong": "assets/musics/favorites/2AM.mp3",
@@ -69,72 +68,72 @@ const List list_song = [
   },
 ];
 
-const List list_piano = [
+const List listPiano = [
   {
-    "image": "assets/images/img_ms_home.jpeg",
+    "image": "assets/images/course_detail_page_image/img_ms_home.jpeg",
     "namePiano": "Home",
     "urlPiano": "assets/musics/pianos/Home - Ever So Blue.mp3",
   },
   {
-    "image": "assets/images/img_ms_Okra.jpeg",
+    "image": "assets/images/course_detail_page_image/img_ms_Okra.jpeg",
     "namePiano": "Okra - Ever So Blue",
     "urlPiano": "assets/musics/pianos/Okra - Ever So Blue.mp3",
   },
   {
-    "image": "assets/images/img_ms_Azure Eyes.jpeg",
+    "image": "assets/images/course_detail_page_image/img_ms_Azure Eyes.jpeg",
     "namePiano": "Azure Eyes - Ruiqi Zhao",
     "urlPiano": "assets/musics/pianos/Azure Eyes - Ruiqi Zhao.mp3",
   },
   {
-    "image": "assets/images/img_ms_Flying free.jpeg",
+    "image": "assets/images/course_detail_page_image/img_ms_Flying free.jpeg",
     "namePiano": "Flying Free - Megan Wofford",
     "urlPiano": "assets/musics/pianos/Flying Free - Megan Wofford.mp3",
   },
   {
-    "image": "assets/images/img_ms_Joy in the Little Things.jpeg",
+    "image": "assets/images/course_detail_page_image/img_ms_Joy in the Little Things.jpeg",
     "namePiano": "Joy in the Little Things - Sayuri Hayashi Egnell",
     "urlPiano":
         "assets/musics/pianos/Joy in the Little Things - Sayuri Hayashi Egnell.mp3",
   },
   {
-    "image": "assets/images/img_Waves of Leafs.jpeg",
+    "image": "assets/images/course_detail_page_image/img_Waves of Leafs.jpeg",
     "namePiano": "Waves of Leafs - Lama House",
     "urlPiano": "assets/musics/pianos/Waves of Leafs - Lama House.mp3",
   },
 ];
 
-const List list_music_friend = [
+const List listMusicFriend = [
   {
-    "image": "assets/images/img_ms_shaynanggg.jpeg",
+    "image": "assets/images/course_detail_page_image/img_ms_shaynanggg.jpeg",
     "nameSong": "Shay nắnggg - AMEE x OBITO x HỨA KIM TUYỀN x SKIN AQUA",
     "urlSong":
         "assets/musics/friends/shay nanggg.mp3",
   },
   {
-    "image": "assets/images/img_ms_DontCoi.jpeg",
+    "image": "assets/images/course_detail_page_image/img_ms_DontCoi.jpeg",
     "nameSong": "DON'T CÔI - RPT ORIJINN",
     "urlSong": "assets/musics/friends/dont coi.mp3",
   },
   {
-    "image": "assets/images/img_ms_11gio11phut.jpeg",
+    "image": "assets/images/course_detail_page_image/img_ms_11gio11phut.jpeg",
     "nameSong": "11 Giờ 11 Phút - MiiNa x RIN9 x DREAMER",
     "urlSong":
         "assets/musics/friends/11 gio 11 phut.mp3",
   },
   {
-    "image": "assets/images/img_ms_Haimuoihai.jpeg",
+    "image": "assets/images/course_detail_page_image/img_ms_Haimuoihai.jpeg",
     "nameSong": "Hai mươi hai - AMEE ft Hứa Kim Tuyền x Quanvrox",
     "urlSong":
         "assets/musics/friends/hai muoi hai.mp3",
   },
   {
-    "image": "assets/images/img_ms_duongtoichoemve.jpeg",
+    "image": "assets/images/course_detail_page_image/img_ms_duongtoichoemve.jpeg",
     "nameSong": "Đường tôi chở em về - Bui Truong Linh",
     "urlSong":
         "assets/musics/friends/duong toi cho em ve.mp3",
   },
   {
-    "image": "assets/images/img_ms_Thattinhthuongxautinh.jpeg",
+    "image": "assets/images/course_detail_page_image/img_ms_Thattinhthuongxautinh.jpeg",
     "nameSong": "Thất tình thường xấu tính - LyLy x Ricky Star",
     "urlSong":
         "assets/musics/friends/that tinh thuong xua tinh.mp3",

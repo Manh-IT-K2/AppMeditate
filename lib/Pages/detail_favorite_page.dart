@@ -9,15 +9,18 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 final _play = AudioPlayer();
 bool darkLight = darkMode.dl;
 
+// ignore: camel_case_types
 class darkMode {
   static bool dl = false;
 }
 
 class DetailFavorite extends StatefulWidget {
   final String nameSong;
+  // ignore: prefer_typing_uninitialized_variables
   final image;
+  // ignore: prefer_typing_uninitialized_variables
   final duration;
-  DetailFavorite(
+  const DetailFavorite(
       {super.key, required this.nameSong, this.duration, this.image});
 
   @override
@@ -91,14 +94,15 @@ class _DetailFavoriteState extends State<DetailFavorite> {
                     height: 50,
                     child: NeuBox(
                       child: InkWell(
-                          onTap: () {
-                            setState(() {
-                              darkLight = !darkLight;
-                            });
-                          },
-                          child: Icon(darkLight
-                              ? Icons.light_mode_outlined
-                              : Icons.dark_mode_outlined)),
+                        onTap: () {
+                          setState(() {
+                            darkLight = !darkLight;
+                          });
+                        },
+                        child: Icon(darkLight
+                            ? Icons.light_mode_outlined
+                            : Icons.dark_mode_outlined),
+                      ),
                     ),
                   ),
                 ],
@@ -115,13 +119,15 @@ class _DetailFavoriteState extends State<DetailFavorite> {
                 children: [
                   Text(
                     formatTime(position.inSeconds),
-                    style: Primaryfont.bold(15).copyWith(color: darkLight? Colors.black: Colors.grey),
+                    style: Primaryfont.bold(15).copyWith(
+                        color: darkLight ? Colors.black : Colors.grey),
                   ),
                   const Icon(Icons.shuffle),
                   const Icon(Icons.repeat),
                   Text(
                     formatTime((duration - position).inSeconds),
-                    style: Primaryfont.bold(15).copyWith(color: darkLight? Colors.black: Colors.grey),
+                    style: Primaryfont.bold(15).copyWith(
+                        color: darkLight ? Colors.black : Colors.grey),
                   ),
                 ],
               ),
@@ -157,7 +163,7 @@ class _DetailFavoriteState extends State<DetailFavorite> {
               ),
               Row(
                 children: [
-                  NeuBox(
+                  const NeuBox(
                     child: SizedBox(
                       height: 60,
                       width: 60,
@@ -200,7 +206,7 @@ class _DetailFavoriteState extends State<DetailFavorite> {
                       ),
                     ),
                   ),
-                  NeuBox(
+                  const NeuBox(
                     child: SizedBox(
                       height: 60,
                       width: 60,
@@ -220,6 +226,7 @@ class _DetailFavoriteState extends State<DetailFavorite> {
   }
 }
 
+// ignore: camel_case_types
 class _background extends StatelessWidget {
   const _background({
     super.key,
@@ -275,6 +282,7 @@ class _background extends StatelessWidget {
 }
 
 class NeuBox extends StatelessWidget {
+  // ignore: prefer_typing_uninitialized_variables
   final child;
   const NeuBox({super.key, required this.child});
 
@@ -284,23 +292,23 @@ class NeuBox extends StatelessWidget {
       padding: const EdgeInsets.all(8),
       child: child,
       decoration: BoxDecoration(
-          color: darkLight ? Colors.grey[850] : Colors.grey[300],
-          borderRadius: BorderRadius.circular(12),
-          boxShadow: [
-            // right bottom
-            BoxShadow(
-              color: darkLight ? Colors.grey.shade900 : Colors.grey.shade500,
-              blurRadius: 15,
-              offset: const Offset(5, 5),
-            ),
-            //top left
-            BoxShadow(
-              color: darkLight ? Colors.grey.shade800 : Colors.white,
-              blurRadius: 15,
-              offset: Offset(-5, -5),
-            ),
-          ],
+        color: darkLight ? Colors.grey[850] : Colors.grey[300],
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          // right bottom
+          BoxShadow(
+            color: darkLight ? Colors.grey.shade900 : Colors.grey.shade500,
+            blurRadius: 15,
+            offset: const Offset(5, 5),
           ),
+          //top left
+          BoxShadow(
+            color: darkLight ? Colors.grey.shade800 : Colors.white,
+            blurRadius: 15,
+            offset: const Offset(-5, -5),
+          ),
+        ],
+      ),
     );
   }
 }

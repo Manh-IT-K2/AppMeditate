@@ -78,15 +78,17 @@ class BodyHomeWidgetOne extends StatelessWidget {
                       ),
                       MaterialButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                SaveChange.indexPage = 2;
-                                return const CourseDetails();
-                              },
-                            ),
-                          );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) {
+                          //       SaveChange.indexPage = 2;
+                          //       return const CourseDetails();
+                          //     },
+                          //   ),
+                          // );
+                          SaveChange.indexPage = 2;
+                          Navigator.of(context).pushNamed('$CourseDetails');
                         },
                         color: Colors.white,
                         height: 40,

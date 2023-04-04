@@ -40,3 +40,8 @@ String imgMeditateBgDailycalm = "assets/images/meditate_page_imge/bg_dailycalm.p
 
 // Sleep Page Image
 String imgSleepBgTheOceanMoon = "assets/images/sleep_page_image/bg_sleeppage.png";
+
+// Course Detail Page
+String imgCourseDetailBg = "assets/images/course_detail_page_image/bg_coursedetails.png";
+String imgCourseDetailHeart = "assets/images/course_detail_page_image/ic_heart.png";
+String imgCourseDetailDowload = "assets/images/course_detail_page_image/ic_dowload.png";
