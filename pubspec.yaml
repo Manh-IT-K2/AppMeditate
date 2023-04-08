@@ -45,9 +45,11 @@ dependencies:
   percent_indicator: ^4.2.3
   audioplayers: ^3.0.1
   fl_chart: ^0.61.0
+  ## -- FIREBASE PACKAGE
   firebase_core: ^2.8.0
   firebase_auth: ^4.3.0
-  ## -STATE MANAGEMENT
+  cloud_firestore: ^4.5.0
+  ## -- STATE MANAGEMENT
   get: ^4.6.5
 
 dev_dependencies:

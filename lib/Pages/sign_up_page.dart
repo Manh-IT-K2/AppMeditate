@@ -24,8 +24,7 @@ class SignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = context.screenSize;
-    final ValueNotifier<bool> a = ValueNotifier<bool>(false);
-    final ValueNotifier<bool> isCheckbox = ValueNotifier<bool>(false);
+   
     return Scaffold(
       backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
@@ -43,8 +42,7 @@ class SignUp extends StatelessWidget {
                       sHeight: size.height * 0.4,
                       sWidth: size.width * 1),
                   form_body_signup_widget(
-                    a: a,
-                    isCheckbox: isCheckbox,
+                    
                     size: MaterialStateProperty.all(
                       Size(size.width * 0.9, size.height * 0.065),
                     ),
@@ -68,8 +66,7 @@ class SignUp extends StatelessWidget {
               )),
               Expanded(
                 child: form_body_signup_widget(
-                  a: a,
-                  isCheckbox:isCheckbox,
+                
                   size: MaterialStateProperty.all(
                     Size(size.width * 0.4, size.height * 0.065),
                   ),

@@ -44,40 +44,40 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBQQm_fSRl27xb__jl873L3Ejts65yI7wc',
-    appId: '1:302359071237:web:5c98acc949c48687db6a6c',
-    messagingSenderId: '302359071237',
-    projectId: 'meditate---app',
-    authDomain: 'meditate---app.firebaseapp.com',
-    storageBucket: 'meditate---app.appspot.com',
-    measurementId: 'G-KQ3WPMBSSN',
+    apiKey: 'AIzaSyATC4BjRaO5JVSGwnQLuzFVCxYGEokDCkI',
+    appId: '1:928203370994:web:434a8778b8164f44353b6b',
+    messagingSenderId: '928203370994',
+    projectId: 'meditate-app-e19c8',
+    authDomain: 'meditate-app-e19c8.firebaseapp.com',
+    storageBucket: 'meditate-app-e19c8.appspot.com',
+    measurementId: 'G-SWG713JHD6',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCapt9s-9g9ncilELsi-o7nikIprr6_fw8',
-    appId: '1:302359071237:android:4d27cafe3659d9eddb6a6c',
-    messagingSenderId: '302359071237',
-    projectId: 'meditate---app',
-    storageBucket: 'meditate---app.appspot.com',
+    apiKey: 'AIzaSyB1AEjbQmAWPSU98eiRA1DzJ-mMLpQwkXM',
+    appId: '1:928203370994:android:8713ccfb1d13b6b4353b6b',
+    messagingSenderId: '928203370994',
+    projectId: 'meditate-app-e19c8',
+    storageBucket: 'meditate-app-e19c8.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCoKoOod1crmzZstQyLdaR-dwF_1hjjb1s',
-    appId: '1:302359071237:ios:e9f0bd3ebda55e26db6a6c',
-    messagingSenderId: '302359071237',
-    projectId: 'meditate---app',
-    storageBucket: 'meditate---app.appspot.com',
-    iosClientId: '302359071237-baidh2cbv9i7prbhu9d13o314jjg6cia.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAHOsquZThVdKqdexNHSwC5ip5oGP0QHrY',
+    appId: '1:928203370994:ios:0bb9b0ab8d28d0c8353b6b',
+    messagingSenderId: '928203370994',
+    projectId: 'meditate-app-e19c8',
+    storageBucket: 'meditate-app-e19c8.appspot.com',
+    iosClientId: '928203370994-qcmeack1ek7bghso954efrobtlbuqtmr.apps.googleusercontent.com',
     iosBundleId: 'com.example.meditationApp',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCoKoOod1crmzZstQyLdaR-dwF_1hjjb1s',
-    appId: '1:302359071237:ios:e9f0bd3ebda55e26db6a6c',
-    messagingSenderId: '302359071237',
-    projectId: 'meditate---app',
-    storageBucket: 'meditate---app.appspot.com',
-    iosClientId: '302359071237-baidh2cbv9i7prbhu9d13o314jjg6cia.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAHOsquZThVdKqdexNHSwC5ip5oGP0QHrY',
+    appId: '1:928203370994:ios:0bb9b0ab8d28d0c8353b6b',
+    messagingSenderId: '928203370994',
+    projectId: 'meditate-app-e19c8',
+    storageBucket: 'meditate-app-e19c8.appspot.com',
+    iosClientId: '928203370994-qcmeack1ek7bghso954efrobtlbuqtmr.apps.googleusercontent.com',
     iosBundleId: 'com.example.meditationApp',
   );
 }

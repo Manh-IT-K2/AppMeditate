@@ -12,41 +12,39 @@ class ChooseTopicPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: ReponsiveBuilder(
-          portrait: Column(
-            children: const [
-              Flexible(
-                flex: 1,
-                fit: FlexFit.tight,
-                child: HeaderChooseTopicWidget(),
+      body: ReponsiveBuilder(
+        portrait: Column(
+          children: const [
+            Flexible(
+              flex: 1,
+              fit: FlexFit.tight,
+              child: HeaderChooseTopicWidget(),
+            ),
+            Flexible(
+              flex: 3,
+              child: BodyTopicGridWidget(),
+            ),
+          ],
+        ),
+        landscape: Row(
+          children: [
+            Flexible(
+              flex: 1,
+              fit: FlexFit.tight,
+              child: Column(
+                children: const [
+                  Expanded(child: HeaderChooseTopicWidget()),
+                  Spacer(),
+                ],
               ),
-              Flexible(
-                flex: 3,
-                child: BodyTopicGridWidget(),
-              ),
-            ],
-          ),
-          landscape: Row(
-            children: [
-              Flexible(
-                flex: 1,
-                fit: FlexFit.tight,
-                child: Column(
-                  children: const [
-                    Expanded(child: HeaderChooseTopicWidget()),
-                    Spacer(),
-                  ],
-                ),
-              ),
-              Flexible(
-                flex: 2,
-                child: Container(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: const BodyTopicGridWidget()),
-              ),
-            ],
-          ),
+            ),
+            Flexible(
+              flex: 2,
+              child: Container(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: const BodyTopicGridWidget()),
+            ),
+          ],
         ),
       ),
     );

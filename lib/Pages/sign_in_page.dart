@@ -6,6 +6,8 @@ import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/Widgets/signin_page_widget/form_body_signin_widget.dart';
 
 class SignIn extends StatelessWidget {
+  const SignIn({super.key});
+
 // TextEditingController _userTextController = TextEditingController();
 // TextEditingController _passwordTextController = TextEditingController();
 // Future signIn() async {
@@ -26,7 +28,8 @@ class SignIn extends StatelessWidget {
     final ValueNotifier<bool> a = ValueNotifier<bool>(false);
     return Scaffold(
       backgroundColor: Colors.white,
-      body: context.orientation == Orientation.portrait
+      body: SafeArea(
+        child: context.orientation == Orientation.portrait
           ? Stack(
               children: [
                 // img background
@@ -83,6 +86,6 @@ class SignIn extends StatelessWidget {
                 ),
               ],
             ),
-    );
+    ));
   }
 }

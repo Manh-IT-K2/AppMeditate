@@ -1,34 +1,41 @@
 {
   "project_info": {
-    "project_number": "302359071237",
-    "project_id": "meditate---app",
-    "storage_bucket": "meditate---app.appspot.com"
+    "project_number": "928203370994",
+    "project_id": "meditate-app-e19c8",
+    "storage_bucket": "meditate-app-e19c8.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:302359071237:android:4d27cafe3659d9eddb6a6c",
+        "mobilesdk_app_id": "1:928203370994:android:8713ccfb1d13b6b4353b6b",
         "android_client_info": {
           "package_name": "com.example.meditation_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "302359071237-48lrhctmkl4ca4d8tm7khv8v3a0cffmm.apps.googleusercontent.com",
+          "client_id": "928203370994-hh9t8e0gh2ul6b14tfuisrhe49essqp1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCapt9s-9g9ncilELsi-o7nikIprr6_fw8"
+          "current_key": "AIzaSyB1AEjbQmAWPSU98eiRA1DzJ-mMLpQwkXM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "302359071237-48lrhctmkl4ca4d8tm7khv8v3a0cffmm.apps.googleusercontent.com",
+              "client_id": "928203370994-hh9t8e0gh2ul6b14tfuisrhe49essqp1.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "928203370994-qcmeack1ek7bghso954efrobtlbuqtmr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.meditationApp"
+              }
             }
           ]
         }

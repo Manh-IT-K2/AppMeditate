@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Constant/text_string.dart';
+import 'package:meditation_app/Pages/sign_in_page.dart';
 import 'package:meditation_app/Pages/sign_up_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
 
@@ -22,7 +24,8 @@ class FooterSignUpOrSignIn extends StatelessWidget {
             alignment: const Alignment(0.0, 0.75),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.of(context).pushNamed('$SignUp');
+                //Navigator.of(context).pushNamed('$SignUp');
+                Get.to(() => const SignUp());
               },
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(kColorPrimary),
@@ -52,7 +55,9 @@ class FooterSignUpOrSignIn extends StatelessWidget {
                       Primaryfont.medium(12).copyWith(color: kColorDartPrimary),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.off(() => const SignIn());
+                  },
                   child: Text(
                     txtSignIn,
                     style: Primaryfont.medium(12).copyWith(

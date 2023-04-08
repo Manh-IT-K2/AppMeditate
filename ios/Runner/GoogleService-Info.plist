@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>302359071237-baidh2cbv9i7prbhu9d13o314jjg6cia.apps.googleusercontent.com</string>
+	<string>928203370994-qcmeack1ek7bghso954efrobtlbuqtmr.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.302359071237-baidh2cbv9i7prbhu9d13o314jjg6cia</string>
+	<string>com.googleusercontent.apps.928203370994-qcmeack1ek7bghso954efrobtlbuqtmr</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCoKoOod1crmzZstQyLdaR-dwF_1hjjb1s</string>
+	<string>AIzaSyAHOsquZThVdKqdexNHSwC5ip5oGP0QHrY</string>
 	<key>GCM_SENDER_ID</key>
-	<string>302359071237</string>
+	<string>928203370994</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.example.meditationApp</string>
 	<key>PROJECT_ID</key>
-	<string>meditate---app</string>
+	<string>meditate-app-e19c8</string>
 	<key>STORAGE_BUCKET</key>
-	<string>meditate---app.appspot.com</string>
+	<string>meditate-app-e19c8.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:302359071237:ios:e9f0bd3ebda55e26db6a6c</string>
+	<string>1:928203370994:ios:0bb9b0ab8d28d0c8353b6b</string>
 </dict>
 </plist>

@@ -5,6 +5,7 @@
 String imgLogoBlack = "assets/images/common_image/ic_logoBlack.svg";
 String imgIcMoon = "assets/images/common_image/ic_moon.png";
 String imgIcKids = "assets/images/common_image/ic_kids.png";
+String imgChatbotError = "assets/images/common_image/ic_chatbotError.png";
 
 // Getstarted Page Image
 String tBackgroundGetstartedImage = 'assets/images/get_started_page_image/bg_get_started.png';
