@@ -51,3 +51,12 @@ String imgCourseDetailDowload = "assets/images/course_detail_page_image/ic_dowlo
 String imgUserAlarmclock = "assets/images/user_page_image/ic_alarmclock.png";
 String imgUserTelevision = "assets/images/user_page_image/ic_television.png";
 String imgUserTodolist = "assets/images/user_page_image/ic_todolist.png";
+
+// Music  Page Image
+String imgMusicStar = "assets/images/music_page_image/ic_star.png";
+String imgMusicMeditationyoga = "assets/images/music_page_image/ic_meditationyoga.png";
+String imgMusicWater = "assets/images/music_page_image/ic_water.png";
+String imgMusicsleep = "assets/images/music_page_image/ic_sleeping.png";
+String imgMusicsBackGround = "assets/images/music_page_image/bg_music.png";
+String imgMusicIconSkip = "assets/images/music_page_image/ic_skip_10_seconds.png";
+String imgMusicIconRelay = "assets/images/music_page_image/ic_relay_10_seconds.png";

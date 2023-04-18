@@ -112,7 +112,7 @@ const List listMusicFriend = [
   {
     "image": "assets/images/course_detail_page_image/img_ms_DontCoi.jpeg",
     "nameSong": "DON'T CÔI - RPT ORIJINN",
-    "urlSong": "assets/musics/friends/dont coi.mp3",
+    "urlSong": "assets/musics/friends/dontcoi.mp3",
   },
   {
     "image": "assets/images/course_detail_page_image/img_ms_11gio11phut.jpeg",

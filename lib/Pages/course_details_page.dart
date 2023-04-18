@@ -5,7 +5,7 @@ import 'package:meditation_app/Widgets/course_detail_page_widget/appbar_course_d
 import 'package:meditation_app/Widgets/course_detail_page_widget/body_course_detail_widget.dart';
 import 'package:meditation_app/Widgets/course_detail_page_widget/header_course_detail_widget.dart';
 import 'package:meditation_app/Widgets/course_detail_page_widget/record_course_detail_widget.dart';
-import 'package:meditation_app/Widgets/reponsive_builder.dart';
+import 'package:meditation_app/Common/widget/reponsive_builder.dart';
 
 class CourseDetails extends StatelessWidget {
   const CourseDetails({super.key});

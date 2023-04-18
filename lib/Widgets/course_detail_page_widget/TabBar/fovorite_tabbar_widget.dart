@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:meditation_app/Constant/colors.dart';
-import 'package:meditation_app/Pages/detail_music_page.dart';
+import 'package:meditation_app/Pages/detail_music_favorite_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/model/musicmodel.dart';
 
@@ -10,7 +9,6 @@ class FavoriteTabbarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final player = AudioPlayer();
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -46,21 +44,16 @@ class FavoriteTabbarWidget extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      //Navigator.of(context).pushNamed("$DetailFavorite");
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => DetailMusic(
+                          builder: (context) => DetailMusicFavorite(
                             nameSong: listSong[i]['namesong'],
-                            duration: listSong[i]["urlsong"],
+                            duration: listSong[i]['urlsong'],
                             image: 'assets/images/bg_favorite.jpeg',
                           ),
                         ),
                       );
-                      // player.play();
-                    },
-                    onDoubleTap: () {
-                      player.stop();
                     },
                     child: SizedBox(
                       width: 200,

@@ -32,9 +32,9 @@ android {
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
-    lintOptions {
-        warning('Unchecked')
-    }
+    // lintOptions {
+    //     warning('Unchecked')
+    // }
     
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -78,4 +78,9 @@ flutter {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:multidex:1.0.3'
+    // def exoplayer_version = "2.15.1"
+    // implementation "com.google.android.exoplayer:exoplayer-core:$exoplayer_version"
+    // implementation "com.google.android.exoplayer:exoplayer-dash:$exoplayer_version"
+    // implementation "com.google.android.exoplayer:exoplayer-hls:$exoplayer_version"
+    // implementation "com.google.android.exoplayer:exoplayer-smoothstreaming:$exoplayer_version"
 }

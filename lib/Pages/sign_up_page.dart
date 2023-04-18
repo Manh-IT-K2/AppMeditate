@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meditation_app/Common/form/form_header_widget.dart';
 import 'package:meditation_app/Constant/image_string.dart';
 import 'package:meditation_app/Utils/theme.dart';
-import 'package:meditation_app/Widgets/reponsive_builder.dart';
+import 'package:meditation_app/Common/widget/reponsive_builder.dart';
 import 'package:meditation_app/Widgets/signup_page_widget/form_body_signup_widget.dart';
 
 class SignUp extends StatelessWidget {

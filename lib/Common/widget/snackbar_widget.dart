@@ -34,7 +34,6 @@ class CustomSnackBarWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
-            
             children: [
               Text(
                 title,
@@ -43,13 +42,13 @@ class CustomSnackBarWidget extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 20),
               ),
-              const SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               Text(
                 subTitle,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                  
-                    color: Colors.white, fontSize: 14),
+                style: const TextStyle(color: Colors.white, fontSize: 14),
               ),
             ],
           ),

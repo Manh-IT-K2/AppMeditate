@@ -4,7 +4,7 @@ import 'package:meditation_app/Common/widget/header_widget.dart';
 import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Repository/sleep_storage.dart';
 import 'package:meditation_app/Utils/theme.dart';
-import 'package:meditation_app/Widgets/reponsive_builder.dart';
+import 'package:meditation_app/Common/widget/reponsive_builder.dart';
 import 'package:meditation_app/Widgets/sleep_page_widget/title_suggets_sleep_widget.dart';
 import 'package:meditation_app/Widgets/sleep_page_widget/topic_sleep_widget.dart';
 
@@ -60,7 +60,7 @@ class SleepPage extends StatelessWidget {
                     height: size.height,
                     padding: const EdgeInsets.only(top: 20),
                     child: const TopicSleepWidget(
-                        sTextTitle: 20,
+                      sTextTitle: 14,
                       sTextSubtitle: 10,
                     ),
                   ),
@@ -97,14 +97,14 @@ class SleepPage extends StatelessWidget {
                     sWidthIcon: 80,
                     sHeightButton: 80,
                     sWidthButton: 200,
-                    ),
+                  ),
                   Container(
                     width: size.width,
                     height: size.height,
                     padding: const EdgeInsets.only(top: 20),
                     child: const TopicSleepWidget(
-                      sTextTitle: 30,
-                      sTextSubtitle: 20,
+                      sTextTitle: 14,
+                      sTextSubtitle: 10,
                     ),
                   ),
                 ],

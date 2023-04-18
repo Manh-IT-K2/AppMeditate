@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:meditation_app/Common/widget/neubox_widget.dart';
 import 'package:meditation_app/Pages/course_details_page.dart';
-import 'package:meditation_app/Pages/detail_music_page.dart';
+import 'package:meditation_app/Pages/detail_music_favorite_page.dart';
 
-class AppBarDetailMusicWidget extends StatelessWidget {
-  const AppBarDetailMusicWidget({
+class AppBarDetailMusicFavoriteWidget extends StatelessWidget {
+  const AppBarDetailMusicFavoriteWidget({
     super.key,
   });
 

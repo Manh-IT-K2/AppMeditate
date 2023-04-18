@@ -4,7 +4,7 @@ import 'package:meditation_app/Widgets/detail_setting_page_widget/action_detail_
 import 'package:meditation_app/Widgets/detail_setting_page_widget/header_detail_setting_widget.dart';
 import 'package:meditation_app/Widgets/detail_setting_page_widget/infomation_user_detail_setting_widget.dart';
 import 'package:meditation_app/Widgets/detail_setting_page_widget/notification_detail_setting_widget.dart';
-import 'package:meditation_app/Widgets/reponsive_builder.dart';
+import 'package:meditation_app/Common/widget/reponsive_builder.dart';
 
 class DetailSettingUser extends StatelessWidget {
   const DetailSettingUser({super.key});

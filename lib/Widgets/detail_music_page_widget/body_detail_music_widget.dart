@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:meditation_app/Common/widget/neubox_widget.dart';
-import 'package:meditation_app/Pages/detail_music_page.dart';
+import 'package:meditation_app/Pages/detail_music_favorite_page.dart';
 
-class BodyDetailMusicWidget extends StatelessWidget {
-  const BodyDetailMusicWidget({
+class BodyDetailMusicFavoriteWidget extends StatelessWidget {
+  const BodyDetailMusicFavoriteWidget({
     super.key,
     required this.widget,
   });
 
-  final DetailMusic widget;
+  final DetailMusicFavorite widget;
 
   @override
   Widget build(BuildContext context) {

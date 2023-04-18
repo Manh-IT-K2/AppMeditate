@@ -5,7 +5,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:get/get.dart';
 import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Pages/course_details_page.dart';
-import 'package:meditation_app/Pages/detail_music_page.dart';
+import 'package:meditation_app/Pages/detail_music_favorite_page.dart';
 import 'package:meditation_app/Pages/detail_setting_page.dart';
 import 'package:meditation_app/Pages/music_page.dart';
 import 'package:meditation_app/Pages/home_page.dart';
@@ -59,10 +59,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: kColorPrimary,
       ),
-      home: const SingupOrSignin(), // định nghĩa round đầu tiên hiện lên
+      home: const ContainerPage(), // định nghĩa round đầu tiên hiện lên
       routes: {
         '$SingupOrSignin': (_) => const SingupOrSignin(),
-        '/SignUp': (_) => const SignUp(),
+        '$SignUp': (_) => const SignUp(),
         '$SignIn': (_) => const SignIn(),
         '$GetstartedPage': (_) => const GetstartedPage(),
         '$ChooseTopicPage': (_) => const ChooseTopicPage(),
@@ -74,9 +74,10 @@ class MyApp extends StatelessWidget {
         '$MusicPage': (_) => const MusicPage(),
         '$UserAfsarPage': (_) => const UserAfsarPage(),
         '$CourseDetails': (_) => const CourseDetails(),
-        '$DetailMusic': (_) => DetailMusic(nameSong: '',duration: '',image: '',),
+        '$DetailMusicFavorite': (_) => DetailMusicFavorite(nameSong: '',duration: '',image: '',),
         '$MeditatePage': (_) => const MeditatePage(),
         '$DetailSettingUser': (_) => const DetailSettingUser(),
+        //'$AudioFile': (_) => const AudioFile()
       },
     );
   }

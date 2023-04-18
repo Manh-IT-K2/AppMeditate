@@ -23,7 +23,7 @@ class AppbarWidget extends StatelessWidget {
       sText,
       sWidthImage,
       sHeightImage;
-  final Color  colorText;
+  final Color colorText;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -147,7 +147,6 @@ class AppbarWidget extends StatelessWidget {
                   color: kColorDartPrimary,
                 ),
                 child: Image.asset(
-                  
                   imgIcKids,
                   width: sWidthImage,
                   height: sHeightImage,

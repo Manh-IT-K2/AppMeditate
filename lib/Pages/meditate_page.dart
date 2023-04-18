@@ -7,7 +7,7 @@ import 'package:meditation_app/Repository/meditate_storage.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/Widgets/meditate_page_widget/title_suggest_meditate_widget.dart';
 import 'package:meditation_app/Widgets/meditate_page_widget/topic_meditate_widget.dart';
-import 'package:meditation_app/Widgets/reponsive_builder.dart';
+import 'package:meditation_app/Common/widget/reponsive_builder.dart';
 
 final meditateStorage = AssetMeditateStorage();
 

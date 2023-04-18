@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meditation_app/Widgets/choose_topic_page_widget/body_topicgrid_widget.dart';
 import 'package:meditation_app/Widgets/choose_topic_page_widget/header_topic_widget.dart';
-import 'package:meditation_app/Widgets/reponsive_builder.dart';
+import 'package:meditation_app/Common/widget/reponsive_builder.dart';
 import 'package:meditation_app/Repository/topic_storage.dart';
 
 final topicStorage = AssetTopicStorage();

@@ -5,7 +5,7 @@ import 'package:meditation_app/Widgets/home_page_widget/body_one_home_widget.dar
 import 'package:meditation_app/Widgets/home_page_widget/footer_home_widget.dart';
 import 'package:meditation_app/Widgets/home_page_widget/header_home_widget.dart';
 import 'package:meditation_app/Widgets/home_page_widget/title_suggets_home_widget.dart';
-import 'package:meditation_app/Widgets/reponsive_builder.dart';
+import 'package:meditation_app/Common/widget/reponsive_builder.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

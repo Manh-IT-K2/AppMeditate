@@ -27,15 +27,15 @@ class TopicSleepWidget extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         }
-        final Sleeps = snapshot.data!;
+        final sleeps = snapshot.data!;
         return MasonryGridView.count(
           crossAxisCount: 2,
           crossAxisSpacing: 10, // cách đều bên phải trái
           mainAxisSpacing: 16, // cách đều trên dưới
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-          itemCount: Sleeps.length,
+          itemCount: sleeps.length,
           itemBuilder: (context, index) {
-            final sleep = Sleeps[index];
+            final sleep = sleeps[index];
             return InkWell(
               // nhấn vào sẽ chuyển sang trang reminderspage
               onTap: () {
@@ -51,10 +51,10 @@ class TopicSleepWidget extends StatelessWidget {
                   children: [
                     LayoutBuilder(
                       // đọc được contraints của thằng cha cho thằng con
-                      builder: (context, Constraints) {
+                      builder: (context, constraints) {
                         return Image.asset(
                           sleep.thumbnail,
-                          width: Constraints.maxWidth,
+                          width: constraints.maxWidth,
                           fit: BoxFit.fill,
                         );
                       },
@@ -63,13 +63,13 @@ class TopicSleepWidget extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 10),
                       child: RichText(
                         text: TextSpan(
-                          text: '${Sleeps[index].title}\n',
+                          text: '${sleeps[index].title}\n',
                           style: Primaryfont.bold(
                                   sTextTitle)
                               .copyWith(color: sleep.textColor),
                           children: [
                             TextSpan(
-                              text: Sleeps[index].timesleep,
+                              text: sleeps[index].timesleep,
                               style: Primaryfont.ligh(sTextSubtitle).copyWith(
                                   color: kColorLightGrey, height: 1.5),
                             ),

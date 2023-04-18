@@ -1,6 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:meditation_app/Common/widget/snackbar_widget.dart';
 import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Constant/image_string.dart';
 import 'package:meditation_app/Constant/text_string.dart';
@@ -118,7 +118,7 @@ class _form_body_signup_widgetState extends State<form_body_signup_widget> {
                         fillColor: const Color(0xFFF2F3F7),
                         filled: true,
                         hintText: txtPassword,
-                        
+
                         //helperText: passwordError,
                         focusedBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(
@@ -148,8 +148,9 @@ class _form_body_signup_widgetState extends State<form_body_signup_widget> {
                         ),
                       ),
                       onChanged: (value) {
-                         passwordError = controller.validatePassword(controller.passWord.text.trim());
-                         _showError.value = false;
+                        passwordError = controller
+                            .validatePassword(controller.passWord.text.trim());
+                        _showError.value = false;
                       },
                     );
                   },
@@ -158,17 +159,20 @@ class _form_body_signup_widgetState extends State<form_body_signup_widget> {
             ),
             // at least one uppercase letter, one lowercase letter,\n one special character and number'
             ValueListenableBuilder(
-              valueListenable: _showError, 
+              valueListenable: _showError,
               builder: (context, value, child) {
-               return _showError.value
-                ? Padding(
-                    padding: const EdgeInsets.only(top: 4),
-                    child: Text(
-                      passwordError,style: Primaryfont.bold(12).copyWith(color: Colors.red),                   
-                    ),
-                  )
-                : const SizedBox.shrink();
-              },),
+                return _showError.value
+                    ? Padding(
+                        padding: const EdgeInsets.only(top: 4),
+                        child: Text(
+                          passwordError,
+                          style:
+                              Primaryfont.bold(12).copyWith(color: Colors.red),
+                        ),
+                      )
+                    : const SizedBox.shrink();
+              },
+            ),
             const SizedBox(
               height: 20,
             ),
@@ -271,81 +275,106 @@ class _form_body_signup_widgetState extends State<form_body_signup_widget> {
               height: widget.sFooter,
             ),
             ElevatedButton(
-              onPressed: () {
-                setState(() async {
-                  if (formKey.currentState!.validate()) {
-                    final rePassWord = controller.rePassWord.text.trim();
-                    final users = UsersModel(
-                      userName: controller.userName.text.trim(),
-                      passWord: controller.passWord.text.trim(),
-                    );                  
-                    try {
-                      bool isValid =
-                          await controller.checkUserName(users.userName);
-                      if (users.userName == "" ||
-                          users.passWord == "" ||
-                          rePassWord == "") {
-                        final snackBar = SnackBar(
-                          content: CustomSnackBarWidget(
-                            sizeWidth: siree.width * 0.5,
-                            title: 'Error !',
-                            subTitle:
-                                'You have not entered the complete information?',
-                          ),
-                          backgroundColor: Colors.transparent,
-                          elevation: 0,
-                          behavior: SnackBarBehavior.floating,
-                          duration: const Duration(seconds: 2),
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      } else if (controller.isPasswordValid(users.passWord) == false) {
-                        _showError.value = true;
-                      }  else if (rePassWord != users.passWord) {
-                        final snackBar = SnackBar(
-                          content: CustomSnackBarWidget(
-                            sizeWidth: siree.width,
-                            title: 'Error !',
-                            subTitle: 'Password incorrect? Try again.',
-                          ),
-                          backgroundColor: Colors.transparent,
-                          elevation: 0,
-                          behavior: SnackBarBehavior.floating,
-                          duration: const Duration(seconds: 2),
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      } else if (isCheckbox.value == false) {
-                        final snackBar = SnackBar(
-                          content: CustomSnackBarWidget(
-                              sizeWidth: siree.width,
-                              title: 'Error !',
-                              subTitle: 'You have not accepted the terms!'),
-                          backgroundColor: Colors.transparent,
-                          elevation: 0,
-                          behavior: SnackBarBehavior.floating,
-                          duration: const Duration(seconds: 2),
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      } else if (isValid) {
-                        final snackBar = SnackBar(
-                          content: CustomSnackBarWidget(
-                              sizeWidth: siree.width,
-                              title: 'Error !',
-                              subTitle: 'Username already exists.'),
-                          backgroundColor: Colors.transparent,
-                          elevation: 0,
-                          behavior: SnackBarBehavior.floating,
-                          duration: const Duration(seconds: 2),
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      }else {
-                        SignUpController.instance.creadUser(users);
-                        Get.off(() => const SignIn());
-                      }
-                    } catch (e) {
+              onPressed: () async {
+                if (formKey.currentState!.validate()) {
+                  final rePassWord = controller.rePassWord.text.trim();
+                  final users = UsersModel(
+                    userName: controller.userName.text.trim(),
+                    passWord: controller.passWord.text.trim(),
+                  );
+                  try {
+                    bool isValid =
+                        await controller.checkUserName(users.userName);
+                    if (users.userName == "" ||
+                        users.passWord == "" ||
+                        rePassWord == "") {
+                      // final snackBar = SnackBar(
+                      //   content: CustomSnackBarWidget(
+                      //     sizeWidth: siree.width * 0.5,
+                      //     title: 'Error !',
+                      //     subTitle:
+                      //         'You have not entered the complete information?',
+                      //   ),
+                      //   backgroundColor: Colors.transparent,
+                      //   elevation: 0,
+                      //   behavior: SnackBarBehavior.floating,
+                      //   duration: const Duration(seconds: 2),
+                      // );
+                      // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      Get.snackbar("Error!", "You have not entered the complete information?.",
+                        icon: const Icon(Icons.error, color: Colors.white),
+                        snackPosition: SnackPosition.TOP,
+                        duration: const Duration(seconds: 5),
+                        backgroundColor: Colors.red,
+                        colorText: Colors.white);                     
+                    } else if (controller.isPasswordValid(users.passWord) ==
+                        false) {
+                      _showError.value = true;
+                    } else if (rePassWord != users.passWord) {
+                      // final snackBar = SnackBar(
+                      //   content: CustomSnackBarWidget(
+                      //     sizeWidth: siree.width,
+                      //     title: 'Error !',
+                      //     subTitle: 'Password incorrect? Try again.',
+                      //   ),
+                      //   backgroundColor: Colors.transparent,
+                      //   elevation: 0,
+                      //   behavior: SnackBarBehavior.floating,
+                      //   duration: const Duration(seconds: 2),
+                      // );
+                      // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                       Get.snackbar("Error!", "Password incorrect? Try again.",
+                        icon: const Icon(Icons.error, color: Colors.white),
+                        snackPosition: SnackPosition.TOP,
+                        duration: const Duration(seconds: 5),
+                        backgroundColor: Colors.red,
+                        colorText: Colors.white);            
+                    } else if (isCheckbox.value == false) {
+                      // final snackBar = SnackBar(
+                      //   content: CustomSnackBarWidget(
+                      //       sizeWidth: siree.width,
+                      //       title: 'Error !',
+                      //       subTitle: 'You have not accepted the terms!'),
+                      //   backgroundColor: Colors.transparent,
+                      //   elevation: 0,
+                      //   behavior: SnackBarBehavior.floating,
+                      //   duration: const Duration(seconds: 2),
+                      // );
+                      // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                       Get.snackbar("Error!", "You have not accepted the terms.",
+                        icon: const Icon(Icons.error, color: Colors.white),
+                        snackPosition: SnackPosition.TOP,
+                        duration: const Duration(seconds: 5),
+                        backgroundColor: Colors.red,
+                        colorText: Colors.white);     
+                    } else if (isValid) {
+                      // final snackBar = SnackBar(
+                      //   content: CustomSnackBarWidget(
+                      //       sizeWidth: siree.width,
+                      //       title: 'Error !',
+                      //       subTitle: 'Username already exists.'),
+                      //   backgroundColor: Colors.transparent,
+                      //   elevation: 0,
+                      //   behavior: SnackBarBehavior.floating,
+                      //   duration: const Duration(seconds: 2),
+                      // );
+                      // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      Get.snackbar("Error!", "Username already exists.",
+                        icon: const Icon(Icons.error, color: Colors.white),
+                        snackPosition: SnackPosition.TOP,
+                        duration: const Duration(seconds: 5),
+                        backgroundColor: Colors.red,
+                        colorText: Colors.white);     
+                    } else {
+                      SignUpController.instance.creadUser(users);
+                      Get.off(() => const SignIn());
+                    }
+                  } catch (e) {
+                    if (kDebugMode) {
                       print('Error: $e');
                     }
                   }
-                });
+                }
               },
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(kColorPrimary),

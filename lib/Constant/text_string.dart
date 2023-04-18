@@ -97,3 +97,7 @@ String txtUserOverview = "Overview";
 String txtUserOverview1 = "Overview";
 String txtUserOverview2 = "Overview";
 String txtUserOverview3 = "Overview";
+
+// Text Music Page
+String txtMusicHeaderTitle = "Music Relax";
+String txtMusicHeaderSubTitle = "Enjoy soothing music to help relax your mind and\n gently inspire your work";

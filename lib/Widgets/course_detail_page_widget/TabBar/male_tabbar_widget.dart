@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meditation_app/Constant/colors.dart';
-import 'package:meditation_app/Pages/detail_music_page.dart';
+import 'package:meditation_app/Pages/detail_music_favorite_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/model/musicmodel.dart';
 
@@ -44,7 +44,7 @@ class MaleTabbarWidget extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => DetailMusic(
+                            builder: (context) => DetailMusicFavorite(
                                 nameSong: listPiano[i]['namePiano'],
                                 duration: listPiano[i]['urlPiano'],
                                 image: listPiano[i]['image']),

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:meditation_app/Common/widget/neubox_widget.dart';
-import 'package:meditation_app/Pages/detail_music_page.dart';
+import 'package:meditation_app/Pages/detail_music_favorite_page.dart';
 
-class ControlDetailMusicWidget extends StatelessWidget {
-  const ControlDetailMusicWidget({
+class ControlDetailMusicFavoriteWidget extends StatelessWidget {
+  const ControlDetailMusicFavoriteWidget({
     super.key,
     required ValueNotifier<bool> isplay,
     required this.widget,
   }) : _isplay = isplay;
 
   final ValueNotifier<bool> _isplay;
-  final DetailMusic widget;
+  final DetailMusicFavorite widget;
 
   @override
   Widget build(BuildContext context) {
@@ -37,14 +37,20 @@ class ControlDetailMusicWidget extends StatelessWidget {
                   height: 80,
                   child: NeuBox(
                     child: InkWell(
-                      onTap: () {
-                        DarkMode.play.setAsset(widget.duration);
+                      onTap: () async {
+                        // //bool play = false;
                         if (_isplay.value == false) {
-                          DarkMode.play.play();
+                          await DarkMode.play.setAsset(widget.duration);
+                          await DarkMode.play.play();
                           _isplay.value = true;
-                        } else if (_isplay.value == true) {
-                          DarkMode.play.pause();
-                          _isplay.value = false;
+                        } else {
+                          if (DarkMode.play.playing) {
+                            await DarkMode.play.pause();
+                            //_isplay.value = false;
+                          } else {
+                            await DarkMode.play.play();
+                            //_isplay.value = true;
+                          }
                         }
                       },
                       child: Icon(

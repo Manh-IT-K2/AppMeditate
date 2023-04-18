@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meditation_app/Pages/detail_music_page.dart';
+import 'package:meditation_app/Pages/detail_music_favorite_page.dart';
 
 class NeuBox extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables

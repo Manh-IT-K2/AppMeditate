@@ -15,7 +15,10 @@ class UsersRepository extends GetxController {
         .add(users.toJson())
         .whenComplete(
           () => Get.snackbar("Success", "You account has been created.",
-              icon: const Icon(Icons.check_circle, color: Colors.green,),
+              icon: const Icon(
+                Icons.check_circle,
+                color: Colors.green,
+              ),
               snackPosition: SnackPosition.BOTTOM,
               backgroundColor: Colors.green.withOpacity(0.1),
               colorText: Colors.green),
@@ -35,30 +38,30 @@ class UsersRepository extends GetxController {
   //check username already exists or not
   Future<bool> checkUserName(String userName) async {
     // Lấy tất cả các documents có trường "username" bằng với giá trị đã nhập vào từ người dùng
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+    QuerySnapshot querySnapshot = await _db
         .collection('users')
         .where('userName', isEqualTo: userName)
         .get();
-    if(querySnapshot.size !=0){
+    if (querySnapshot.size != 0) {
       return true;
-    }else{
+    } else {
       return false;
     }
   }
 
   // check username and password login
-  Future<bool> checkUserNamePassword(String userName, String passWord) async{
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-    .collection('users')
-    .where('userName', isEqualTo: userName)
-    .get();
+  Future<bool> checkUserNamePassword(String userName, String passWord) async {
+    QuerySnapshot querySnapshot = await _db
+        .collection('users')
+        .where('userName', isEqualTo: userName)
+        .get();
     // Kiểm tra xem có bất kỳ document nào thỏa mãn điều kiện trên hay không
-  if (querySnapshot.size == 0) {   
-    return false; // Không tìm thấy tài khoản với username đã nhập vào
-  }
+    if (querySnapshot.size == 0) {
+      return false; // Không tìm thấy tài khoản với username đã nhập vào
+    }
 
-  // Kiểm tra xem password có trùng khớp với password được lưu trong Firestore không
-  String savedPassword = querySnapshot.docs[0]['passWord'];
-  return savedPassword == passWord;
+    // Kiểm tra xem password có trùng khớp với password được lưu trong Firestore không
+    String savedPassword = querySnapshot.docs[0]['passWord'];
+    return savedPassword == passWord;
   }
 }

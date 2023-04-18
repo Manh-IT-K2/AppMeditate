@@ -43,7 +43,6 @@ dependencies:
   curved_navigation_bar: ^1.0.3
   just_audio: ^0.9.31
   percent_indicator: ^4.2.3
-  audioplayers: ^3.0.1
   fl_chart: ^0.61.0
   ## -- FIREBASE PACKAGE
   firebase_core: ^2.8.0
@@ -89,6 +88,9 @@ flutter:
     - assets/images/meditate_page_imge/
     - assets/images/common_image/
     - assets/images/sleep_page_image/
+    - assets/images/music_page_image/
+    - assets/images/relax_image/
+    - assets/musics/relax/
     - assets/musics/
     - assets/musics/friends/
     - assets/musics/pianos/
