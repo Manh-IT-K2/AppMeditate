@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Utils/theme.dart';
+import 'package:meditation_app/Widgets/detail_setting_page_widget/detail_setting_infomation_user/account_infor_screen.dart';
 
 class InfomationUserDetailSettingWidget extends StatelessWidget {
   const InfomationUserDetailSettingWidget({
@@ -82,10 +84,15 @@ class InfomationUserDetailSettingWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                const Icon(
-                  Icons.arrow_forward,
-                  color: Colors.grey,
-                  size: 25,
+                InkWell(
+                  onTap: () {
+                    Get.to(() => const AccountInfor());
+                  },
+                  child: const Icon(
+                    Icons.arrow_forward,
+                    color: Colors.grey,
+                    size: 25,
+                  ),
                 )
               ],
             ),

@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Constant/image_string.dart';
 import 'package:meditation_app/Pages/home_page.dart';
@@ -17,7 +18,6 @@ class ContainerPage extends StatefulWidget {
 
 class _ContainerPageState extends State<ContainerPage> {
   int _selectIndex = SaveChange.indexPage;
-
   void _navigateBottombar(int index) {
     setState(() {
       _selectIndex = index;
@@ -72,6 +72,7 @@ class _ContainerPageState extends State<ContainerPage> {
 
 // change switch and index page
 class SaveChange {
+  static final userName = Get.arguments ?? "";
   static List<bool> changeSwitch = [false, false];
   static int indexPage = 2;
 }

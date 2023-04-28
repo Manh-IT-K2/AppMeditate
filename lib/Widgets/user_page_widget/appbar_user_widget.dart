@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meditation_app/Pages/container_page.dart';
 import 'package:meditation_app/Pages/detail_setting_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
 
@@ -29,7 +30,7 @@ class AppBarUserWidget extends StatelessWidget {
                 width: 10,
               ),
               Text(
-                'Q Mạnh',
+                SaveChange.userName,
                 style: Primaryfont.bold(16).copyWith(color: Colors.black),
               ),
             ],

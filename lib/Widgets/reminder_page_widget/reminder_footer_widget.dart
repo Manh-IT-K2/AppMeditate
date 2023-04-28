@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Pages/container_page.dart';
@@ -12,6 +13,7 @@ class ReminderFooterWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userName = Get.arguments;
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -20,7 +22,8 @@ class ReminderFooterWidget extends StatelessWidget {
           Expanded(
             child: MaterialButton(
               onPressed: () {
-                Navigator.of(context).pushNamed('$ContainerPage');
+                //Navigator.of(context).pushNamed('$ContainerPage');
+                Get.off(() => const ContainerPage(), arguments: userName);
               },
               textColor: Colors.white,
               color: kColorPrimary,

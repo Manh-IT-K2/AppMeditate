@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:meditation_app/Pages/chooce_topic_page.dart';
 import 'package:meditation_app/Pages/reminders_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
@@ -13,6 +14,7 @@ class BodyTopicGridWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userName = Get.arguments;
     return FutureBuilder<List<Topic>>(
       future: topicStorage.Load(),
       builder: (context, snapshot) {
@@ -38,7 +40,8 @@ class BodyTopicGridWidget extends StatelessWidget {
             return InkWell(
               // nhấn vào sẽ chuyển sang trang reminderspage
               onTap: () {
-                Navigator.of(context).pushNamed('$RemindersPage');
+                //Navigator.of(context).pushNamed('$RemindersPage');
+                Get.off(() => const RemindersPage(), arguments: userName);
               },
               child: DecoratedBox(
                 decoration: BoxDecoration(

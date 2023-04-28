@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:meditation_app/Common/widget/snackbar_widget.dart';
+import 'package:meditation_app/Common/data/data_controller.dart';
 import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Constant/image_string.dart';
 import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Pages/get_started_page.dart';
 import 'package:meditation_app/Pages/sign_up_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
+import 'package:meditation_app/Widgets/signin_page_widget/forget_password/forget_password_screen.dart';
 import 'package:meditation_app/controller/signin_controller.dart';
 
 class form_body_signin_widget extends StatelessWidget {
@@ -28,6 +29,7 @@ class form_body_signin_widget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(SignInController());
+    final userNameControlller = Get.put(DataController());
     final formKey = GlobalKey<FormState>();
     final sizee = context.screenSize;
     return Form(
@@ -143,39 +145,42 @@ class form_body_signin_widget extends StatelessWidget {
 
                   bool isValid = await controller.LogIn(userName, passWord);
                   if (userName == "" || passWord == "") {
-                    final snackBar = SnackBar(
-                      content: CustomSnackBarWidget(
-                        sizeWidth: sizee.width,
-                        title: 'Error !',
-                        subTitle:
-                            'You have not entered the complete information?',
-                      ),
-                      backgroundColor: Colors.transparent,
-                      elevation: 0,
-                      behavior: SnackBarBehavior.floating,
-                      duration: const Duration(seconds: 2),
-                    );
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  } else if (isValid) {                                     
-                    Get.off(() => const GetstartedPage());
+                    // final snackBar = SnackBar(
+                    //   content: CustomSnackBarWidget(
+                    //     sizeWidth: sizee.width,
+                    //     title: 'Error !',
+                    //     subTitle:
+                    //         'You have not entered the complete information?',
+                    //   ),
+                    //   backgroundColor: Colors.transparent,
+                    //   elevation: 0,
+                    //   behavior: SnackBarBehavior.floating,
+                    //   duration: const Duration(seconds: 2),
+                    Get.snackbar("Error!",
+                        "You have not entered the complete information?.",
+                        icon: const Icon(Icons.error, color: Colors.white),
+                        snackPosition: SnackPosition.TOP,
+                        duration: const Duration(seconds: 3),
+                        backgroundColor: Colors.red,
+                        colorText: Colors.white);
+
+                    //ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  } else if (isValid) {
+                    userNameControlller.setUserName(userName);
+                    Get.off(() => const GetstartedPage(), arguments: userNameControlller.userName.value);
                     Get.snackbar("Success !", "Logged in successfully.",
-                        icon: const Icon(Icons.check_circle, color: Color.fromARGB(255, 3, 64, 5)),
+                        icon: const Icon(Icons.check_circle,
+                            color: Color.fromARGB(255, 3, 64, 5)),
                         snackPosition: SnackPosition.BOTTOM,
                         backgroundColor: Colors.green.withOpacity(0.6),
                         colorText: const Color.fromARGB(255, 16, 87, 18));
                   } else {
-                    final snackBar = SnackBar(
-                      content: CustomSnackBarWidget(
-                        sizeWidth: sizee.width,
-                        title: 'Error !',
-                        subTitle: 'Ussername or Password wrong !',
-                      ),
-                      backgroundColor: Colors.transparent,
-                      elevation: 0,
-                      behavior: SnackBarBehavior.floating,
-                      duration: const Duration(seconds: 2),
-                    );
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    Get.snackbar("Error!", "Ussername or Password wrong.",
+                        icon: const Icon(Icons.error, color: Colors.white),
+                        snackPosition: SnackPosition.TOP,
+                        duration: const Duration(seconds: 3),
+                        backgroundColor: Colors.red,
+                        colorText: Colors.white);
                   }
                 }
               },
@@ -197,7 +202,9 @@ class form_body_signin_widget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 10),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  ForgetPasswordScreen.BuildShowmodalBottomSheet(context);
+                },
                 child: Text(
                   txtForgotPassword,
                   style: Primaryfont.medium(14).copyWith(color: Colors.black),

@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Constant/image_string.dart';
 import 'package:meditation_app/Constant/text_string.dart';
@@ -277,10 +278,12 @@ class _form_body_signup_widgetState extends State<form_body_signup_widget> {
             ElevatedButton(
               onPressed: () async {
                 if (formKey.currentState!.validate()) {
+                  String formattedDate = DateFormat('dd, MMMM, yyyy').format(DateTime.now());
                   final rePassWord = controller.rePassWord.text.trim();
                   final users = UsersModel(
                     userName: controller.userName.text.trim(),
                     passWord: controller.passWord.text.trim(),
+                    joinDay: formattedDate
                   );
                   try {
                     bool isValid =

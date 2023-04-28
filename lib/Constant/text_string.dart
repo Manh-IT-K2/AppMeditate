@@ -1,6 +1,8 @@
 /* -- App Text String -- */
 
 // Golbal Text 
+const String tEmail = "E-Mail";
+const String tPhoneNo = "Phone No";
 String txtSignUp = 'SIGN UP';
 String txtSignIn = 'SIGN IN';
 String txtUsername = "Username";
@@ -15,6 +17,7 @@ String txtAnxious = "Anxious";
 String txtSleep = "Sleep";
 String txtKids = "Kids";
 String txtStart = "START";
+String txtEditProfile = "Edit Profile";
 
 // text getstarted
 String tGetstartedButtonTitle = "GET STATED";
@@ -101,3 +104,16 @@ String txtUserOverview3 = "Overview";
 // Text Music Page
 String txtMusicHeaderTitle = "Music Relax";
 String txtMusicHeaderSubTitle = "Enjoy soothing music to help relax your mind and\n gently inspire your work";
+
+
+// -- Forget Password Text
+const String tForgetPasswordTitle = "Make Selection!";
+const String tForgetPasswordSubTitle = "Select one of the options given below to reset your password.";
+const String tResetViaEMail = "Reset via Mail Verification";
+const String tResetViaPhone = "Reset via Phone Verification";
+
+// -- Forget Password Via Phone - Text
+const String tForgetPhoneSubTitle = "Enter your registered Phone No to receive OTP";
+
+// -- Forget Password Via E-Mail - Text
+const String tForgetMailSubTitle = "Enter your registered E-Mail to receive OTP";
