@@ -51,11 +51,12 @@ class SignIn extends StatelessWidget {
             : Row(
                 children: [
                   Expanded(
-                      child: form_header_widget(
-                    size: Size(size.width * 0.35, size.height * 0.15),
-                    sHeight: size.height * 1,
-                    sWidth: size.width * 1,
-                  )),
+                    child: form_header_widget(
+                      size: Size(size.width * 0.35, size.height * 0.15),
+                      sHeight: size.height * 1,
+                      sWidth: size.width * 1,
+                    ),
+                  ),
                   Expanded(
                     child: form_body_signin_widget(
                       a: a,

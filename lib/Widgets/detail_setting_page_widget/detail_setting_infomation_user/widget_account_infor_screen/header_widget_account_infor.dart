@@ -34,27 +34,25 @@ class HeaderWidgetAccountInfor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
           children: [
             InkWell(
-            onTap: () {
-              Get.off(() => const DetailSettingUser());
-            },
-            child: const Icon(Icons.arrow_back_ios, size: 30)),
-        const SizedBox(
-          width: 10,
-        ),
-        Text(
-          txtEditProfile,
-          style: Primaryfont.medium(16),
-        ),
+                onTap: () {
+                  Get.off(() => const DetailSettingUser());
+                },
+                child: const Icon(Icons.arrow_back_ios, size: 30)),
+            const SizedBox(
+              width: 10,
+            ),
+            Text(
+              txtEditProfile,
+              style: Primaryfont.medium(16),
+            ),
           ],
         ),
-       
         ElevatedButton(
           onPressed: () async {
             if (_formKey.currentState!.validate()) {
@@ -89,7 +87,7 @@ class HeaderWidgetAccountInfor extends StatelessWidget {
             "Lưu",
             style: Primaryfont.bold(16).copyWith(color: Colors.white),
           ),
-        )
+        ),
       ],
     );
   }

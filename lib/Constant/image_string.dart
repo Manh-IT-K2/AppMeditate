@@ -60,3 +60,6 @@ String imgMusicsleep = "assets/images/music_page_image/ic_sleeping.png";
 String imgMusicsBackGround = "assets/images/music_page_image/bg_music.png";
 String imgMusicIconSkip = "assets/images/music_page_image/ic_skip_10_seconds.png";
 String imgMusicIconRelay = "assets/images/music_page_image/ic_relay_10_seconds.png";
+
+// Change password screen
+String imgChangePasswordBG = "assets/images/user_page_image/bg_changepassword.png";
