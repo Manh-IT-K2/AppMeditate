@@ -52,6 +52,10 @@ dependencies:
   get: ^4.6.5
   ## -- DayTime
   intl: ^0.17.0
+  ## -- OTP TEXTFIELD PACKAGE
+  flutter_otp_text_field: ^1.1.1
+  ## -- Send OTP Email
+  mailer: ^6.0.1
 
 dev_dependencies:
   flutter_test:
@@ -92,6 +96,7 @@ flutter:
     - assets/images/sleep_page_image/
     - assets/images/music_page_image/
     - assets/images/relax_image/
+    - assets/images/forget_password_image/
     - assets/musics/relax/
     - assets/musics/
     - assets/musics/friends/

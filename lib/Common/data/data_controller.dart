@@ -10,4 +10,14 @@ class DataController extends GetxController{
   setUserName(String value){
     userName.value = value;
   }
+
+  var phone = "".obs;
+  setPhone(String value){
+    phone.value = value;
+  }
+
+  var email = "".obs;
+  setEmail(String value){
+    email.value = value;
+  }
 }

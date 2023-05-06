@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:meditation_app/Common/message/dialog_message.dart';
 import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Pages/detail_setting_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/Widgets/detail_setting_page_widget/detail_setting_infomation_user/account_infor_screen.dart';
+import 'package:meditation_app/Widgets/detail_setting_page_widget/detail_setting_infomation_user/widget_account_infor_screen/body_form_widget_account_infor_main.dart';
 import 'package:meditation_app/model/users_model.dart';
 
 class HeaderWidgetAccountInfor extends StatelessWidget {
@@ -56,7 +58,10 @@ class HeaderWidgetAccountInfor extends StatelessWidget {
         ElevatedButton(
           onPressed: () async {
             if (_formKey.currentState!.validate()) {
-              final users = UsersModel(
+              if(TFChange.onchange == 1 || TFChange.onchange == 2){
+                DialogMessage.show(context, "Not enter you must link");
+              }else{
+                final users = UsersModel(
                   id: id,
                   userName: user.userName,
                   passWord: user.passWord,
@@ -75,6 +80,8 @@ class HeaderWidgetAccountInfor extends StatelessWidget {
                   duration: const Duration(seconds: 3),
                   backgroundColor: Colors.green,
                   colorText: Colors.white);
+              }
+              
             }
           },
           style: ElevatedButton.styleFrom(

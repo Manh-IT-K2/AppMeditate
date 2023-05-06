@@ -272,6 +272,12 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "flutter_otp_text_field",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/flutter_otp_text_field-1.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_staggered_grid_view",
       "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/flutter_staggered_grid_view-0.6.2",
       "packageUri": "lib/",
@@ -402,6 +408,12 @@
       "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/logging-1.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
+    },
+    {
+      "name": "mailer",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/mailer-6.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "matcher",
@@ -746,7 +758,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-04-29T14:35:57.050710Z",
+  "generated": "2023-05-05T15:20:40.901866Z",
   "generator": "pub",
   "generatorVersion": "2.19.6"
 }

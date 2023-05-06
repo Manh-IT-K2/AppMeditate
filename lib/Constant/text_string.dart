@@ -37,7 +37,7 @@ String txtHaveRead = 'i have read the\t';
 
 // Text Login page
 String txtHeaderSigin = "welcome Back!";
-String txtForgotPassword = "Forgot Password";
+String txtForgotPassword = "Forgot Password?";
 
 // Text Choose Topic
 String txtHeaderChooseTopicTitle1 = "What Brings you";
@@ -117,3 +117,8 @@ const String tForgetPhoneSubTitle = "Enter your registered Phone No to receive O
 
 // -- Forget Password Via E-Mail - Text
 const String tForgetMailSubTitle = "Enter your registered E-Mail to receive OTP";
+
+// -- OTP Screen - text
+const String tOtpTitle = "CO\nDE";
+const String tOtpSubTitle = "Verification";
+const String tOtpMessage = "Enter the verification code sent at";

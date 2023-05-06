@@ -9,6 +9,7 @@ class UsersRepository extends GetxController {
 
   final _db = FirebaseFirestore.instance;
 
+  // create user
   createUsers(UsersModel users) async {
     DocumentReference docRef =
         await _db.collection("users").add(users.toJson());
@@ -48,6 +49,31 @@ class UsersRepository extends GetxController {
     }
   }
 
+  // update phone
+  Future<void> updatePhone(String userId, String phone) async {
+    try {
+      await _db.collection("users").doc(userId).update({"phone": phone});
+    } catch (e) {
+      // handle error
+      if (kDebugMode) {
+        print(e.toString());
+      }
+    }
+  }
+
+
+  // update email
+  Future<void> updateEmail(String userId, String email) async {
+    try {
+      await _db.collection("users").doc(userId).update({"email": email});
+    } catch (e) {
+      // handle error
+      if (kDebugMode) {
+        print(e.toString());
+      }
+    }
+  }
+
   // check password
   Future<bool> checkPassword(String userName, String passWord) async{
     QuerySnapshot querySnapshot = await _db.collection("users")
@@ -57,7 +83,7 @@ class UsersRepository extends GetxController {
     return isPassword == passWord;
   }
 
-  // get user
+  // get user with ussername
   Future<UsersModel> getUserDetail(String userName) async {
     final snapshot = await _db
         .collection("users")
@@ -68,12 +94,63 @@ class UsersRepository extends GetxController {
     return userData;
   }
 
+  // get user with phone
+  Future<UsersModel> getUserWithPhone(String phone) async {
+    final snapshot = await _db
+        .collection("users")
+        .where("phone", isEqualTo: phone)
+        .get();
+    final userData =
+        snapshot.docs.map((e) => UsersModel.fromSnapshot(e)).single;
+    return userData;
+  }
+
+  // get user with email
+  Future<UsersModel> getUserWithEmail(String email) async {
+    final snapshot = await _db
+        .collection("users")
+        .where("email", isEqualTo: email)
+        .get();
+    final userData =
+        snapshot.docs.map((e) => UsersModel.fromSnapshot(e)).single;
+    return userData;
+  }
+
+
   //check username already exists or not
   Future<bool> checkUserName(String userName) async {
     // Lấy tất cả các documents có trường "username" bằng với giá trị đã nhập vào từ người dùng
     QuerySnapshot querySnapshot = await _db
         .collection('users')
         .where('userName', isEqualTo: userName)
+        .get();
+    if (querySnapshot.size != 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  //check phone already exists or not
+  Future<bool> checkPhone(String phone) async {
+    // Lấy tất cả các documents có trường "username" bằng với giá trị đã nhập vào từ người dùng
+    QuerySnapshot querySnapshot = await _db
+        .collection('users')
+        .where('phone', isEqualTo: phone)
+        .get();
+    if (querySnapshot.size != 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  //check email already exists or not
+  Future<bool> checkEmail(String email) async {
+    // Lấy tất cả các documents có trường "username" bằng với giá trị đã nhập vào từ người dùng
+    QuerySnapshot querySnapshot = await _db
+        .collection('users')
+        .where('email', isEqualTo: email)
         .get();
     if (querySnapshot.size != 0) {
       return true;

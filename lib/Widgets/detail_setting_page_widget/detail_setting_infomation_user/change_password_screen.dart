@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meditation_app/Constant/image_string.dart';
 import 'package:meditation_app/Constant/text_string.dart';
-import 'package:meditation_app/Pages/detail_setting_page.dart';
+import 'package:meditation_app/Pages/container_page.dart';
+import 'package:meditation_app/Pages/sign_in_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/Widgets/signin_page_widget/forget_password/forget_password_screen.dart';
 import 'package:meditation_app/controller/change_password_controller.dart';
@@ -37,7 +38,7 @@ class ChangePasswordScreen extends StatelessWidget {
               children: [
                 IconButton(
                   onPressed: () {
-                    Get.off(() => const DetailSettingUser());
+                   Get.back();
                   },
                   icon: const Icon(Icons.arrow_back,
                       size: 30, color: Colors.black),
@@ -172,8 +173,7 @@ class ChangePasswordScreen extends StatelessWidget {
                      alignment: Alignment.centerRight,
                       child: TextButton(
                         onPressed: () {
-                          ForgetPasswordScreen.BuildShowmodalBottomSheet(
-                              context);
+                         ForgetPasswordScreen.BuildShowmodalBottomSheet(context);
                         },
                         child: Text(
                           txtForgotPassword,
@@ -198,10 +198,10 @@ class ChangePasswordScreen extends StatelessWidget {
                                 controller.newPassword.text.trim();
                             final confirmPassword =
                                 controller.confirmPassword.text.trim();
-                            final userModel = await getIdUser.getUser('Qm');
+                            final userModel = await getIdUser.getUser(SaveChange.userName);
                             final userId = userModel.id;
                             bool isCheckPass = await controller.checkPassword(
-                                "Qm", oldPAssword);
+                                SaveChange.userName, oldPAssword);
                             // check String null
                             if (oldPAssword == "" ||
                                 newPassword == "" ||
@@ -232,6 +232,8 @@ class ChangePasswordScreen extends StatelessWidget {
                               showErrorConfirmPass.value = true;
                             } else {
                               controller.updatePassword(userId!, newPassword);
+                              Get.off(() => Container());
+                              SaveChange.indexPage = 4;
                               Get.snackbar(
                                   "Success!", "Password update successful.",
                                   icon: const Icon(Icons.error,

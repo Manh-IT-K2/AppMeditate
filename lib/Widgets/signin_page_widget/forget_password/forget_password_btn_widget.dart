@@ -42,6 +42,7 @@ class ForgetPasswordBtnWidget extends StatelessWidget {
                 ),
                 Text(
                   subTitle,
+                  textAlign: TextAlign.start,
                   style: Primaryfont.thin(14).copyWith(color: Colors.black),
                 ),
               ],

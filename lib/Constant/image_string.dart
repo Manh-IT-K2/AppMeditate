@@ -63,3 +63,8 @@ String imgMusicIconRelay = "assets/images/music_page_image/ic_relay_10_seconds.p
 
 // Change password screen
 String imgChangePasswordBG = "assets/images/user_page_image/bg_changepassword.png";
+
+// Forget Password 
+String imgForgetPaswordEmailBG = "assets/images/forget_password_image/bg_forget_password_email.png";
+String imgForgetPaswordPhoneBG = "assets/images/forget_password_image/bg_forget_password_phone.png";
+String imgForgetPaswordUserBG = "assets/images/forget_password_image/bg_forget_password_username.png";
