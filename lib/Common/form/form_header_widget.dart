@@ -1,8 +1,18 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:meditation_app/Common/data/data_controller.dart';
 import 'package:meditation_app/Constant/image_string.dart';
 import 'package:meditation_app/Constant/text_string.dart';
+import 'package:meditation_app/Pages/get_started_page.dart';
 import 'package:meditation_app/Pages/signup_or_singin_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
+import 'package:meditation_app/controller/auth_service_controller.dart';
+import 'package:meditation_app/controller/forget_password_controller.dart';
+import 'package:meditation_app/controller/signin_controller.dart';
+import 'package:meditation_app/controller/signup_controller.dart';
+import 'package:meditation_app/model/users_model.dart';
 
 // ignore: camel_case_types
 class form_header_widget extends StatelessWidget {
@@ -18,6 +28,11 @@ class form_header_widget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(AuthServiceController());
+    final createUser = Get.put(SignUpController());
+    final dataController = Get.put(DataController());
+    final checkEmail = Get.put(ForgetPasswordController());
+    final saveLoginSatus = Get.put(SignInController());
     return Container(
       padding: const EdgeInsets.all(0),
       width: sWidth,
@@ -43,9 +58,45 @@ class form_header_widget extends StatelessWidget {
             height: 30,
           ),
           ElevatedButton.icon(
-            onPressed: () {},
+            onPressed: ()async {
+              final user = await controller.signInWithFacebook();
+              if (user != null) {
+                 final String username = await saveLoginSatus.getStringUsername();
+                    final User? user = FirebaseAuth.instance.currentUser;
+                    final userPass = createUser.generateRandomString(8);
+                    final displayName = user!.displayName ?? "";
+                    final email = user.email ?? "";
+                    if (await checkEmail.checkEmail(email)) {
+                      final userModel = await checkEmail.getUserWithEmail(email);
+                      dataController.setUserName(userModel.userName);
+                      saveLoginSatus.saveUsername(userPass);
+                      saveLoginSatus.saveLoginStatus();
+                      Get.to(() => const GetstartedPage(),
+                          arguments: dataController.userName.value);
+                    } else {
+                      dataController.setUserName(username);
+                      saveLoginSatus.saveUsername(userPass);
+                      UsersModel usersModel = UsersModel(
+                        typeImage: false,
+                        statusChageUser: 0,
+                        userName: userPass,
+                        passWord: userPass,
+                        fullName: displayName,
+                        email: email,
+                      );
+                      createUser.creadUser(usersModel);
+                      saveLoginSatus.saveLoginStatus();
+                      Get.to(() => const GetstartedPage(),
+                          arguments: dataController.userName.value);
+                    }
+                  } else {
+                    if (kDebugMode) {
+                      print( "User cancels login !");
+                    }
+                  }
+            },
             icon: Image.asset(
-             imgFacebook,
+              imgFacebook,
               alignment: Alignment.centerLeft,
             ),
             label: Row(
@@ -74,7 +125,44 @@ class form_header_widget extends StatelessWidget {
           ),
           Flexible(
             child: ElevatedButton.icon(
-              onPressed: () {},
+              onPressed: () async {
+                  final user = await controller.signInWithGoogle();
+                  if (user != null) {
+                    final String username = await saveLoginSatus.getStringUsername();
+                    final User? user = FirebaseAuth.instance.currentUser;
+                    final userPass = createUser.generateRandomString(8);
+                    final displayName = user!.displayName ?? "";
+                    final email = user.email ?? "";
+                    if (await checkEmail.checkEmail(email)) {
+                      final userModel = await checkEmail.getUserWithEmail(email);
+                      dataController.setUserName(userModel.userName);
+                      saveLoginSatus.saveUsername(userPass);
+                      saveLoginSatus.saveLoginStatus();
+                      Get.to(() => const GetstartedPage(),
+                          arguments: dataController.userName.value);
+                    } else {
+                      dataController.setUserName(username);
+                      saveLoginSatus.saveUsername(userPass);
+                      UsersModel usersModel = UsersModel(
+                        typeImage: false,
+                        statusChageUser: 0,
+                        userName: userPass,
+                        passWord: userPass,
+                        fullName: displayName,
+                        email: email,
+                      );
+                      createUser.creadUser(usersModel);
+                      saveLoginSatus.saveLoginStatus();
+                      Get.to(() => const GetstartedPage(),
+                          arguments: dataController.userName.value);
+                    }
+                  } else {
+                    if (kDebugMode) {
+                      print( "User cancels login !");
+                    }
+                  }
+                
+              },
               icon: Image.asset(imgGoogle),
               label: Row(
                 children: [
@@ -103,7 +191,7 @@ class form_header_widget extends StatelessWidget {
             height: 30,
           ),
           Text(
-           txtwithEmail,
+            txtwithEmail,
             style: Primaryfont.medium(14).copyWith(
               color: const Color(0xFFA1A4B2),
             ),

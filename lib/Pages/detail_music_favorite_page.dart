@@ -85,7 +85,7 @@ class _DetailMusicFavoriteState extends State<DetailMusicFavorite> {
                 margin: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
                 child: Column(
                   children: [
-                    AppBarDetailMusicFavoriteWidget(),
+                    const AppBarDetailMusicFavoriteWidget(),
                     const SizedBox(
                       height: 30,
                     ),

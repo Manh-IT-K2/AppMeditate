@@ -8,6 +8,7 @@ import 'package:meditation_app/Pages/get_started_page.dart';
 import 'package:meditation_app/Pages/sign_up_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/Widgets/signin_page_widget/forget_password/forget_password_screen.dart';
+import 'package:meditation_app/controller/editprofile_controller.dart';
 import 'package:meditation_app/controller/signin_controller.dart';
 
 class form_body_signin_widget extends StatelessWidget {
@@ -29,9 +30,10 @@ class form_body_signin_widget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(SignInController());
+    final saveColorBoderAvt = Get.put(EditProfileController());
     final userNameControlller = Get.put(DataController());
+    final saveLoginSatus =Get.put(SignInController());
     final formKey = GlobalKey<FormState>();
-    final sizee = context.screenSize;
     return Form(
       key: formKey,
       child: Container(
@@ -142,8 +144,7 @@ class form_body_signin_widget extends StatelessWidget {
                 if (formKey.currentState!.validate()) {
                   final userName = controller.userName.text.trim();
                   final passWord = controller.passWord.text.trim();
-
-                  bool isValid = await controller.LogIn(userName, passWord);
+                  bool isValid = await controller.logIn(userName, passWord);
                   if (userName == "" || passWord == "") {
                     // final snackBar = SnackBar(
                     //   content: CustomSnackBarWidget(
@@ -166,7 +167,13 @@ class form_body_signin_widget extends StatelessWidget {
 
                     //ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   } else if (isValid) {
-                    userNameControlller.setUserName(userName);
+                    controller.saveUsername(userName);
+                    final String username = await controller.getStringUsername();
+                    userNameControlller.setUserName(username);
+                    //save satus login
+                    saveLoginSatus.saveLoginStatus();
+                    // save color boder avt
+                    //saveColorBoderAvt.saveColor(Colors.black);
                     Get.off(() => const GetstartedPage(), arguments: userNameControlller.userName.value);
                     Get.snackbar("Success !", "Logged in successfully.",
                         icon: const Icon(Icons.check_circle,

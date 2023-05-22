@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meditation_app/Repository/users_repository/users_repository.dart';
@@ -49,4 +52,11 @@ class SignUpController extends GetxController {
     }
     
   }
+
+  // random 8 character
+  String generateRandomString(int length) {
+  var random = Random.secure();
+  var values = List<int>.generate(length, (i) => random.nextInt(255));
+  return base64Url.encode(values).substring(0, length);
+}
 }

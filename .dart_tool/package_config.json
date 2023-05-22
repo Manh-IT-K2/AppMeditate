@@ -9,7 +9,7 @@
     },
     {
       "name": "_flutterfire_internals",
-      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/_flutterfire_internals-1.1.0",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/_flutterfire_internals-1.3.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -27,15 +27,15 @@
     },
     {
       "name": "async",
-      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/async-2.10.0",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/async-2.11.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "audio_session",
-      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/audio_session-0.1.13",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/audio_session-0.1.14",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.14"
     },
     {
       "name": "boolean_selector",
@@ -93,7 +93,7 @@
     },
     {
       "name": "characters",
-      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/characters-1.2.1",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/characters-1.3.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -135,15 +135,21 @@
     },
     {
       "name": "collection",
-      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/collection-1.17.0",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/collection-1.17.1",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.18"
     },
     {
       "name": "convert",
       "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/convert-3.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
+    },
+    {
+      "name": "cross_file",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/cross_file-0.3.3+4",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
     },
     {
       "name": "crypto",
@@ -188,6 +194,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "facebook_auth_desktop",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/facebook_auth_desktop-0.0.9",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "fake_async",
       "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/fake_async-1.3.1",
       "packageUri": "lib/",
@@ -213,31 +225,31 @@
     },
     {
       "name": "firebase_auth_platform_interface",
-      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/firebase_auth_platform_interface-6.13.0",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/firebase_auth_platform_interface-6.15.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_auth_web",
-      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/firebase_auth_web-5.3.0",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/firebase_auth_web-5.5.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_core",
-      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/firebase_core-2.9.0",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/firebase_core-2.13.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_core_platform_interface",
-      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/firebase_core_platform_interface-4.6.0",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/firebase_core_platform_interface-4.8.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_core_web",
-      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/firebase_core_web-2.3.0",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/firebase_core_web-2.5.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -257,7 +269,25 @@
       "name": "flutter",
       "rootUri": "file:///Users/Quanmanh/flutter/packages/flutter",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "flutter_facebook_auth",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/flutter_facebook_auth-5.0.10",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "flutter_facebook_auth_platform_interface",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/flutter_facebook_auth_platform_interface-4.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_facebook_auth_web",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/flutter_facebook_auth_web-4.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "flutter_lints",
@@ -269,11 +299,59 @@
       "name": "flutter_localizations",
       "rootUri": "file:///Users/Quanmanh/flutter/packages/flutter_localizations",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.0"
     },
     {
       "name": "flutter_otp_text_field",
       "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/flutter_otp_text_field-1.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_plugin_android_lifecycle",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.15",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "flutter_secure_storage",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/flutter_secure_storage-8.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_secure_storage_linux",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/flutter_secure_storage_linux-1.1.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_secure_storage_macos",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/flutter_secure_storage_macos-3.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_secure_storage_platform_interface",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/flutter_secure_storage_platform_interface-1.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_secure_storage_web",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/flutter_secure_storage_web-1.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_secure_storage_windows",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/flutter_secure_storage_windows-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_spinkit",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/flutter_spinkit-5.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -293,13 +371,13 @@
       "name": "flutter_test",
       "rootUri": "file:///Users/Quanmanh/flutter/packages/flutter_test",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.0"
     },
     {
       "name": "flutter_web_plugins",
       "rootUri": "file:///Users/Quanmanh/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.0"
     },
     {
       "name": "freezed",
@@ -332,10 +410,52 @@
       "languageVersion": "2.15"
     },
     {
+      "name": "google_identity_services_web",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/google_identity_services_web-0.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "google_sign_in",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/google_sign_in-6.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "google_sign_in_android",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/google_sign_in_android-6.1.14",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "google_sign_in_ios",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/google_sign_in_ios-5.6.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "google_sign_in_platform_interface",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/google_sign_in_platform_interface-2.4.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "google_sign_in_web",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/google_sign_in_web-0.12.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
       "name": "graphs",
       "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/graphs-2.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "http",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/http-0.13.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
     },
     {
       "name": "http_multi_server",
@@ -350,8 +470,56 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "image_cropper",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/image_cropper-3.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "image_cropper_for_web",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/image_cropper_for_web-1.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "image_cropper_platform_interface",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/image_cropper_platform_interface-3.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "image_picker",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/image_picker-0.8.7+5",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "image_picker_android",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/image_picker_android-0.8.6+15",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "image_picker_for_web",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/image_picker_for_web-2.1.12",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "image_picker_ios",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.7+4",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "image_picker_platform_interface",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/image_picker_platform_interface-2.6.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "intl",
-      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/intl-0.17.0",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/intl-0.18.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -363,9 +531,9 @@
     },
     {
       "name": "js",
-      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/js-0.6.5",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/js-0.6.7",
       "packageUri": "lib/",
-      "languageVersion": "2.16"
+      "languageVersion": "2.19"
     },
     {
       "name": "json_annotation",
@@ -381,21 +549,21 @@
     },
     {
       "name": "just_audio",
-      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/just_audio-0.9.32",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/just_audio-0.9.33",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.14"
     },
     {
       "name": "just_audio_platform_interface",
-      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/just_audio_platform_interface-4.2.0",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/just_audio_platform_interface-4.2.1",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.14"
     },
     {
       "name": "just_audio_web",
-      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/just_audio_web-0.4.7",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/just_audio_web-0.4.8",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.14"
     },
     {
       "name": "lints",
@@ -417,7 +585,7 @@
     },
     {
       "name": "matcher",
-      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/matcher-0.12.13",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/matcher-0.12.15",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -429,7 +597,7 @@
     },
     {
       "name": "meta",
-      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/meta-1.8.0",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/meta-1.9.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -453,7 +621,7 @@
     },
     {
       "name": "path",
-      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/path-1.8.2",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/path-1.8.3",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -506,6 +674,36 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "permission_handler",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/permission_handler-10.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
+      "name": "permission_handler_android",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/permission_handler_android-10.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
+      "name": "permission_handler_apple",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/permission_handler_apple-9.0.8",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
+      "name": "permission_handler_platform_interface",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/permission_handler_platform_interface-3.9.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "permission_handler_windows",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/permission_handler_windows-0.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "petitparser",
       "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/petitparser-5.1.0",
       "packageUri": "lib/",
@@ -554,6 +752,12 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "quiver",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/quiver-3.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "rxdart",
       "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/rxdart-0.27.7",
       "packageUri": "lib/",
@@ -561,7 +765,7 @@
     },
     {
       "name": "shared_preferences",
-      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/shared_preferences-2.1.0",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/shared_preferences-2.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
@@ -617,7 +821,7 @@
       "name": "sky_engine",
       "rootUri": "file:///Users/Quanmanh/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "3.0"
     },
     {
       "name": "source_gen",
@@ -669,7 +873,7 @@
     },
     {
       "name": "test_api",
-      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/test_api-0.4.16",
+      "rootUri": "file:///Users/Quanmanh/.pub-cache/hosted/pub.dev/test_api-0.5.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -758,7 +962,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-05-05T15:20:40.901866Z",
+  "generated": "2023-05-21T13:46:40.699705Z",
   "generator": "pub",
-  "generatorVersion": "2.19.6"
+  "generatorVersion": "3.0.1"
 }

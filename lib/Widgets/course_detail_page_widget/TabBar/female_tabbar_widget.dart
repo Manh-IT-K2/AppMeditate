@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Pages/detail_music_favorite_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
@@ -10,7 +9,6 @@ class FemaleTabbarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final player = AudioPlayer();
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -74,14 +72,14 @@ class FemaleTabbarWidget extends StatelessWidget {
                               style: Primaryfont.ligh(12).copyWith(
                                   color: kColorDartPrimary, height: 1.5),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
-            )
+            ),
         ],
       ),
     );

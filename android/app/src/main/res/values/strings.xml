@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding= "utf-8"?>
+<resources>
+    <string name="app_name">App Meditate</string>
+    <string name="facebook_app_id">663630175577947</string>
+    <string name="fb_login_protocol_scheme">fb663630175577947</string>
+    <string name="facebook_client_token">2667a9132b4ce2fce24ae0d927e0eaba</string>
+</resources>

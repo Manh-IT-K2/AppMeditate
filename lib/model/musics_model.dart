@@ -25,10 +25,10 @@ class MusicsModel {
 
   // Map User fetched from Firebase to Usermodel
   factory MusicsModel.fromDocumentSnapshot(DocumentSnapshot snapshot) {
-    final data = snapshot.data() as Map<String, dynamic>;
-    if (data == null) {
+    if (snapshot.data() == null) {
       throw Exception('Data is null !');
     }
+    final data = snapshot.data() as Map<String, dynamic>;
     return MusicsModel(
         title: data["title"],
         author: data["author"],

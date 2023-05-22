@@ -71,7 +71,7 @@ class _DetailMusicState extends State<DetailMusic>
         });
       }
     });
-    advancedPlayer.setUrl(musicUrl);
+    advancedPlayer.setAsset(musicUrl);
   }
 
   // fomat time music

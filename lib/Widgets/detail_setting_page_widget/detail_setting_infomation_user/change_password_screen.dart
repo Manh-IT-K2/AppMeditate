@@ -198,7 +198,7 @@ class ChangePasswordScreen extends StatelessWidget {
                                 controller.newPassword.text.trim();
                             final confirmPassword =
                                 controller.confirmPassword.text.trim();
-                            final userModel = await getIdUser.getUser(SaveChange.userName);
+                            final userModel = await getIdUser.getUser();
                             final userId = userModel.id;
                             bool isCheckPass = await controller.checkPassword(
                                 SaveChange.userName, oldPAssword);

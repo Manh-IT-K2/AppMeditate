@@ -31,7 +31,7 @@ class ForgetPasswordController extends GetxController {
     return await userRepo.getUserWithPhone(phone);
   }
 
-  // get user with phone
+  // get user with email
   Future<UsersModel> getUserWithEmail(String email) async {
     return await userRepo.getUserWithEmail(email);
   }
@@ -53,8 +53,8 @@ class ForgetPasswordController extends GetxController {
 
   // send otp email
   sendOtpEmail(String email, String otpCode) async {
-  String username = 'quanmanh901@gmail.com';
-  String password = 'refihkajuqwjabay';
+  String username = 'meditationapp02@gmail.com';
+  String password = 'evymcwngeztukcwk';
 
   final smtpServer = gmail(username, password);
 

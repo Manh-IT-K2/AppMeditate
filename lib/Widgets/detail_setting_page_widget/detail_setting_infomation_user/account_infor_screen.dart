@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:meditation_app/Common/widget/reponsive_builder.dart';
-import 'package:meditation_app/Pages/container_page.dart';
+import 'package:meditation_app/Constant/image_string.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/controller/editprofile_controller.dart';
 import 'package:meditation_app/model/users_model.dart';
@@ -12,8 +13,32 @@ import 'widget_account_infor_screen/header_widget_account_infor.dart';
 
 final controller = Get.put(EditProfileController());
 
-class AccountInfor extends StatelessWidget {
+class AccountInfor extends StatefulWidget {
   const AccountInfor({super.key});
+
+  @override
+  State<AccountInfor> createState() => _AccountInforState();
+}
+
+class _AccountInforState extends State<AccountInfor>
+    with TickerProviderStateMixin {
+  late AnimationController _animationController;
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 4000),
+    );
+  }
+
+  @override
+  void dispose() {
+    _animationController
+        .dispose(); // Hãy chắc chắn rằng bạn đã gọi dispose() trên AnimationController
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = context.screenSize;
@@ -26,11 +51,20 @@ class AccountInfor extends StatelessWidget {
             portrait: Container(
               padding: const EdgeInsets.only(left: 30, right: 30, bottom: 12),
               child: FutureBuilder<UsersModel>(
-                future: controller.getUser("Qm"),
+                future: controller.getUser(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
+                    return SizedBox(
+                      width: size.width,
+                      height: size.height,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: SpinKitFadingCircle(
+                          color: Colors.pink,
+                          size: 50.0,
+                          controller: _animationController,
+                        ),
+                      ),
                     ); // show a loading indicator while waiting for the Future to complete
                   } else if (snapshot.hasError) {
                     return Text(
@@ -47,6 +81,8 @@ class AccountInfor extends StatelessWidget {
                     final day = TextEditingController(text: dayOfBirt[0]);
                     final month = TextEditingController(text: dayOfBirt[1]);
                     final year = TextEditingController(text: dayOfBirt[2]);
+                    String image = user.image ?? avtDefault;
+                    bool type = user.typeImage;
                     ValueNotifier<String> gender =
                         ValueNotifier<String>(user.gender ?? "");
                     var id = user.id;
@@ -66,7 +102,11 @@ class AccountInfor extends StatelessWidget {
                               month: month,
                               year: year),
                           BodyFormWidgetAccountInforMain(
-                              fullName: fullName, phone: phone, email: email),
+                              type: type,
+                              image: image,
+                              fullName: fullName,
+                              phone: phone,
+                              email: email),
                           BodyFormWidgetAccountInforGender(
                               sWidth: 40, size: size, gender: gender),
                           BodyFormWidgetAcountInforBirtday(
@@ -93,17 +133,25 @@ class AccountInfor extends StatelessWidget {
               padding: const EdgeInsets.only(
                   top: 30, left: 30, right: 30, bottom: 12),
               child: FutureBuilder<UsersModel>(
-                future: controller.getUser("Qm"),
+                future: controller.getUser(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(
-                      // show a loading indicator while waiting for the Future to complete
-                      child: CircularProgressIndicator(),
-                    ); 
+                    return SizedBox(
+                      width: size.width,
+                      height: size.height,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: SpinKitFadingCircle(
+                          color: Colors.pink,
+                          size: 50.0,
+                          controller: _animationController,
+                        ),
+                      ),
+                    );
                   } else if (snapshot.hasError) {
                     return Text(
-                      // show an error message if the Future returned an error
-                        'Error: ${snapshot.error}'); 
+                        // show an error message if the Future returned an error
+                        'Error: ${snapshot.error}');
                   } else if (snapshot.hasData) {
                     // Use the data from the Future if it is not null
                     UsersModel user = snapshot.data!;
@@ -116,6 +164,8 @@ class AccountInfor extends StatelessWidget {
                     final day = TextEditingController(text: dayOfBirt[0]);
                     final month = TextEditingController(text: dayOfBirt[1]);
                     final year = TextEditingController(text: dayOfBirt[2]);
+                    String image = user.image ?? avtDefault;
+                    bool type = user.typeImage;
                     ValueNotifier<String> gender =
                         ValueNotifier<String>(user.gender ?? "");
                     var id = user.id;
@@ -135,7 +185,11 @@ class AccountInfor extends StatelessWidget {
                               month: month,
                               year: year),
                           BodyFormWidgetAccountInforMain(
-                              fullName: fullName, phone: phone, email: email),
+                              type: type,
+                              image: image,
+                              fullName: fullName,
+                              phone: phone,
+                              email: email),
                           BodyFormWidgetAccountInforGender(
                               sWidth: 150, size: size, gender: gender),
                           BodyFormWidgetAcountInforBirtday(

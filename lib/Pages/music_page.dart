@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:meditation_app/Common/data/data_controller.dart';
@@ -11,12 +12,31 @@ import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/controller/music_controller.dart';
 import 'package:meditation_app/model/musics_model.dart';
 
-class MusicPage extends StatelessWidget {
+class MusicPage extends StatefulWidget {
   const MusicPage({super.key});
 
   @override
+  State<MusicPage> createState() => _MusicPageState();
+}
+
+class _MusicPageState extends State<MusicPage> with TickerProviderStateMixin {
+  late AnimationController _animationController;
+  @override
+  void initState() {
+    _animationController =
+        AnimationController(vsync: this, duration: const Duration(seconds: 3));
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    //final size = context.screenSize;
+    final size = context.screenSize;
     final DataController dataController = Get.put(DataController());
     final contronller = Get.put(MusicController());
     return Scaffold(
@@ -45,8 +65,17 @@ class MusicPage extends StatelessWidget {
                 // print(snapshot.data);
                 if (!snapshot.hasData) {
                   // nếu không có dữ liệu thì hiện vòng xoay
-                  return const Center(
-                    child: CircularProgressIndicator(),
+                  return SizedBox(
+                    width: size.width,
+                    height: size.height,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: SpinKitFadingCircle(
+                        color: Colors.pink,
+                        size: 50.0,
+                        controller: _animationController,
+                      ),
+                    ),
                   );
                 }
                 final musics = snapshot.data!;
@@ -61,10 +90,14 @@ class MusicPage extends StatelessWidget {
                       // nhấn vào sẽ chuyển sang trang reminderspage
                       onTap: () {
                         Get.off(const DetailMusic(), arguments: {
-                          "musicTitle": dataController.musicTitle.value = musics[index].title,
-                          "musicAuthor": dataController.musicAuthor.value = musics[index].author,
-                          "musicImage": dataController.musicImage.value = musics[index].image,
-                          "musicUrl": dataController.musicUrl.value = musics[index].url,
+                          "musicTitle": dataController.musicTitle.value =
+                              musics[index].title,
+                          "musicAuthor": dataController.musicAuthor.value =
+                              musics[index].author,
+                          "musicImage": dataController.musicImage.value =
+                              musics[index].image,
+                          "musicUrl": dataController.musicUrl.value =
+                              musics[index].url,
                         });
                       },
                       child: SizedBox(

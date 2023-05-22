@@ -20,17 +20,19 @@ import 'package:meditation_app/Pages/sign_up_page.dart';
 import 'package:meditation_app/Pages/signup_or_singin_page.dart';
 import 'package:meditation_app/Pages/container_page.dart';
 import 'package:meditation_app/firebase_options.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   // Firebase.initializeApp(
   //   options:const FirebaseOptions(
-    // apiKey: 'AIzaSyB1AEjbQmAWPSU98eiRA1DzJ-mMLpQwkXM',
-    // appId: '1:928203370994:android:8713ccfb1d13b6b4353b6b',
-    // messagingSenderId: '928203370994',
-    // projectId: 'meditate-app-e19c8',
-    // storageBucket: 'meditate-app-e19c8.appspot.com',
+  // apiKey: 'AIzaSyB1AEjbQmAWPSU98eiRA1DzJ-mMLpQwkXM',
+  // appId: '1:928203370994:android:8713ccfb1d13b6b4353b6b',
+  // messagingSenderId: '928203370994',
+  // projectId: 'meditate-app-e19c8',
+  // storageBucket: 'meditate-app-e19c8.appspot.com',
   //   apiKey: 'AIzaSyATC4BjRaO5JVSGwnQLuzFVCxYGEokDCkI',
   //   appId: '1:928203370994:web:434a8778b8164f44353b6b',
   //   messagingSenderId: '928203370994',
@@ -39,46 +41,89 @@ void main() async {
   //   storageBucket: 'meditate-app-e19c8.appspot.com',
   //   measurementId: 'G-SWG713JHD6',
   // ));
-  
+  // get info login
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
   runApp(DevicePreview(
     enabled: !kReleaseMode,
-    builder: (context) => const MyApp(), // Wrap your app
+    builder: (context) => MyApp(
+      isLoggedIn: isLoggedIn,
+    ), // Wrap your app
   ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final bool isLoggedIn;
+  const MyApp({Key? key, required this.isLoggedIn}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Meditation App',
-      useInheritedMediaQuery: true,
-      locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
-      theme: ThemeData(
-        primaryColor: kColorPrimary,
-      ),
-      home: const ContainerPage(), // định nghĩa round đầu tiên hiện lên
-      routes: {
-        '$SingupOrSignin': (_) => const SingupOrSignin(),
-        '$SignUp': (_) => const SignUp(),
-        '$SignIn': (_) => const SignIn(),
-        '$GetstartedPage': (_) => const GetstartedPage(),
-        '$ChooseTopicPage': (_) => const ChooseTopicPage(),
-        '$RemindersPage': (_) => const RemindersPage(),
-        '$ContainerPage': (_) => const ContainerPage(),
-        '$HomePage': (_) => const HomePage(),
-        '$SleepPage': (_) => const SleepPage(),
-        '$MeditatePage': (_) => const MeditatePage(),
-        '$MusicPage': (_) => const MusicPage(),
-        '$UserAfsarPage': (_) => const UserAfsarPage(),
-        '$CourseDetails': (_) => const CourseDetails(),
-        '$DetailMusicFavorite': (_) => DetailMusicFavorite(nameSong: '',duration: '',image: '',),
-        '$MeditatePage': (_) => const MeditatePage(),
-        '$DetailSettingUser': (_) => const DetailSettingUser(),
-        //'$AudioFile': (_) => const AudioFile()
-      },
-    );
+    if (isLoggedIn) {
+      return GetMaterialApp(
+        title: 'Meditation App',
+        useInheritedMediaQuery: true,
+        locale: DevicePreview.locale(context),
+        builder: DevicePreview.appBuilder,
+        theme: ThemeData(
+          primaryColor: kColorPrimary,
+        ),
+        home: const ContainerPage(), // định nghĩa round đầu tiên hiện lên
+        routes: {
+          '$SingupOrSignin': (_) => const SingupOrSignin(),
+          '$SignUp': (_) => const SignUp(),
+          '$SignIn': (_) => const SignIn(),
+          '$GetstartedPage': (_) => const GetstartedPage(),
+          '$ChooseTopicPage': (_) => const ChooseTopicPage(),
+          '$RemindersPage': (_) => const RemindersPage(),
+          '$ContainerPage': (_) => const ContainerPage(),
+          '$HomePage': (_) => const HomePage(),
+          '$SleepPage': (_) => const SleepPage(),
+          '$MeditatePage': (_) => const MeditatePage(),
+          '$MusicPage': (_) => const MusicPage(),
+          '$UserAfsarPage': (_) => const UserAfsarPage(),
+          '$CourseDetails': (_) => const CourseDetails(),
+          '$DetailMusicFavorite': (_) => DetailMusicFavorite(
+                nameSong: '',
+                duration: '',
+                image: '',
+              ),
+          '$MeditatePage': (_) => const MeditatePage(),
+          '$DetailSettingUser': (_) => const DetailSettingUser(),
+        },
+      );
+    } else {
+      return GetMaterialApp(
+        title: 'Meditation App',
+        useInheritedMediaQuery: true,
+        locale: DevicePreview.locale(context),
+        builder: DevicePreview.appBuilder,
+        theme: ThemeData(
+          primaryColor: kColorPrimary,
+        ),
+        home: const SingupOrSignin(), // định nghĩa round đầu tiên hiện lên
+        routes: {
+          '$SingupOrSignin': (_) => const SingupOrSignin(),
+          '$SignUp': (_) => const SignUp(),
+          '$SignIn': (_) => const SignIn(),
+          '$GetstartedPage': (_) => const GetstartedPage(),
+          '$ChooseTopicPage': (_) => const ChooseTopicPage(),
+          '$RemindersPage': (_) => const RemindersPage(),
+          '$ContainerPage': (_) => const ContainerPage(),
+          '$HomePage': (_) => const HomePage(),
+          '$SleepPage': (_) => const SleepPage(),
+          '$MeditatePage': (_) => const MeditatePage(),
+          '$MusicPage': (_) => const MusicPage(),
+          '$UserAfsarPage': (_) => const UserAfsarPage(),
+          '$CourseDetails': (_) => const CourseDetails(),
+          '$DetailMusicFavorite': (_) => DetailMusicFavorite(
+                nameSong: '',
+                duration: '',
+                image: '',
+              ),
+          '$MeditatePage': (_) => const MeditatePage(),
+          '$DetailSettingUser': (_) => const DetailSettingUser(),
+        },
+      );
+    }
   }
 }

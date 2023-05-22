@@ -12,17 +12,24 @@ class UsersModel {
   late final String? gender;
   final String? birtDay;
   final String? joinDay;
+  final int statusChageUser;
+  final String ? image;
+  final bool typeImage;
 
   UsersModel({
     this.id, 
     required this.userName, 
     required this.passWord,
+    required this.statusChageUser,
+    required this.typeImage,
     this.fullName, 
     this.email, 
     this.phone, 
     this.gender, 
     this.birtDay,
-    this.joinDay
+    this.joinDay,
+    this.image
+
   });
   // : id = id ?? const Uuid().v4();
 // chuyển đổi một đối tượng thành một chuỗi JSON. -- // convert an object to a JSON string.
@@ -36,7 +43,10 @@ class UsersModel {
       "phone": phone,
       "gender": gender,
       "birtDay": birtDay,
-      "joinDay": joinDay
+      "joinDay": joinDay,
+      "statusChageUser": statusChageUser,
+      "image": image,
+      "typeImage": typeImage
     };
   }
 
@@ -56,6 +66,9 @@ class UsersModel {
         phone: data["phone"],
         gender: data["gender"],
         birtDay: data["birtDay"],
-        joinDay: data["joinDay"]);
+        joinDay: data["joinDay"],
+        statusChageUser: data["statusChageUser"],
+        image: data["image"],
+        typeImage: data["typeImage"]);
   }
 }

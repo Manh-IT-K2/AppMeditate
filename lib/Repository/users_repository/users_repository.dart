@@ -37,6 +37,28 @@ class UsersRepository extends GetxController {
     }
   }
 
+  // update avata user
+  Future<void> updateAvata(String userId, String image) async{
+    try {
+      await _db.collection("users").doc(userId).update({"image": image});
+    } catch (e) {
+      if (kDebugMode) {
+        print(e.toString());
+      }
+    }
+  }
+
+  // update type Image
+  Future<void> updateTypeImage(String userId, bool type) async {
+    try {
+      await _db.collection("users").doc(userId).update({"typeImage": type});
+    } catch (e) {
+      if (kDebugMode) {
+        print(e.toString());
+      }
+    }
+  }
+  
   // update password
   Future<void> updatePassword(String userId, String newPassword) async {
     try {
@@ -69,6 +91,17 @@ class UsersRepository extends GetxController {
     } catch (e) {
       // handle error
       if (kDebugMode) {
+        print(e.toString());
+      }
+    }
+  }
+
+  // update username
+  Future<void> updateUsername(String userId, String userName) async {
+    try {
+      await _db.collection("users").doc(userId).update({"userName" : userName, "statusChageUser": 1});
+    } catch (e) {
+      if(kDebugMode){
         print(e.toString());
       }
     }

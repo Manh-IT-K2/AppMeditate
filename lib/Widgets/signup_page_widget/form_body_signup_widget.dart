@@ -281,8 +281,10 @@ class _form_body_signup_widgetState extends State<form_body_signup_widget> {
                   String formattedDate = DateFormat('dd, MMMM, yyyy').format(DateTime.now());
                   final rePassWord = controller.rePassWord.text.trim();
                   final users = UsersModel(
+                    typeImage: false,
                     userName: controller.userName.text.trim(),
                     passWord: controller.passWord.text.trim(),
+                    statusChageUser: 0,
                     joinDay: formattedDate
                   );
                   try {

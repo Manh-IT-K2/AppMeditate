@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meditation_app/Utils/theme.dart';
-import 'package:meditation_app/controller/forget_password_controller.dart';
+// import 'package:meditation_app/controller/forget_password_controller.dart';
 
 final formKey = GlobalKey<FormState>();
 final ValueNotifier<bool> isIconValid = ValueNotifier<bool>(false);
@@ -25,7 +25,7 @@ class ForgetPasswordTextfieldScreen extends StatelessWidget {
   final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
-    final getUser = Get.put(ForgetPasswordController());
+    //final getUser = Get.put(ForgetPasswordController());
 
     final List<Icon> iconVerify = [
       const Icon(

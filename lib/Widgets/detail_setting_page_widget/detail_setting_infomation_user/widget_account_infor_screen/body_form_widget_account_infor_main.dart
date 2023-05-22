@@ -1,6 +1,7 @@
+import 'dart:io';
 import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:meditation_app/Common/data/data_controller.dart';
 import 'package:meditation_app/Common/message/dialog_message.dart';
@@ -8,45 +9,97 @@ import 'package:meditation_app/Common/screen/forget_password_textfield_screen.da
 import 'package:meditation_app/Common/screen/otp_screen.dart';
 import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Constant/image_string.dart';
-import 'package:meditation_app/Pages/container_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/Widgets/detail_setting_page_widget/detail_setting_infomation_user/account_infor_screen.dart';
+import 'package:meditation_app/Widgets/detail_setting_page_widget/detail_setting_infomation_user/widget_account_infor_screen/change_avata_user.dart';
 import 'package:meditation_app/controller/editprofile_controller.dart';
 import 'package:meditation_app/controller/forget_password_controller.dart';
+import 'package:meditation_app/controller/signin_controller.dart';
+import 'package:meditation_app/controller/signup_controller.dart';
 
-class BodyFormWidgetAccountInforMain extends StatelessWidget {
-  const BodyFormWidgetAccountInforMain({
-    super.key,
-    required this.fullName,
-    required this.phone,
-    required this.email,
-  });
+class BodyFormWidgetAccountInforMain extends StatefulWidget {
+  const BodyFormWidgetAccountInforMain(
+      {super.key,
+      required this.fullName,
+      required this.phone,
+      required this.email,
+      required this.image,
+      required this.type});
 
   final TextEditingController fullName;
   final TextEditingController phone;
   final TextEditingController email;
+  final String image;
+  final bool type;
+
+  @override
+  State<BodyFormWidgetAccountInforMain> createState() =>
+      _BodyFormWidgetAccountInforMainState();
+}
+
+class _BodyFormWidgetAccountInforMainState
+    extends State<BodyFormWidgetAccountInforMain>
+    with TickerProviderStateMixin {
+  late AnimationController _animationController;
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 4000),
+    );
+  }
+
+  @override
+  void dispose() {
+    _animationController
+        .dispose(); // việc gọi dispose() sẽ dừng hoạt động của Ticker và giải phóng tài nguyên bên trong AnimationController, ngăn chặn rò rỉ tài nguyên và tiêu tốn bộ nhớ.
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    late Color color;
     final size = context.screenSize;
     final getPhone = Get.put(DataController());
     final controller = Get.put(ForgetPasswordController());
     final getIdUser = Get.put(EditProfileController());
+    final statusLogin = Get.put(SignInController());
+    final checkUsername = Get.put(SignUpController());
+    final ValueNotifier<bool> validUsername = ValueNotifier<bool>(false);
+    final ValueNotifier<bool> showError = ValueNotifier<bool>(false);
+    String textError = "";
+    final List<Icon> iconVerify = [
+      const Icon(
+        Icons.check_circle_outline,
+        color: Colors.green,
+      ),
+      const Icon(
+        Icons.error,
+        color: Colors.red,
+      ),
+    ];
     return Column(
       children: [
         Stack(
           children: [
-            Container(
-              margin: const EdgeInsets.only(top: 50),
-              height: 70,
-              width: 70,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(35),
-                border: Border.all(color: Colors.pink, width: 2),
-                image: const DecorationImage(
-                    image: AssetImage('assets/images/bg_favorite.jpeg'),
-                    fit: BoxFit.cover),
-              ),
+            FutureBuilder(
+              future: getIdUser.getSavedColor(),
+              builder: (BuildContext context, AsyncSnapshot<Color> snapshot) {
+                color = snapshot.data ?? Colors.black;
+                File imageFile = File(widget.image);
+                return Container(
+                  margin: const EdgeInsets.only(top: 50),
+                  height: 80,
+                  width: 80,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(40),
+                    border: Border.all(color: color, width: 2),
+                    image: DecorationImage(
+                        image: widget.type?  Image.file(imageFile).image: AssetImage(widget.image), fit: BoxFit.contain)),
+                  
+                );
+              },
             ),
             Container(
               margin: const EdgeInsets.only(top: 100, left: 40),
@@ -58,13 +111,18 @@ class BodyFormWidgetAccountInforMain extends StatelessWidget {
                   border: Border.all(color: Colors.white, width: 1.8)),
               child: Padding(
                 padding: const EdgeInsets.all(5),
-                child: Container(
-                  width: 10,
-                  height: 10,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(
-                        'assets/images/ic_camera.png',
+                child: InkWell(
+                  onTap: () {
+                    ChageAvataUser().BuildShowmodalBottomSheet(context, color, widget.image);
+                  },
+                  child: Container(
+                    width: 10,
+                    height: 10,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(
+                          'assets/images/ic_camera.png',
+                        ),
                       ),
                     ),
                   ),
@@ -73,9 +131,205 @@ class BodyFormWidgetAccountInforMain extends StatelessWidget {
             ),
           ],
         ),
-        Text(
-          SaveChange.userName,
-          style: Primaryfont.bold(20).copyWith(color: Colors.pink, height: 2),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FutureBuilder(
+              future: statusLogin.getStringUsername(),
+              builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                final String? username = snapshot.data;
+                if (snapshot.hasData) {
+                  return ValueListenableBuilder(
+                    valueListenable: validUsername,
+                    builder: (context, value, child) {
+                      return Text(
+                        username!,
+                        style: Primaryfont.bold(20)
+                            .copyWith(color: Colors.pink, height: 2),
+                      );
+                    },
+                  );
+                } else {
+                  return Text(
+                    'Loading...',
+                    style: Primaryfont.bold(16).copyWith(color: Colors.black),
+                  );
+                }
+              },
+            ),
+            IconButton(
+              onPressed: () async {
+                final usersModel = await getIdUser.getUser();
+                int statusChangeUser = usersModel.statusChageUser;
+                if (statusChangeUser == 1) {
+                  // ignore: use_build_context_synchronously
+                  DialogMessage.show(context,
+                      "Your account cannot be changed again ! Because each account can only be changed once.");
+                } else {
+                  // ignore: use_build_context_synchronously
+                  showDialog(
+                    context: context,
+                    builder: (_) => AlertDialog(
+                      title: Row(
+                        children: [
+                          const Icon(
+                            Icons.person,
+                            size: 30,
+                            color: Colors.black,
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "Change Username !",
+                            style: Primaryfont.bold(20)
+                                .copyWith(color: Colors.black),
+                          ),
+                        ],
+                      ),
+                      content: SizedBox(
+                        height: 150,
+                        child: Column(
+                          children: [
+                            ValueListenableBuilder(
+                              valueListenable: showError,
+                              builder: (context, value, child) {
+                                return ValueListenableBuilder(
+                                  valueListenable: validUsername,
+                                  builder: (context, value, child) {
+                                    return TextField(
+                                      cursorColor: Colors.black,
+                                      controller: getIdUser.userName,
+                                      decoration: InputDecoration(
+                                        fillColor: Colors.white,
+                                        filled: true,
+                                        enabledBorder: const OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            width: 1.0,
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                        focusedBorder: const OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            width: 1.0,
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                        suffix: validUsername.value
+                                            ? iconVerify[0]
+                                            : iconVerify[1],
+                                      ),
+                                      onChanged: (value) {
+                                        textError = "";
+                                        showError.value = false;
+                                        RegExp regExp =
+                                            RegExp(r'^(?=.*[A-Z]).{5,9}$');
+                                        bool isValid = regExp.hasMatch(
+                                            getIdUser.userName.text.trim());
+                                        if (isValid) {
+                                          validUsername.value = true;
+                                        } else {
+                                          validUsername.value = false;
+                                        }
+                                      },
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                            ValueListenableBuilder(
+                              valueListenable: showError,
+                              builder: (context, value, child) {
+                                return showError.value
+                                    ? Padding(
+                                        padding: const EdgeInsets.only(top: 5),
+                                        child: Text(
+                                          textError,
+                                          style: Primaryfont.bold(12)
+                                              .copyWith(color: Colors.red),
+                                        ),
+                                      )
+                                    : const SizedBox.shrink();
+                              },
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Text(
+                              "You can only change your username once, are you sure you want to change it?",
+                              style: Primaryfont.medium(14)
+                                  .copyWith(color: Colors.black),
+                            ),
+                          ],
+                        ),
+                      ),
+                      actions: [
+                        TextButton(
+                          child: Text(
+                            "Cancel",
+                            style: Primaryfont.bold(16)
+                                .copyWith(color: Colors.black),
+                          ),
+                          onPressed: () => Navigator.pop(context),
+                        ),
+                        TextButton(
+                          child: Text(
+                            "OK",
+                            style: Primaryfont.bold(16)
+                                .copyWith(color: Colors.black),
+                          ),
+                          onPressed: () async {
+                            final userName = getIdUser.userName.text.trim();
+                            RegExp regExp = RegExp(r'^(?=.*[A-Z]).{5,9}$');
+                            bool isValid =
+                                regExp.hasMatch(getIdUser.userName.text.trim());
+                            if (userName == "") {
+                              validUsername.value = false;
+                              showError.value = true;
+                              textError = "Not be empty";
+                            } else if (!isValid) {
+                              validUsername.value = false;
+                              showError.value = true;
+                              textError = "Invalid username";
+                            } else {
+                              final userId = usersModel.id;
+                              if (await checkUsername.checkUserName(userName)) {
+                                validUsername.value = false;
+                                showError.value = true;
+                                textError = "Username exists";
+                              } else {
+                                validUsername.value = true;
+                                // SaveChange.userName = userName;
+                                statusLogin.saveUsername(userName);
+                                getIdUser.updateUsername(userId!, userName);
+                                SizedBox(
+                                  width: size.width,
+                                  height: size.height,
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: SpinKitFadingCircle(
+                                        color: Colors.pink,
+                                        size: 50.0,
+                                        controller: _animationController),
+                                  ),
+                                );
+                                Get.offAll(() => const AccountInfor());
+                              }
+                            }
+                          },
+                        ),
+                      ],
+                    ),
+                  );
+                }
+              },
+              icon: const Icon(
+                Icons.create_outlined,
+                size: 25,
+                color: Colors.black,
+              ),
+            ),
+          ],
         ),
         const SizedBox(
           height: 50,
@@ -84,7 +338,7 @@ class BodyFormWidgetAccountInforMain extends StatelessWidget {
           label: "FullName",
           //prefix: const Icon(Icons.person),
           sWitdh: size.width,
-          controller: fullName,
+          controller: widget.fullName,
           suffix: ButtonLinkWidget(
             func: () {},
             icon: Colors.transparent,
@@ -94,11 +348,8 @@ class BodyFormWidgetAccountInforMain extends StatelessWidget {
         EditTextfieldWidget(
           label: "Phone",
           //prefix: const Icon(Icons.phone),
-          onChanged: (value) {
-            TFChange.onchange = 1;
-          },
           sWitdh: size.width,
-          controller: phone,
+          controller: widget.phone,
           suffix: ButtonLinkWidget(
             func: () {
               Get.to(() => ForgetPasswordTextfieldScreen(
@@ -118,7 +369,7 @@ class BodyFormWidgetAccountInforMain extends StatelessWidget {
                             phoneNumber.replaceAll(RegExp(r'[()\s]+'), '');
                         bool checkPhone = await controller.checkPhone(phone);
                         bool isValid = phoneExp.hasMatch(phone);
-                        final userModel = await getIdUser.getUser("Qm");
+                        final userModel = await getIdUser.getUser();
                         final userId = userModel.id;
                         getPhone.setPhone(phoneNumber);
                         if (phoneNumber == "") {
@@ -183,18 +434,15 @@ class BodyFormWidgetAccountInforMain extends StatelessWidget {
         ),
         EditTextfieldWidget(
           label: "Email",
-          //prefix: const Icon(Icons.email),
-          onChanged: (value) {
-            TFChange.onchange = 2;
-          },
           sWitdh: size.width,
-          controller: email,
+          controller: widget.email,
           suffix: ButtonLinkWidget(
             func: () {
               Get.to(
                 () => ForgetPasswordTextfieldScreen(
                   title: "Email",
-                  subTitle: "Please enter the email you are using, do not enter\n a virtual email !",
+                  subTitle:
+                      "Please enter the email you are using, do not enter\n a virtual email !",
                   lbTextField: "Email",
                   assetImage: imgForgetPaswordEmailBG,
                   controller: controller.email,
@@ -206,7 +454,7 @@ class BodyFormWidgetAccountInforMain extends StatelessWidget {
                           RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{3}$');
                       bool isvalid = emailRegex.hasMatch(email);
                       bool validEmail = await controller.checkEmail(email);
-                      final userModel = await getIdUser.getUser("Qm");
+                      final userModel = await getIdUser.getUser();
                       final userId = userModel.id;
                       if (email == "") {
                         // ignore: use_build_context_synchronously
@@ -312,13 +560,11 @@ class EditTextfieldWidget extends StatelessWidget {
       required this.sWitdh,
       this.suffix,
       this.prefix,
-      this.onChanged,
       required this.controller});
 
   final String label;
   final double sWitdh;
   final Widget? suffix, prefix;
-  void Function(String)? onChanged;
   TextEditingController controller;
 
   @override
@@ -336,7 +582,6 @@ class EditTextfieldWidget extends StatelessWidget {
         ),
       ]),
       child: TextFormField(
-        onChanged: onChanged,
         controller: controller,
         cursorColor: Colors.pink,
         decoration: InputDecoration(
@@ -365,8 +610,4 @@ class EditTextfieldWidget extends StatelessWidget {
       ),
     );
   }
-}
-
-class TFChange {
-  static int onchange = 0;
 }

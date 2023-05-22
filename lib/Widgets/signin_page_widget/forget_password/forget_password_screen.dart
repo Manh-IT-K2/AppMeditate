@@ -241,7 +241,7 @@ class ForgetPasswordScreen {
                               context, "Username is incorrect! Try again.");
                         } else {
                           isIconValid.value = true;
-                          final userModel = await getUser.getUser(userName);
+                          final userModel = await getUser.getUserr(userName);
                           final exitsEmail = userModel.email;
                           final exitsPhone = userModel.phone;
                           if (exitsEmail != "" || exitsPhone != "") {

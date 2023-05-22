@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Pages/container_page.dart';
+import 'package:meditation_app/Pages/signup_or_singin_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ActionDetailSettingWidget extends StatelessWidget {
   const ActionDetailSettingWidget({
@@ -10,8 +13,10 @@ class ActionDetailSettingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ValueNotifier<bool> isSwith1 = ValueNotifier<bool>(SaveChange.changeSwitch[0]);
-    final ValueNotifier<bool> isSwith2 = ValueNotifier<bool>(SaveChange.changeSwitch[1]);
+    final ValueNotifier<bool> isSwith1 =
+        ValueNotifier<bool>(SaveChange.changeSwitch[0]);
+    final ValueNotifier<bool> isSwith2 =
+        ValueNotifier<bool>(SaveChange.changeSwitch[1]);
     return Container(
       margin: const EdgeInsets.only(top: 30),
       decoration: BoxDecoration(
@@ -166,10 +171,18 @@ class ActionDetailSettingWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                const Icon(
-                  Icons.arrow_forward,
-                  color: Colors.grey,
-                  size: 25,
+                InkWell(
+                  onTap: () async {
+                    SharedPreferences prefs = await SharedPreferences.getInstance();
+                    prefs.remove('isLoggedIn');
+                    prefs.remove('Username');
+                    Get.offAll(() => const SingupOrSignin());
+                  },
+                  child: const Icon(
+                    Icons.arrow_forward,
+                    color: Colors.grey,
+                    size: 25,
+                  ),
                 ),
               ],
             ),

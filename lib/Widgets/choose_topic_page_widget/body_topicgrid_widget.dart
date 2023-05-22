@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -7,14 +8,36 @@ import 'package:meditation_app/Pages/reminders_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/model/topicmodel.dart';
 
-class BodyTopicGridWidget extends StatelessWidget {
+class BodyTopicGridWidget extends StatefulWidget {
   const BodyTopicGridWidget({
     super.key,
   });
 
   @override
+  State<BodyTopicGridWidget> createState() => _BodyTopicGridWidgetState();
+}
+
+class _BodyTopicGridWidgetState extends State<BodyTopicGridWidget>
+    with TickerProviderStateMixin {
+  late AnimationController _animationController;
+
+  @override
+  void initState() {
+    _animationController =
+        AnimationController(vsync: this, duration: const Duration(seconds: 4));
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final userName = Get.arguments;
+    final size = context.screenSize;
     return FutureBuilder<List<Topic>>(
       future: topicStorage.Load(),
       builder: (context, snapshot) {
@@ -24,8 +47,17 @@ class BodyTopicGridWidget extends StatelessWidget {
         //print(snapshot.data);
         if (!snapshot.hasData) {
           // nếu không có dữ liệu thì hiện vòng xoay
-          return const Center(
-            child: CircularProgressIndicator(),
+          return SizedBox(
+            width: size.width,
+            height: size.height,
+            child: Align(
+              alignment: Alignment.center,
+              child: SpinKitFadingCircle(
+                color: Colors.pink,
+                size: 50.0,
+                controller: _animationController,
+              ),
+            ),
           );
         }
         final topics = snapshot.data!;

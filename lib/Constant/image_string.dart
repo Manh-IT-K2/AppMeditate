@@ -51,6 +51,24 @@ String imgCourseDetailDowload = "assets/images/course_detail_page_image/ic_dowlo
 String imgUserAlarmclock = "assets/images/user_page_image/ic_alarmclock.png";
 String imgUserTelevision = "assets/images/user_page_image/ic_television.png";
 String imgUserTodolist = "assets/images/user_page_image/ic_todolist.png";
+String avt1 = "assets/images/user_page_image/avt1.png";
+String avt2 = "assets/images/user_page_image/avt2.png";
+String avt3 = "assets/images/user_page_image/avt3.png";
+String avt4 = "assets/images/user_page_image/avt4.png";
+String avt5 = "assets/images/user_page_image/avt5.png";
+String avt6 = "assets/images/user_page_image/avt6.png";
+String avt7 = "assets/images/user_page_image/avt7.png";
+String avt8 = "assets/images/user_page_image/avt8.png";
+String avt9 = "assets/images/user_page_image/avt9.png";
+String avt10 = "assets/images/user_page_image/avt10.png";
+String avt11 = "assets/images/user_page_image/avt11.png";
+String avt12 = "assets/images/user_page_image/avt12.png";
+String avt13 = "assets/images/user_page_image/avt13.png";
+String avt14 = "assets/images/user_page_image/avt14.png";
+String avt15 = "assets/images/user_page_image/avt15.png";
+String avt16 = "assets/images/user_page_image/avt16.png";
+String avt17 = "assets/images/user_page_image/avt17.png";
+String avtDefault = "assets/images/user_page_image/avt_default.png";
 
 // Music  Page Image
 String imgMusicStar = "assets/images/music_page_image/ic_star.png";

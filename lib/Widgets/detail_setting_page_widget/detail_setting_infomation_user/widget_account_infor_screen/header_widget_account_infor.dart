@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:meditation_app/Common/message/dialog_message.dart';
 import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Pages/detail_setting_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/Widgets/detail_setting_page_widget/detail_setting_infomation_user/account_infor_screen.dart';
-import 'package:meditation_app/Widgets/detail_setting_page_widget/detail_setting_infomation_user/widget_account_infor_screen/body_form_widget_account_infor_main.dart';
+import 'package:meditation_app/controller/editprofile_controller.dart';
 import 'package:meditation_app/model/users_model.dart';
 
-class HeaderWidgetAccountInfor extends StatelessWidget {
+class HeaderWidgetAccountInfor extends StatefulWidget {
   const HeaderWidgetAccountInfor({
     super.key,
     required GlobalKey<FormState> formKey,
@@ -35,7 +36,28 @@ class HeaderWidgetAccountInfor extends StatelessWidget {
   final TextEditingController year;
 
   @override
+  State<HeaderWidgetAccountInfor> createState() => _HeaderWidgetAccountInforState();
+}
+
+class _HeaderWidgetAccountInforState extends State<HeaderWidgetAccountInfor>  with TickerProviderStateMixin{
+   late AnimationController _animationController;
+   @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 4000),
+    );
+  }
+   @override
+  void dispose() {
+    _animationController.dispose(); // Hãy chắc chắn rằng bạn đã gọi dispose() trên AnimationController
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
+    final getStatusChageUser = Get.put(EditProfileController());
+    final size = context.screenSize;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -57,31 +79,50 @@ class HeaderWidgetAccountInfor extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: () async {
-            if (_formKey.currentState!.validate()) {
-              if(TFChange.onchange == 1 || TFChange.onchange == 2){
+            if (widget._formKey.currentState!.validate()) {
+              if (widget.email.text != "" || widget.phone.text != "") {
                 DialogMessage.show(context, "Not enter you must link");
-              }else{
+              } else {
+                final usersModel = await getStatusChageUser.getUser();
+                String? image = usersModel.image;
+                int statusChangeUser = usersModel.statusChageUser;
+                bool typeImage = usersModel.typeImage;
                 final users = UsersModel(
-                  id: id,
-                  userName: user.userName,
-                  passWord: user.passWord,
-                  fullName: fullName.text.trim(),
-                  email: email.text.trim(),
-                  phone: phone.text.trim(),
-                  gender: gender.value,
-                  joinDay: user.joinDay,
-                  birtDay:
-                      "${day.text.trim()} / ${month.text.trim()} / ${year.text.trim()}");
+                    id: widget.id,
+                    image: image,
+                    typeImage: typeImage,
+                    statusChageUser: statusChangeUser,
+                    userName: widget.user.userName,
+                    passWord: widget.user.passWord,
+                    fullName: widget.fullName.text.trim(),
+                    email: widget.email.text.trim(),
+                    phone: widget.phone.text.trim(),
+                    gender: widget.gender.value,
+                    joinDay: widget.user.joinDay,
+                    birtDay:
+                        "${widget.day.text.trim()} / ${widget.month.text.trim()} / ${widget.year.text.trim()}");
 
-              await controller.updateUser(users, id!);
-              Get.snackbar("Success!", "Information has been updated.",
-                  icon: const Icon(Icons.error, color: Colors.white),
-                  snackPosition: SnackPosition.TOP,
-                  duration: const Duration(seconds: 3),
-                  backgroundColor: Colors.green,
-                  colorText: Colors.white);
+                await controller.updateUser(users, widget.id!);
+                //await Future.delayed(const Duration(seconds: 2));
+                SizedBox(
+                      width: size.width,
+                      height: size.height,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: SpinKitFadingCircle(
+                          color: Colors.pink,
+                          size: 50.0,
+                          controller: _animationController),
+                      ),
+                    );
+                Get.offAll(() => const AccountInfor());
+                Get.snackbar("Success!", "Information has been updated.",
+                    icon: const Icon(Icons.error, color: Colors.white),
+                    snackPosition: SnackPosition.TOP,
+                    duration: const Duration(seconds: 3),
+                    backgroundColor: Colors.green,
+                    colorText: Colors.white);
               }
-              
             }
           },
           style: ElevatedButton.styleFrom(
@@ -91,7 +132,7 @@ class HeaderWidgetAccountInfor extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10))),
           child: Text(
-            "Lưu",
+            "Save",
             style: Primaryfont.bold(16).copyWith(color: Colors.white),
           ),
         ),
