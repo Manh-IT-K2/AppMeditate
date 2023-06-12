@@ -6,6 +6,7 @@ import 'package:meditation_app/Common/data/data_controller.dart';
 import 'package:meditation_app/Common/widget/header_circle_widget.dart';
 import 'package:meditation_app/Common/widget/header_widget.dart';
 import 'package:meditation_app/Constant/colors.dart';
+import 'package:meditation_app/Constant/image_string.dart';
 import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Pages/detail_music_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
@@ -59,10 +60,6 @@ class _MusicPageState extends State<MusicPage> with TickerProviderStateMixin {
             child: FutureBuilder<List<MusicsModel>>(
               future: contronller.getAllMusic(),
               builder: (context, snapshot) {
-                // if(snapshot.hasError){
-                //   print(snapshot.error.toString());
-                // }
-                // print(snapshot.data);
                 if (!snapshot.hasData) {
                   // nếu không có dữ liệu thì hiện vòng xoay
                   return SizedBox(
@@ -89,7 +86,14 @@ class _MusicPageState extends State<MusicPage> with TickerProviderStateMixin {
                     return InkWell(
                       // nhấn vào sẽ chuyển sang trang reminderspage
                       onTap: () {
-                        Get.off(const DetailMusic(), arguments: {
+                        Get.to(DetailMusic(
+                          bgColor: kColorLightGrey,
+                          imageBg: imgMusicsBackGround,
+                          color: Colors.black,
+                          imageRelay: imgMusicIconRelayBright,
+                          imageForward: imgMusicIconSkipBright,), arguments: {
+                             "musicId": dataController.musicId.value =
+                              musics[index].id,
                           "musicTitle": dataController.musicTitle.value =
                               musics[index].title,
                           "musicAuthor": dataController.musicAuthor.value =
@@ -117,7 +121,7 @@ class _MusicPageState extends State<MusicPage> with TickerProviderStateMixin {
                                     borderRadius: const BorderRadius.only(
                                         topLeft: Radius.circular(10),
                                         topRight: Radius.circular(10)),
-                                    child: Image.asset(
+                                    child: Image.network(
                                       musics[index].image,
                                       width: constraints.maxWidth,
                                       fit: BoxFit.fill,
@@ -152,7 +156,7 @@ class _MusicPageState extends State<MusicPage> with TickerProviderStateMixin {
                 );
               },
             ),
-          )
+          ),
         ],
       ),
     );

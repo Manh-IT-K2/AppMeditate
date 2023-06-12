@@ -180,7 +180,7 @@ class form_body_signin_widget extends StatelessWidget {
                             color: Color.fromARGB(255, 3, 64, 5)),
                         snackPosition: SnackPosition.BOTTOM,
                         backgroundColor: Colors.green.withOpacity(0.6),
-                        colorText: const Color.fromARGB(255, 16, 87, 18));
+                        colorText: const Color.fromARGB(255, 16, 87, 18));                      
                   } else {
                     Get.snackbar("Error!", "Ussername or Password wrong.",
                         icon: const Icon(Icons.error, color: Colors.white),

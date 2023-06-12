@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:meditation_app/Widgets/choose_topic_page_widget/body_topicgrid_widget.dart';
 import 'package:meditation_app/Widgets/choose_topic_page_widget/header_topic_widget.dart';
 import 'package:meditation_app/Common/widget/reponsive_builder.dart';
-import 'package:meditation_app/Repository/topic_storage.dart';
-
-final topicStorage = AssetTopicStorage();
 
 class ChooseTopicPage extends StatelessWidget {
   const ChooseTopicPage({Key? key}) : super(key: key);
@@ -13,8 +10,8 @@ class ChooseTopicPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ReponsiveBuilder(
-        portrait: Column(
-          children: const [
+        portrait: const Column(
+          children: [
             Flexible(
               flex: 1,
               fit: FlexFit.tight,
@@ -28,11 +25,11 @@ class ChooseTopicPage extends StatelessWidget {
         ),
         landscape: Row(
           children: [
-            Flexible(
+            const Flexible(
               flex: 1,
               fit: FlexFit.tight,
               child: Column(
-                children: const [
+                children: [
                   Expanded(child: HeaderChooseTopicWidget()),
                   Spacer(),
                 ],

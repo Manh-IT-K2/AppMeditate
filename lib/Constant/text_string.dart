@@ -21,7 +21,6 @@ String txtEditProfile = "Edit Profile";
 
 // text getstarted
 String tGetstartedButtonTitle = "GET STATED";
-String tGetstartedTitle1 = "Hi afsar ! Wecome\n";
 String tGetstartedTitle2 = "To silent Moon !";
 String tGetstartedSubTitle = "Explore the app, Find some peace of mind\n to prepare for mediatation";
 
@@ -54,7 +53,7 @@ String txtReminderSubTitle2 = "Everyday is best, but we recomend\n picking at le
 
 // Text Home Page
 String txtCaditemHomeSubTitle = "MEDITATION • 3-10 MIN'";
-String txtHomeHeaderTitle = "Good Morning, Afsar\n";
+String txtHomeHeaderTitle = "Good Morning,";
 String txtHomeHeaderSubTitle = "We Wish you have a good day";
 
 // Text Meditate page
@@ -89,7 +88,7 @@ String txtCourseDetailHeaderTitleFavorite = "favorits";
 String txtCourseDetailHeaderTitleListening = "listening";
 String txtCourseDetailBodyTitle = "Choose a Theme";
 String txtCourseDetailTabbarTitle1 = "RELAXPIANO";
-String txtCourseDetailTabbarTitle2 = "MUSICCHILL";
+String txtCourseDetailTabbarTitle2 = "RELAXJAZZ";
 String txtCourseDetailTabbarTitle3 = "FAVORITE";
 
 // Text User Page

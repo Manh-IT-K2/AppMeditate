@@ -61,7 +61,7 @@ class EditProfileController extends GetxController {
   // get color boder
   Future<Color> getSavedColor() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String colorString = prefs.getString('myColor') ?? '00000000';
+    String colorString = prefs.getString('myColor') ?? '000000';
     int colorValue = int.parse(colorString, radix: 16);
     return Color(colorValue);
   }

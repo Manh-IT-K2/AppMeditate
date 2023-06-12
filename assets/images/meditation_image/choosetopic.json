@@ -1,0 +1,98 @@
+[
+    {
+        "title": "7 Days of Calm",
+        "thumbnail": "assets/images/meditation_image/thumb1.svg",
+        "bgCcolor": "0xFF496AAA",
+        "titleColor": "0xFFFFFFFF"
+    },
+    {
+        "title": "Anxiet Release",
+        "thumbnail": "assets/images/meditation_image/thumb2.svg",
+        "color": "0xFFFE9A4F",
+        "titleColor": "0xFFFFFFFF"
+    },
+    {
+        "title": "brilliant summer",
+        "thumbnail": "assets/images/meditation_image/thumb3.svg",
+        "color": "0xFF40EBD2",
+        "titleColor": "0xFFFFFFFF"
+    },
+    {
+        "title": "fantasy spring",
+        "thumbnail": "assets/images/meditation_image/thumb4.svg",
+        "color": "0xFFCACB68",
+        "titleColor": "0xFFFFFFFF"
+    },
+    {
+        "title": "7 Days of Calm",
+        "thumbnail": "assets/images/meditation_image/thumb1.svg",
+        "color": "0xFF496AAA",
+        "titleColor": "0xFFFFFFFF"
+    },
+    {
+        "title": "Anxiet Release",
+        "thumbnail": "mock/meditates/thumb2.svg",
+        "color": "0xFFFE9A4F",
+        "titleColor": "0xFFFFFFFF"
+    },
+    {
+        "title": "brilliant summer",
+        "thumbnail": "mock/meditates/thumb3.svg",
+        "color": "0xFF40EBD2",
+        "titleColor": "0xFFFFFFFF"
+    },
+    {
+        "title": "fantasy spring",
+        "thumbnail": "mock/meditates/thumb4.svg",
+        "color": "0xFFCACB68",
+        "titleColor": "0xFFFFFFFF"
+    },
+    {
+        "title": "7 Days of Calm",
+        "thumbnail": "mock/meditates/thumb1.svg",
+        "color": "0xFF496AAA",
+        "titleColor": "0xFFFFFFFF"
+    },
+    {
+        "title": "Anxiet Release",
+        "thumbnail": "mock/meditates/thumb2.svg",
+        "color": "0xFFFE9A4F",
+        "titleColor": "0xFFFFFFFF"
+    },
+    {
+        "title": "brilliant summer",
+        "thumbnail": "mock/meditates/thumb3.svg",
+        "color": "0xFF40EBD2",
+        "titleColor": "0xFFFFFFFF"
+    },
+    {
+        "title": "fantasy spring",
+        "thumbnail": "mock/meditates/thumb4.svg",
+        "color": "0xFFCACB68",
+        "titleColor": "0xFFFFFFFF"
+    },
+    {
+        "title": "7 Days of Calm",
+        "thumbnail": "mock/meditates/thumb1.svg",
+        "color": "0xFF496AAA",
+        "titleColor": "0xFFFFFFFF"
+    },
+    {
+        "title": "Anxiet Release",
+        "thumbnail": "mock/meditates/thumb2.svg",
+        "color": "0xFFFE9A4F",
+        "titleColor": "0xFFFFFFFF"
+    },
+    {
+        "title": "brilliant summer",
+        "thumbnail": "mock/meditates/thumb3.svg",
+        "color": "0xFF40EBD2",
+        "titleColor": "0xFFFFFFFF"
+    },
+    {
+        "title": "fantasy spring",
+        "thumbnail": "mock/meditates/thumb4.svg",
+        "color": "0xFFCACB68",
+        "titleColor": "0xFFFFFFFF"
+    }
+]

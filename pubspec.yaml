@@ -108,16 +108,16 @@ flutter:
     - assets/images/common_image/
     - assets/images/sleep_page_image/
     - assets/images/music_page_image/
-    - assets/images/relax_image/
     - assets/images/forget_password_image/
-    - assets/musics/relax/
-    - assets/musics/
+    - assets/musics/better_sleep/
+    - assets/musics/improve_durability/
     - assets/musics/friends/
     - assets/musics/pianos/
     - assets/musics/favorites/
-    - mock/topics/
-    - mock/meditates/
-    - mock/sleeps/
+    - assets/images/meditation_image/
+    - assets/images/topics_image/
+    - assets/images/topics_image/better_sleep/
+    - assets/images/topics_image/improve_durability/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

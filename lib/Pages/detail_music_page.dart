@@ -1,18 +1,25 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:math' as math;
 import 'package:just_audio/just_audio.dart';
-import 'package:meditation_app/Pages/container_page.dart';
+import 'package:meditation_app/Constant/image_string.dart';
 import 'package:meditation_app/Utils/theme.dart';
-
-import '../Constant/colors.dart';
-import '../Constant/image_string.dart';
+import 'package:meditation_app/controller/editprofile_controller.dart';
+import 'package:meditation_app/controller/statistical_controller.dart';
+import 'package:meditation_app/model/statistical_model.dart';
 
 class DetailMusic extends StatefulWidget {
   const DetailMusic({
+    required this.imageBg,
+    required this.color,
+    required this.bgColor,
+    required this.imageForward,
+    required this.imageRelay,
     super.key,
   });
-
+  final String imageBg, imageRelay, imageForward;
+  final Color color, bgColor;
   @override
   State<DetailMusic> createState() => _DetailMusicState();
 }
@@ -24,14 +31,24 @@ class _DetailMusicState extends State<DetailMusic>
   late final String musicAuthor = arguments["musicAuthor"];
   late final String musicTitle = arguments["musicTitle"];
   late final String musicUrl = arguments["musicUrl"];
+  late final String musicId = arguments["musicId"];
   final AudioPlayer advancedPlayer = AudioPlayer();
   Duration _duration = const Duration();
   Duration _position = const Duration();
+
+  final controllerStatistical = Get.put(StatisticalController());
+  final user = Get.put(EditProfileController());
+  int view = 0;
+  int favourite = 0;
+  int download = 0;
+  late bool checkFavourite;
+  late bool checkLike;
 
   late AnimationController _animationController;
   bool isPlaying = false;
   bool isPaused = false;
   bool isLoop = false;
+  int secondsMusic = 0;
   LoopMode loopMode = LoopMode.off;
   Icon icon = const Icon(
     Icons.repeat,
@@ -46,7 +63,6 @@ class _DetailMusicState extends State<DetailMusic>
   // init
   @override
   void initState() {
-    super.initState();
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 5),
@@ -66,12 +82,81 @@ class _DetailMusicState extends State<DetailMusic>
       if (event.processingState == ProcessingState.completed) {
         // Điều khiển đĩa xoay ngừng
         _animationController.stop();
-         setState(() {
+        setState(() {
           isPlaying = false;
         });
       }
     });
-    advancedPlayer.setAsset(musicUrl);
+    advancedPlayer.setUrl(musicUrl);
+
+    super.initState();
+  }
+
+  // @override
+  // void dispose(){
+  //   advancedPlayer.dispose();
+  //   _animationController.dispose();
+  //   controllerStatistical.dispose();
+  //   user.dispose();
+  //   super.dispose();
+  // }
+
+  // update view
+  void updateView() async {
+    if (isPlaying == true) {
+      view += 1;
+    } else {
+      view = 0;
+    }
+    final idUser = await user.getUser();
+    if (await controllerStatistical.checkStatistical(musicId)) {
+      final statisticals =
+          await controllerStatistical.getDetailStatistical(musicId);
+      String id = statisticals.id ?? "";
+      int totalView = statisticals.view!;
+      totalView += view;
+      await controllerStatistical.addIdUser(id, "${idUser.id}02");
+      await controllerStatistical.updateViewStatistical(id, totalView);
+    } else {
+      StatisticalModel statistical = StatisticalModel(
+          view: view,
+          idUser: ["${idUser.id}02"],
+          favourite: favourite,
+          download: download,
+          idMusic: musicId);
+      controllerStatistical.createStatistical(statistical);
+    }
+  }
+
+  // update view
+  updateFavourite() async {
+    final idUser = await user.getUser();
+    if (await controllerStatistical.checkStatistical(musicId)) {
+      final statisticals =
+          await controllerStatistical.getDetailStatistical(musicId);
+      String id = statisticals.id ?? "";
+      int totalFavourite = statisticals.favourite!;
+      if (checkLike == true) {
+        favourite -= 1;
+        totalFavourite += favourite;
+        await controllerStatistical.deleteIdUser(id);
+      } else {
+        totalFavourite += 1;
+        await controllerStatistical.addIdUser(id, idUser.id!);
+      }
+      await controllerStatistical.updateFavouriteStatistical(
+          id, totalFavourite);
+    } else {
+      favourite += 1;
+      StatisticalModel statistical = StatisticalModel(
+          view: view,
+          idUser: ["${idUser.id}"],
+          favourite: favourite,
+          download: download,
+          idMusic: musicId);
+      controllerStatistical.createStatistical(statistical);
+    }
+    favourite = 0;
   }
 
   // fomat time music
@@ -86,17 +171,28 @@ class _DetailMusicState extends State<DetailMusic>
   Widget btnPrevious() {
     return InkWell(
       onTap: () {
-        advancedPlayer.seek(advancedPlayer.position - const Duration(seconds: 10));
-        _animationController.repeat();
-        advancedPlayer.play();
-         setState(() {
-          isPlaying = true;
-        });
+        if (advancedPlayer.position > Duration.zero) {
+          if (advancedPlayer.position < const Duration(seconds: 10)) {
+            advancedPlayer
+                .seek(advancedPlayer.position - advancedPlayer.position);
+            advancedPlayer.play();
+          } else {
+            advancedPlayer
+                .seek(advancedPlayer.position - const Duration(seconds: 10));
+            advancedPlayer.play();
+          }
+          _animationController.repeat();
+          advancedPlayer.play();
+          setState(() {
+            isPlaying = true;
+          });
+          //
+        }
       },
       child: Image(
-        image: AssetImage(imgMusicIconRelay),
-        width: 50,
-        height: 50,
+        image: AssetImage(widget.imageRelay),
+        width: 40,
+        height: 40,
       ),
     );
   }
@@ -105,15 +201,31 @@ class _DetailMusicState extends State<DetailMusic>
   Widget btnNext() {
     return InkWell(
       onTap: () {
-        advancedPlayer.seek(advancedPlayer.position + const Duration(seconds: 10));
-        _animationController.repeat();
-        advancedPlayer.play();
-        setState(() {
+        if (_position.inSeconds.toDouble() < _duration.inSeconds.toDouble()) {
+          double a =
+              _duration.inSeconds.toDouble() - _position.inSeconds.toDouble();
+          if (a < 10.0) {
+            int b = a.toInt();
+            advancedPlayer.seek(advancedPlayer.position + Duration(seconds: b));
+            advancedPlayer.play();
+          } else {
+            advancedPlayer
+                .seek(advancedPlayer.position + const Duration(seconds: 10));
+            advancedPlayer.play();
+          }
+          _animationController.repeat();
+          advancedPlayer.play();
+          setState(() {
+            isPlaying = true;
+          });
+        } else {
+          advancedPlayer.load();
           isPlaying = true;
-        });
+          _animationController.repeat();
+        }
       },
       child: Image(
-        image: AssetImage(imgMusicIconSkip),
+        image: AssetImage(widget.imageForward),
         width: 40,
         height: 40,
       ),
@@ -149,38 +261,38 @@ class _DetailMusicState extends State<DetailMusic>
       width: 80,
       height: 80,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(40), color: kColorLightGrey),
+          borderRadius: BorderRadius.circular(40), color: widget.bgColor),
       child: IconButton(
         padding: const EdgeInsets.all(0),
         icon: isPlaying == false
             ? Icon(
                 _icons[0],
                 size: 70,
-                color: Colors.black,
+                color: widget.color,
               )
             : Icon(
                 _icons[1],
                 size: 70,
-                color: Colors.black,
+                color: widget.color,
               ),
-        onPressed: () {
+        onPressed: () async {
           setState(() {
-            double a =  _position.inSeconds.toDouble();
+            double a = _position.inSeconds.toDouble();
             if (isPlaying == false) {
               _animationController.repeat();
               isPlaying = true;
               advancedPlayer.play();
-              
-              if(a ==  _duration.inSeconds.toDouble()){
+              if (a == _duration.inSeconds.toDouble()) {
                 advancedPlayer.load();
               }
             } else {
-               _animationController.stop();
+              _animationController.stop();
               isPlaying = false;
               advancedPlayer.pause();
-             
             }
           });
+          //
+          updateView();
         },
       ),
     );
@@ -233,24 +345,26 @@ class _DetailMusicState extends State<DetailMusic>
 
   Widget slider() {
     return SliderTheme(
-      data: const SliderThemeData(
-        trackHeight: 8
-      ),
+      data: const SliderThemeData(trackHeight: 8),
       child: Slider(
-          activeColor: Colors.black,
-          inactiveColor: Colors.grey[400],
-          value: _position.inSeconds.toDouble(),
-          min: 0.0,
-          max: _duration.inSeconds.toDouble(),
-          onChanged: (double value) {
-            setState(() {
+        activeColor: widget.color,
+        inactiveColor: Colors.grey[400],
+        value: _position.inSeconds.toDouble(),
+        min: 0.0,
+        max: _duration.inSeconds.toDouble(),
+        onChanged: (double value) {
+          setState(
+            () {
               changeToSecond(value.toInt());
               value = value;
               advancedPlayer.play();
               _animationController.repeat();
               isPlaying = true;
-            });
-          }),
+            },
+          );
+          //
+        },
+      ),
     );
   }
 
@@ -259,7 +373,7 @@ class _DetailMusicState extends State<DetailMusic>
       width: 200,
       height: 200,
       decoration: BoxDecoration(
-        color: kColorLightGrey,
+        color: widget.bgColor,
         borderRadius: BorderRadius.circular(100),
         border: Border.all(color: Colors.grey.withOpacity(0.3), width: 2),
       ),
@@ -277,7 +391,7 @@ class _DetailMusicState extends State<DetailMusic>
                     border: Border.all(
                         color: Colors.grey.withOpacity(0.5), width: 2),
                     image: DecorationImage(
-                      image: AssetImage(musicImage),
+                      image: NetworkImage(musicImage),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -291,6 +405,7 @@ class _DetailMusicState extends State<DetailMusic>
   }
 
   void changeToSecond(int second) {
+    secondsMusic = second;
     Duration newDuration = Duration(seconds: second);
     advancedPlayer.seek(newDuration);
   }
@@ -299,7 +414,7 @@ class _DetailMusicState extends State<DetailMusic>
   Widget build(BuildContext context) {
     final size = context.screenSize;
     return Scaffold(
-      backgroundColor: kColorLightGrey,
+      backgroundColor: widget.bgColor,
       body: Stack(
         children: [
           Positioned(
@@ -307,7 +422,7 @@ class _DetailMusicState extends State<DetailMusic>
             left: 0,
             right: 0,
             height: size.height / 4,
-            child: Image.asset(
+            child: Image.network(
               musicImage,
               width: size.width,
               fit: BoxFit.cover,
@@ -315,22 +430,66 @@ class _DetailMusicState extends State<DetailMusic>
           ),
           Positioned(
             top: 0,
-            left: 0,
-            right: 0,
+            left: 20,
+            right: 20,
             child: AppBar(
-              leading: IconButton(
-                onPressed: () {
-                  Get.off(() => const ContainerPage());
-                  SaveChange.indexPage = 3;
-                },
-                icon: const Icon(Icons.arrow_back_ios),
+              leading: CircleAvatar(
+                radius: 20,
+                backgroundColor: Colors.white,
+                child: IconButton(
+                  alignment: Alignment.center,
+                  onPressed: () {
+                    Get.back();
+                  },
+                  icon: const Icon(Icons.arrow_back),
+                  color: Colors.black,
+                  iconSize: 30,
+                ),
               ),
-              // actions: [
-              //   IconButton(
-              //     onPressed: () {},
-              //     icon: const Icon(Icons.search),
-              //   )
-              // ],
+              actions: [
+                FutureBuilder(
+                  future: controllerStatistical.checkFavourite(musicId),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      if (kDebugMode) {
+                        print("Error: ${snapshot.error}");
+                      }
+                    }
+                    checkFavourite = snapshot.data ?? false;
+                    checkLike = checkFavourite;
+                    return CircleAvatar(
+                      radius: 20,
+                      backgroundColor: const Color.fromRGBO(34, 34, 34, 0.475),
+                      child: IconButton(
+                        alignment: Alignment.center,
+                        onPressed: () async {
+                          await updateFavourite();
+                          setState(() {
+                            checkLike = !checkLike;
+                          });
+                        },
+                        icon: checkLike
+                            ? Image.asset(imgCourseDetailHeartSelected)
+                            : Image.asset(imgCourseDetailHeart),
+                        iconSize: 20,
+                      ),
+                    );
+                  },
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                CircleAvatar(
+                  radius: 20,
+                  backgroundColor: const Color.fromRGBO(34, 34, 34, 0.475),
+                  child: IconButton(
+                    alignment: Alignment.center,
+                    onPressed: () {},
+                    icon: Image.asset(imgCourseDetailDowload),
+                    iconSize: 20,
+                  ),
+                ),
+              ],
               backgroundColor: Colors.transparent,
               elevation: 0,
             ),
@@ -344,8 +503,7 @@ class _DetailMusicState extends State<DetailMusic>
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(40),
                   image: DecorationImage(
-                      image: AssetImage(imgMusicsBackGround),
-                      fit: BoxFit.cover)),
+                      image: AssetImage(widget.imageBg), fit: BoxFit.cover)),
               child: Column(
                 children: [
                   const SizedBox(
@@ -353,9 +511,13 @@ class _DetailMusicState extends State<DetailMusic>
                   ),
                   turntable(),
                   const SizedBox(height: 50),
-                  Text(
-                    musicTitle,
-                    style: Primaryfont.bold(30).copyWith(color: Colors.black),
+                  Container(
+                    padding: const EdgeInsets.only(left: 20),
+                    alignment: Alignment.center,
+                    child: Text(
+                      musicTitle,
+                      style: Primaryfont.bold(30).copyWith(color: Colors.black),
+                    ),
                   ),
                   Text(
                     musicAuthor,
@@ -378,12 +540,12 @@ class _DetailMusicState extends State<DetailMusic>
                         Text(
                           _formatDuration(_position),
                           style: Primaryfont.bold(15)
-                              .copyWith(color: Colors.black),
+                              .copyWith(color: widget.color),
                         ),
                         Text(
                           _formatDuration(_duration),
                           style: Primaryfont.medium(15)
-                              .copyWith(color: Colors.black),
+                              .copyWith(color: widget.color),
                         ),
                       ],
                     ),

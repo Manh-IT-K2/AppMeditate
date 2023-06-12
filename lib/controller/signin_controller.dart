@@ -26,7 +26,7 @@ class SignInController extends GetxController {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString('Username', userName);
   }
-  //savechange login
+  //get username with sharedpreferences login
   Future<String> getStringUsername() async {
   final prefs = await SharedPreferences.getInstance();
   return prefs.getString('Username') ?? "";

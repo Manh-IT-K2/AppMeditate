@@ -11,7 +11,6 @@ class AppbarCourseDetailWidget extends StatelessWidget {
   final double? sWidthIamge, sHeightImage;
   @override
   Widget build(BuildContext context) {
-   
     return Stack(
       children: [
         Image.asset(
@@ -34,6 +33,7 @@ class AppbarCourseDetailWidget extends StatelessWidget {
                       alignment: Alignment.center,
                       onPressed: () {
                         Navigator.of(context).pushNamed('$ContainerPage');
+                        SaveChange.indexPage = 2;
                       },
                       icon: const Icon(Icons.arrow_back),
                       color: Colors.black,
@@ -51,7 +51,9 @@ class AppbarCourseDetailWidget extends StatelessWidget {
                     backgroundColor: const Color.fromRGBO(34, 34, 34, 0.475),
                     child: IconButton(
                       alignment: Alignment.center,
-                      onPressed: () {},
+                      onPressed: () {
+
+                      },
                       icon: Image.asset(imgCourseDetailHeart),
                       iconSize: 20,
                     ),

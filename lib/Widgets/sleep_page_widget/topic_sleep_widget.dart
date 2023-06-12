@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:get/get.dart';
+import 'package:meditation_app/Common/data/data_controller.dart';
 import 'package:meditation_app/Constant/colors.dart';
-import 'package:meditation_app/Pages/sleep_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
-import 'package:meditation_app/model/sleepmodel.dart';
+import 'package:meditation_app/Widgets/sleep_page_widget/sleep_page_detail.dart';
+import 'package:meditation_app/controller/sleep_controller.dart';
+import 'package:meditation_app/model/sleep_model.dart';
 
 class TopicSleepWidget extends StatelessWidget {
   const TopicSleepWidget({
@@ -14,13 +17,11 @@ class TopicSleepWidget extends StatelessWidget {
   final double sTextTitle, sTextSubtitle;
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Sleep>>(
-      future: sleepStorage.Load(),
+    final controller = Get.put(SleepController());
+    final dataController = Get.put(DataController());
+    return FutureBuilder<List<SleepModel>>(
+      future: controller.getSleepList(),
       builder: (context, snapshot) {
-        // if(snapshot.hasError){
-        //   print(snapshot.error.toString());
-        // }
-        //print(snapshot.data);
         if (!snapshot.hasData) {
           // nếu không có dữ liệu thì hiện vòng xoay
           return const Center(
@@ -39,11 +40,15 @@ class TopicSleepWidget extends StatelessWidget {
             return InkWell(
               // nhấn vào sẽ chuyển sang trang reminderspage
               onTap: () {
-                //Navigator.of(context).pushNamed('$RemindersPage');
+                print(sleep.id);
+                Get.to(() => const SleepDetailPage(), arguments: {
+                  "idSleep": dataController.idSleep.value = sleep.id,
+                  "titleSleep": dataController.titleSleep.value = sleep.title
+                });
               },
               child: DecoratedBox(
                 decoration: BoxDecoration(
-                  color: sleep.bgColor,
+                  color: sleep.colorBg,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Column(
@@ -69,7 +74,7 @@ class TopicSleepWidget extends StatelessWidget {
                               .copyWith(color: sleep.textColor),
                           children: [
                             TextSpan(
-                              text: sleeps[index].timesleep,
+                              text: sleeps[index].timeSleep,
                               style: Primaryfont.ligh(sTextSubtitle).copyWith(
                                   color: kColorLightGrey, height: 1.5),
                             ),

@@ -77,7 +77,7 @@ class _HeaderWidgetAccountInforState extends State<HeaderWidgetAccountInfor>  wi
             ),
           ],
         ),
-        ElevatedButton(
+        TextButton(
           onPressed: () async {
             if (widget._formKey.currentState!.validate()) {
               if (widget.email.text != "" || widget.phone.text != "") {
@@ -125,15 +125,9 @@ class _HeaderWidgetAccountInforState extends State<HeaderWidgetAccountInfor>  wi
               }
             }
           },
-          style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.black,
-              shadowColor: Colors.pink,
-              //elevation: 3, // độ bóng của nút
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10))),
           child: Text(
-            "Save",
-            style: Primaryfont.bold(16).copyWith(color: Colors.white),
+            "Save?",
+            style: Primaryfont.bold(16).copyWith(color: Colors.pink),
           ),
         ),
       ],

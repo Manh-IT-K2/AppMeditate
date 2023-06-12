@@ -35,7 +35,7 @@ class _form_body_signup_widgetState extends State<form_body_signup_widget> {
   final ValueNotifier<bool> _showError = ValueNotifier<bool>(false);
   @override
   Widget build(BuildContext context) {
-    final siree = context.screenSize;
+    //final siree = context.screenSize;
     final controller = Get.put(SignUpController());
     final formKey = GlobalKey<FormState>();
     final ValueNotifier<bool> isHidenPass = ValueNotifier<bool>(false);

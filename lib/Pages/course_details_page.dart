@@ -25,14 +25,13 @@ class CourseDetails extends StatelessWidget {
                 height: size.height,
                 padding: const EdgeInsets.only(
                     bottom: 20, left: 20, right: 20, top: 50),
-                child: Column(
+                child: const Column(
                   children: [
-                    const HeaderCourseDetailWidget(),
-                    const RecordCourseDetailWidget(),
+                    HeaderCourseDetailWidget(),
+                    RecordCourseDetailWidget(),
                     DefaultTabController(
-                      length: 3,
-                      child:
-                          Expanded(child: BodyCourseDetailWidget(size: size)),
+                      length: 2,
+                      child: Expanded(child: BodyCourseDetailWidget()),
                     ),
                   ],
                 ),
@@ -54,18 +53,18 @@ class CourseDetails extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      padding: const EdgeInsets.only(left: 50, right: 100, top: 20),
-                      child: Column(
-                        children: const [
+                      padding:
+                          const EdgeInsets.only(left: 50, right: 100, top: 20),
+                      child: const Column(
+                        children: [
                           HeaderCourseDetailWidget(),
                           RecordCourseDetailWidget(),
                         ],
                       ),
                     ),
-                    DefaultTabController(
-                      length: 3,
-                      child:
-                          Expanded(child: BodyCourseDetailWidget(size: size)),
+                    const DefaultTabController(
+                      length: 2,
+                      child: Expanded(child: BodyCourseDetailWidget()),
                     ),
                   ],
                 ),

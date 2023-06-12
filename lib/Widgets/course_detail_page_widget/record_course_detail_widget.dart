@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Utils/theme.dart';
+import 'package:meditation_app/controller/statistical_controller.dart';
 
 class RecordCourseDetailWidget extends StatelessWidget {
   const RecordCourseDetailWidget({
@@ -10,6 +12,7 @@ class RecordCourseDetailWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controllerStatistical = Get.put(StatisticalController());
     return Container(
       padding: const EdgeInsets.only(bottom: 15),
       decoration: const BoxDecoration(
@@ -23,24 +26,31 @@ class RecordCourseDetailWidget extends StatelessWidget {
             color: Colors.red,
             size: 20,
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Column(
-              children: [
-                Text(
-                  '24.234',
-                  style: Primaryfont.ligh(14).copyWith(
-                    color: kColorDartPrimary,
-                    height: 2,
-                  ),
+          FutureBuilder(
+            future: controllerStatistical.getTotalFavouriteCourseBasic(),
+            builder: ((context, snapshot) {
+              final data = snapshot.data ?? 0;
+              String favourite = data.toStringAsFixed(1);
+              return Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Column(
+                  children: [
+                    Text(
+                      favourite,
+                      style: Primaryfont.ligh(14).copyWith(
+                        color: kColorDartPrimary,
+                        height: 2,
+                      ),
+                    ),
+                    Text(
+                      txtCourseDetailHeaderTitleFavorite,
+                      style: Primaryfont.ligh(14)
+                          .copyWith(color: kColorDartPrimary, height: 1),
+                    ),
+                  ],
                 ),
-                Text(
-                  txtCourseDetailHeaderTitleFavorite,
-                  style: Primaryfont.ligh(14)
-                      .copyWith(color: kColorDartPrimary, height: 1),
-                ),
-              ],
-            ),
+              );
+            }),
           ),
           const Padding(
             padding: EdgeInsets.only(left: 100),
@@ -50,24 +60,31 @@ class RecordCourseDetailWidget extends StatelessWidget {
               size: 20,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Column(
-              children: [
-                Text(
-                  '34.234',
-                  style: Primaryfont.ligh(14).copyWith(
-                    color: kColorDartPrimary,
-                    height: 2,
-                  ),
+          FutureBuilder(
+            future: controllerStatistical.getTotalViewCourseBasic(),
+            builder: (BuildContext context, AsyncSnapshot<int?> snapshot) {
+              int? view = snapshot.data ?? 0;
+              String views = view.toStringAsFixed(1);
+              return Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Column(
+                  children: [
+                    Text(
+                      views,
+                      style: Primaryfont.ligh(14).copyWith(
+                        color: kColorDartPrimary,
+                        height: 2,
+                      ),
+                    ),
+                    Text(
+                      txtCourseDetailHeaderTitleListening,
+                      style: Primaryfont.ligh(14)
+                          .copyWith(color: kColorDartPrimary, height: 1),
+                    ),
+                  ],
                 ),
-                Text(
-                  txtCourseDetailHeaderTitleListening,
-                  style: Primaryfont.ligh(14)
-                      .copyWith(color: kColorDartPrimary, height: 1),
-                ),
-              ],
-            ),
+              );
+            },
           ),
         ],
       ),

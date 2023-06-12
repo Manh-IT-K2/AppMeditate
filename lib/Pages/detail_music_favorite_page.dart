@@ -55,7 +55,7 @@ class _DetailMusicFavoriteState extends State<DetailMusicFavorite> {
 
   Future<void> _initAudioPlayer() async {
     try {
-      await DarkMode.play.setUrl(widget.duration);
+      await DarkMode.play.setAsset(widget.duration);
       DarkMode.play.durationStream.listen((duration) {
         setState(() {
           _duration = duration!;

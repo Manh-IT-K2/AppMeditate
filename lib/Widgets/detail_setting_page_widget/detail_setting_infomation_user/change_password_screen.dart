@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:meditation_app/Constant/image_string.dart';
 import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Pages/container_page.dart';
-import 'package:meditation_app/Pages/sign_in_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/Widgets/signin_page_widget/forget_password/forget_password_screen.dart';
 import 'package:meditation_app/controller/change_password_controller.dart';
@@ -270,6 +269,7 @@ class ChangePasswordScreen extends StatelessWidget {
   }
 }
 
+// ignore: camel_case_types, must_be_immutable
 class inputTextField extends StatelessWidget {
   inputTextField(
       {super.key,

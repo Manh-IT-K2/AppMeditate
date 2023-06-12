@@ -1,4 +1,3 @@
-
 const List voiceMusic = [
   "MALE VOICE",
   "FEMALE VOICE",
@@ -90,7 +89,8 @@ const List listPiano = [
     "urlPiano": "assets/musics/pianos/Flying Free - Megan Wofford.mp3",
   },
   {
-    "image": "assets/images/course_detail_page_image/img_ms_Joy in the Little Things.jpeg",
+    "image":
+        "assets/images/course_detail_page_image/img_ms_Joy in the Little Things.jpeg",
     "namePiano": "Joy in the Little Things - Sayuri Hayashi Egnell",
     "urlPiano":
         "assets/musics/pianos/Joy in the Little Things - Sayuri Hayashi Egnell.mp3",
@@ -106,8 +106,7 @@ const List listMusicFriend = [
   {
     "image": "assets/images/course_detail_page_image/img_ms_shaynanggg.jpeg",
     "nameSong": "Shay nắnggg - AMEE x OBITO x HỨA KIM TUYỀN x SKIN AQUA",
-    "urlSong":
-        "assets/musics/friends/shay nanggg.mp3",
+    "urlSong": "assets/musics/friends/shay nanggg.mp3",
   },
   {
     "image": "assets/images/course_detail_page_image/img_ms_DontCoi.jpeg",
@@ -117,25 +116,23 @@ const List listMusicFriend = [
   {
     "image": "assets/images/course_detail_page_image/img_ms_11gio11phut.jpeg",
     "nameSong": "11 Giờ 11 Phút - MiiNa x RIN9 x DREAMER",
-    "urlSong":
-        "assets/musics/friends/11 gio 11 phut.mp3",
+    "urlSong": "assets/musics/friends/11 gio 11 phut.mp3",
   },
   {
     "image": "assets/images/course_detail_page_image/img_ms_Haimuoihai.jpeg",
     "nameSong": "Hai mươi hai - AMEE ft Hứa Kim Tuyền x Quanvrox",
-    "urlSong":
-        "assets/musics/friends/hai muoi hai.mp3",
+    "urlSong": "assets/musics/friends/hai muoi hai.mp3",
   },
   {
-    "image": "assets/images/course_detail_page_image/img_ms_duongtoichoemve.jpeg",
+    "image":
+        "assets/images/course_detail_page_image/img_ms_duongtoichoemve.jpeg",
     "nameSong": "Đường tôi chở em về - Bui Truong Linh",
-    "urlSong":
-        "assets/musics/friends/duong toi cho em ve.mp3",
+    "urlSong": "assets/musics/friends/duong toi cho em ve.mp3",
   },
   {
-    "image": "assets/images/course_detail_page_image/img_ms_Thattinhthuongxautinh.jpeg",
+    "image":
+        "assets/images/course_detail_page_image/img_ms_Thattinhthuongxautinh.jpeg",
     "nameSong": "Thất tình thường xấu tính - LyLy x Ricky Star",
-    "urlSong":
-        "assets/musics/friends/that tinh thuong xua tinh.mp3",
+    "urlSong": "assets/musics/friends/that tinh thuong xua tinh.mp3",
   },
 ];

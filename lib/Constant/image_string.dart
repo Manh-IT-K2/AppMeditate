@@ -45,6 +45,7 @@ String imgSleepBgTheOceanMoon = "assets/images/sleep_page_image/bg_sleeppage.png
 // Course Detail Page
 String imgCourseDetailBg = "assets/images/course_detail_page_image/bg_coursedetails.png";
 String imgCourseDetailHeart = "assets/images/course_detail_page_image/ic_heart.png";
+String imgCourseDetailHeartSelected = "assets/images/course_detail_page_image/ic_heart_selected.png";
 String imgCourseDetailDowload = "assets/images/course_detail_page_image/ic_dowload.png";
 
 // User Page Image
@@ -70,14 +71,17 @@ String avt16 = "assets/images/user_page_image/avt16.png";
 String avt17 = "assets/images/user_page_image/avt17.png";
 String avtDefault = "assets/images/user_page_image/avt_default.png";
 
-// Music  Page Image
+// Music Page Image
 String imgMusicStar = "assets/images/music_page_image/ic_star.png";
 String imgMusicMeditationyoga = "assets/images/music_page_image/ic_meditationyoga.png";
 String imgMusicWater = "assets/images/music_page_image/ic_water.png";
 String imgMusicsleep = "assets/images/music_page_image/ic_sleeping.png";
 String imgMusicsBackGround = "assets/images/music_page_image/bg_music.png";
-String imgMusicIconSkip = "assets/images/music_page_image/ic_skip_10_seconds.png";
-String imgMusicIconRelay = "assets/images/music_page_image/ic_relay_10_seconds.png";
+String imgMusicsBGSleep = "assets/images/music_page_image/bg_detail_music_sleep.png";
+String imgMusicIconSkipBright = "assets/images/music_page_image/ic_forward_10_bright.png";
+String imgMusicIconRelayBright = "assets/images/music_page_image/ic_replay_10_bright.png";
+String imgMusicIconSkipDark = "assets/images/music_page_image/ic_forward_10_dart.png";
+String imgMusicIconRelayDark = "assets/images/music_page_image/ic_replay_10_dart.png";
 
 // Change password screen
 String imgChangePasswordBG = "assets/images/user_page_image/bg_changepassword.png";

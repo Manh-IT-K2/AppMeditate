@@ -5,6 +5,7 @@ class DataController extends GetxController{
   var musicAuthor = "".obs;
   var musicImage = "".obs;
   var musicUrl = "".obs;
+  var musicId = "".obs;
 
   var userName = "".obs;
   setUserName(String value){
@@ -20,4 +21,11 @@ class DataController extends GetxController{
   setEmail(String value){
     email.value = value;
   }
+
+  var idMeditation = "".obs;
+  var titleMeditation = "".obs;
+
+  //
+  var idSleep = "".obs;
+  var titleSleep = "".obs;
 }

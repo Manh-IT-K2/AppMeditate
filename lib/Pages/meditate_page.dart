@@ -3,13 +3,10 @@ import 'package:meditation_app/Common/widget/appbar_widget.dart';
 import 'package:meditation_app/Common/widget/header_widget.dart';
 import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Constant/text_string.dart';
-import 'package:meditation_app/Repository/meditate_storage.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/Widgets/meditate_page_widget/title_suggest_meditate_widget.dart';
 import 'package:meditation_app/Widgets/meditate_page_widget/topic_meditate_widget.dart';
 import 'package:meditation_app/Common/widget/reponsive_builder.dart';
-
-final meditateStorage = AssetMeditateStorage();
 
 class MeditatePage extends StatelessWidget {
   const MeditatePage({super.key});

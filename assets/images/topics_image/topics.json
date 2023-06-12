@@ -1,0 +1,44 @@
+[
+  {
+    "title": "Reduce Stress",
+    "thumbnail": "assets/images/topics_image/thumb1.svg",
+    "color": "0xFF808AFF",
+    "titleColor": "0xFFFFFFFF"
+  },
+  {
+    "title": "Improve Performance",
+    "thumbnail": "assets/images/topics_image/thumb2.svg",
+    "color": "0xFFFA6E5A",
+    "titleColor": "0xFFFFFFFF"
+  },
+  {
+    "title": "Increase Happiness",
+    "thumbnail": "assets/images/topics_image/thumb3.svg",
+    "color": "0xFFFEB18F",
+    "titleColor": "0xFF000000"
+  },
+  {
+    "title": "Reduce Anxiety",
+    "thumbnail": "assets/images/topics_image/thumb4.svg",
+    "color": "0xFFFFCF86",
+    "titleColor": "0xFF000000"
+  },
+  {
+    "title": "Personal Growth",
+    "thumbnail": "assets/images/topics_image/thumb5.svg",
+    "color": "0xFF6CB28E",
+    "titleColor": "0xFFFFFFFF"
+  },
+  {
+    "title": "Better Sleep",
+    "thumbnail": "assets/images/topics_image/thumb6.svg",
+    "color": "0xFF3F414E",
+    "titleColor": "0xFFFFFFFF"
+  },
+  {
+    "title": "Improve Durability",
+    "thumbnail": "assets/images/topics_image/thumb7.svg",
+    "color": "0xFFFA6E5A",
+    "titleColor": "0xFFFFFFFF"
+  }
+]

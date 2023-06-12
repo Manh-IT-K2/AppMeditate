@@ -1,0 +1,30 @@
+[
+    {
+        "title": "Good Night",
+        "thumbnail": "assets/images/sleep_page_image/bg_sleep_GoodNight.png",
+        "color": "0xFF1F265E",
+        "titleColor": "0xFFFFFFFF",
+        "timesleep":"45 MIN • SLEEP MUSIC"
+    },
+    {
+        "title": "Moon Clouds",
+        "thumbnail": "assets/images/sleep_page_image/bg_sleep_MoonClouds.png",
+        "color": "0xFF1F265E",
+        "titleColor": "0xFFFFFFFF",
+        "timesleep":"45 MIN • SLEEP MUSIC"
+    },
+    {
+        "title": "Night Island",
+        "thumbnail": "assets/images/sleep_page_image/bg_sleep_NightIsland.png",
+        "color": "0xFF1F265E",
+        "titleColor": "0xFFFFFFFF",
+        "timesleep":"45 MIN • SLEEP MUSIC"
+    },
+    {
+        "title": "Sweet Sleep",
+        "thumbnail": "assets/images/sleep_page_image/bg_sleep_SweetSleep.png",
+        "color": "0xFF1F265E",
+        "titleColor": "0xFFFFFFFF",
+        "timesleep":"45 MIN • SLEEP MUSIC"
+    }
+]

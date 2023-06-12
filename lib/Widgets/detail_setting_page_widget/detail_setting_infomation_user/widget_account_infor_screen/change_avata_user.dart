@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -268,6 +267,7 @@ class ChageAvataUser {
     );
   }
 
+  // show bottom sheet chose type get image
   final picker = ImagePicker();
   void showImagePicker(BuildContext context) {
     showModalBottomSheet(

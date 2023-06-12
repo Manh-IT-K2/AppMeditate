@@ -3,10 +3,10 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:meditation_app/Pages/chooce_topic_page.dart';
 import 'package:meditation_app/Pages/reminders_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
-import 'package:meditation_app/model/topicmodel.dart';
+import 'package:meditation_app/controller/topics_contronller.dart';
+import 'package:meditation_app/model/topics_model.dart';
 
 class BodyTopicGridWidget extends StatefulWidget {
   const BodyTopicGridWidget({
@@ -38,8 +38,9 @@ class _BodyTopicGridWidgetState extends State<BodyTopicGridWidget>
   Widget build(BuildContext context) {
     final userName = Get.arguments;
     final size = context.screenSize;
-    return FutureBuilder<List<Topic>>(
-      future: topicStorage.Load(),
+    final controller = Get.put(TopicController());
+    return FutureBuilder<List<TopicsModel>>(
+      future: controller.getTopicList(),
       builder: (context, snapshot) {
         // if(snapshot.hasError){
         //   print(snapshot.error.toString());
@@ -73,11 +74,12 @@ class _BodyTopicGridWidgetState extends State<BodyTopicGridWidget>
               // nhấn vào sẽ chuyển sang trang reminderspage
               onTap: () {
                 //Navigator.of(context).pushNamed('$RemindersPage');
+                controller.saveChoseTopic(topic.id);
                 Get.off(() => const RemindersPage(), arguments: userName);
               },
               child: DecoratedBox(
                 decoration: BoxDecoration(
-                  color: topic.bgColor,
+                  color: topic.colorBg,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Column(
@@ -85,10 +87,10 @@ class _BodyTopicGridWidgetState extends State<BodyTopicGridWidget>
                   children: [
                     LayoutBuilder(
                         // đọc được contraints của thằng cha cho thằng con
-                        builder: (context, Constraints) {
+                        builder: (context, constraints) {
                       return SvgPicture.asset(
                         topic.thumbnail,
-                        width: Constraints.maxWidth,
+                        width: constraints.maxWidth,
                       );
                     }),
                     Padding(
