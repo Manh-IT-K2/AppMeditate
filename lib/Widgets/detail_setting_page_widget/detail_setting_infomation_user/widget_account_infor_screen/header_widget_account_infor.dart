@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:meditation_app/Common/message/dialog_message.dart';
-import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Pages/detail_setting_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/Widgets/detail_setting_page_widget/detail_setting_infomation_user/account_infor_screen.dart';
 import 'package:meditation_app/controller/editprofile_controller.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 import 'package:meditation_app/model/users_model.dart';
 
 class HeaderWidgetAccountInfor extends StatefulWidget {
   const HeaderWidgetAccountInfor({
     super.key,
-    required GlobalKey<FormState> formKey,
+    //required GlobalKey<FormState> formKey,
     required this.id,
     required this.user,
     required this.fullName,
@@ -22,9 +22,9 @@ class HeaderWidgetAccountInfor extends StatefulWidget {
     required this.day,
     required this.month,
     required this.year,
-  }) : _formKey = formKey;
+  });
 
-  final GlobalKey<FormState> _formKey;
+  //final GlobalKey<FormState> _formKey;
   final String? id;
   final UsersModel user;
   final TextEditingController fullName;
@@ -67,24 +67,24 @@ class _HeaderWidgetAccountInforState extends State<HeaderWidgetAccountInfor>  wi
                 onTap: () {
                   Get.off(() => const DetailSettingUser());
                 },
-                child: const Icon(Icons.arrow_back_ios, size: 30)),
+                child: const Icon(Icons.arrow_back_ios, size: 20)),
             const SizedBox(
               width: 10,
             ),
             Text(
-              txtEditProfile,
+              translation(context).txtEditProfile,
               style: Primaryfont.medium(16),
             ),
           ],
         ),
         TextButton(
           onPressed: () async {
-            if (widget._formKey.currentState!.validate()) {
+            //if (widget._formKey.currentState!.validate()) {
               if (widget.email.text != "" || widget.phone.text != "") {
-                DialogMessage.show(context, "Not enter you must link");
+                DialogMessage.show(context, translation(context).txtMessageLink);
               } else {
                 final usersModel = await getStatusChageUser.getUser();
-                String? image = usersModel.image;
+                String? image = usersModel!.image;
                 int statusChangeUser = usersModel.statusChageUser;
                 bool typeImage = usersModel.typeImage;
                 final users = UsersModel(
@@ -116,17 +116,17 @@ class _HeaderWidgetAccountInforState extends State<HeaderWidgetAccountInfor>  wi
                       ),
                     );
                 Get.offAll(() => const AccountInfor());
-                Get.snackbar("Success!", "Information has been updated.",
+                Get.snackbar(translation(context).txtSuccess, translation(context).txtSnackSuccessUpdateInfor,
                     icon: const Icon(Icons.error, color: Colors.white),
                     snackPosition: SnackPosition.TOP,
                     duration: const Duration(seconds: 3),
                     backgroundColor: Colors.green,
                     colorText: Colors.white);
               }
-            }
+           // }
           },
           child: Text(
-            "Save?",
+            translation(context).txtSave,
             style: Primaryfont.bold(16).copyWith(color: Colors.pink),
           ),
         ),

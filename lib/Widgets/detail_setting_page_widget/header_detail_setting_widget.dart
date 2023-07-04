@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:meditation_app/Constant/text_string.dart';
+import 'package:get/get.dart';
 import 'package:meditation_app/Pages/container_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 
 class HeaderDetailSettingWidget extends StatelessWidget {
   const HeaderDetailSettingWidget({
@@ -16,7 +17,8 @@ class HeaderDetailSettingWidget extends StatelessWidget {
           children: [
             InkWell(
               onTap: () {
-                Navigator.of(context).pushNamed('$ContainerPage');
+                //Navigator.of(context).pushNamed('$ContainerPage');
+                Get.to(() => const ContainerPage());
                 SaveChange.indexPage = 4;
               },
               hoverColor: Colors.transparent,
@@ -30,7 +32,7 @@ class HeaderDetailSettingWidget extends StatelessWidget {
               width: 10,
             ),
             Text(
-              txtSetting,
+              translation(context).txtSetting,
               style: Primaryfont.bold(14).copyWith(color: Colors.black),
             ),
           ],

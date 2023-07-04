@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
-import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Utils/theme.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 
 var otp;
 class OTPScreen extends StatelessWidget {
@@ -23,15 +23,15 @@ class OTPScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(tOtpTitle,
+              Text(translation(context).tOtpTitle,
                   style: Primaryfont.bold(100).copyWith(color: Colors.black)),
-              Text(tOtpSubTitle.toUpperCase(),
+              Text(translation(context).tOtpSubTitle.toUpperCase(),
                   style: Primaryfont.bold(14).copyWith(color: Colors.black)),
               const SizedBox(
                 height: 40.0,
               ),
               Text(
-                '$tOtpMessage $text',
+                '${translation(context).tOtpMessage} $text',
                 textAlign: TextAlign.center,
               ),
               const SizedBox(
@@ -59,7 +59,7 @@ class OTPScreen extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    "Next",
+                    translation(context).txtNext,
                     style: Primaryfont.bold(14).copyWith(color: Colors.white),
                   ),
                 ),

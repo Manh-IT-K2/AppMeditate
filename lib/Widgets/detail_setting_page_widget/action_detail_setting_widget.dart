@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Pages/container_page.dart';
 import 'package:meditation_app/Pages/signup_or_singin_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
+import 'package:meditation_app/Widgets/detail_setting_page_widget/detail_setting_action/change_language_screen.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ActionDetailSettingWidget extends StatelessWidget {
@@ -47,16 +48,21 @@ class ActionDetailSettingWidget extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      txtDetailSettingAction1,
+                      translation(context).txtDetailSettingAction1,
                       style:
                           Primaryfont.medium(14).copyWith(color: Colors.black),
                     ),
                   ],
                 ),
-                const Icon(
-                  Icons.arrow_forward,
-                  color: Colors.grey,
-                  size: 25,
+                InkWell(
+                  onTap: () {
+                    Get.to(() => const ChangeLanguageScreen());
+                  },
+                  child: const Icon(
+                    Icons.arrow_forward,
+                    color: Colors.grey,
+                    size: 25,
+                  ),
                 ),
               ],
             ),
@@ -83,7 +89,7 @@ class ActionDetailSettingWidget extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      txtDetailSettingAction2,
+                      translation(context).txtDetailSettingAction2,
                       style:
                           Primaryfont.medium(14).copyWith(color: Colors.black),
                     ),
@@ -126,7 +132,7 @@ class ActionDetailSettingWidget extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      txtDetailSettingAction3,
+                      translation(context).txtDetailSettingAction3,
                       style:
                           Primaryfont.medium(14).copyWith(color: Colors.black),
                     ),
@@ -165,7 +171,7 @@ class ActionDetailSettingWidget extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      txtDetailSettingAction4,
+                      translation(context).txtDetailSettingAction4,
                       style:
                           Primaryfont.medium(14).copyWith(color: Colors.black),
                     ),

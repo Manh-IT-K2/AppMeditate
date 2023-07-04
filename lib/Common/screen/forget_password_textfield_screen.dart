@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meditation_app/Utils/theme.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 // import 'package:meditation_app/controller/forget_password_controller.dart';
 
-final formKey = GlobalKey<FormState>();
+
 final ValueNotifier<bool> isIconValid = ValueNotifier<bool>(false);
 
 class ForgetPasswordTextfieldScreen extends StatelessWidget {
@@ -41,95 +42,60 @@ class ForgetPasswordTextfieldScreen extends StatelessWidget {
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.only(left: 12, right: 12),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      // if (SaveChangeBack.page == 0) {
-                      //   Get.off(() => const SignIn());
-                      // } else {
-                      //   Get.off(() => const AccountInfor());
-                      // }
-                      Get.back();
-                    },
-                    icon: const Icon(
-                      Icons.arrow_back,
-                      size: 30,
-                      color: Colors.black,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        // if (SaveChangeBack.page == 0) {
+                        //   Get.off(() => const SignIn());
+                        // } else {
+                        //   Get.off(() => const AccountInfor());
+                        // }
+                        Get.back();
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back,
+                        size: 30,
+                        color: Colors.black,
+                      ),
                     ),
-                  ),
-                  Text(
-                    "Back",
-                    style: Primaryfont.bold(14).copyWith(color: Colors.black),
-                  ),
-                ],
-              ),
-              Image(
-                image: AssetImage(assetImage),
-                height: 400,
-                fit: BoxFit.cover,
-              ),
-              Text(
-                title,
-                textAlign: TextAlign.center,
-                style: Primaryfont.bold(24).copyWith(color: Colors.black),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Text(
-                subTitle,
-                textAlign: TextAlign.center,
-                style: Primaryfont.ligh(14)
-                    .copyWith(color: Colors.black, height: 1.5),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Form(
-                key: formKey,
-                child: Column(
+                    Text(
+                      translation(context).txtBack,
+                      style: Primaryfont.bold(14).copyWith(color: Colors.black),
+                    ),
+                  ],
+                ),
+                Image(
+                  image: AssetImage(assetImage),
+                  height: 400,
+                  fit: BoxFit.cover,
+                ),
+                Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: Primaryfont.bold(24).copyWith(color: Colors.black),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Text(
+                  subTitle,
+                  textAlign: TextAlign.center,
+                  style: Primaryfont.ligh(14)
+                      .copyWith(color: Colors.black, height: 1.5),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Column(
                   children: [
                     ValueListenableBuilder(
                       valueListenable: isIconValid,
                       builder: (context, value, child) {
-                        return TextField(
-                          controller: controller,
-                          cursorColor: Colors.black,
-                          decoration: InputDecoration(
-                            label: Text(
-                              lbTextField,
-                              style: Primaryfont.medium(14)
-                                  .copyWith(color: Colors.black),
-                            ),
-                            prefixIcon: Icon(
-                              iconData,
-                              size: 30,
-                              color: Colors.black,
-                            ),
-                            fillColor: Colors.white,
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                              borderSide: const BorderSide(
-                                width: 1.0,
-                                color: Colors.grey,
-                              ),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                              borderSide: const BorderSide(
-                                width: 1.0,
-                                color: Colors.grey,
-                              ),
-                            ),
-                            suffix: isIconValid.value
-                                ? iconVerify[0]
-                                : iconVerify[1],
-                          ),
-                          onChanged: onChangedTF,
-                        );
+                        return meme(controller: controller, lbTextField: lbTextField, iconData: iconData, iconVerify: iconVerify, onChangedTF: onChangedTF);
                       },
                     ),
                     Container(
@@ -146,7 +112,7 @@ class ForgetPasswordTextfieldScreen extends StatelessWidget {
                           ),
                         ),
                         child: Text(
-                          "Next",
+                          translation(context).txtNext,
                           style: Primaryfont.bold(14)
                               .copyWith(color: Colors.white),
                         ),
@@ -154,11 +120,67 @@ class ForgetPasswordTextfieldScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class meme extends StatelessWidget {
+  const meme({
+    super.key,
+    required this.controller,
+    required this.lbTextField,
+    required this.iconData,
+    required this.iconVerify,
+    required this.onChangedTF,
+  });
+
+  final TextEditingController controller;
+  final String lbTextField;
+  final IconData iconData;
+  final List<Icon> iconVerify;
+  final Function(String p1)? onChangedTF;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: controller,
+      cursorColor: Colors.black,
+      decoration: InputDecoration(
+        label: Text(
+          lbTextField,
+          style: Primaryfont.medium(14)
+              .copyWith(color: Colors.black),
+        ),
+        prefixIcon: Icon(
+          iconData,
+          size: 30,
+          color: Colors.black,
+        ),
+        fillColor: Colors.white,
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(30),
+          borderSide: const BorderSide(
+            width: 1.0,
+            color: Colors.grey,
+          ),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(30),
+          borderSide: const BorderSide(
+            width: 1.0,
+            color: Colors.grey,
+          ),
+        ),
+        suffix: isIconValid.value
+            ? iconVerify[0]
+            : iconVerify[1],
+      ),
+      onChanged: onChangedTF,
     );
   }
 }

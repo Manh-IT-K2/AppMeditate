@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gif_view/gif_view.dart';
 import 'package:meditation_app/Constant/colors.dart';
+import 'package:meditation_app/Constant/image_string.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/Widgets/home_page_widget/body_one_home_widget.dart';
 import 'package:meditation_app/Widgets/home_page_widget/footer_home_widget.dart';
@@ -13,6 +15,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = context.screenSize;
+    
     return Scaffold(
       backgroundColor: kColorLightGrey,
       body: Padding(
@@ -29,17 +32,22 @@ class HomePage extends StatelessWidget {
                   ),
                   BodyHomeWidgetOne(
                     sWidth: size.width * 0.45,
-                    sHeight: size.height * 0.25,
+                    sHeight: size.height * 0.27,
                     pLeft: 17,
                     aLeft: -0.55,
                     sbWidth: 20,
+                  ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(1000),
+                    child: GifView.asset(imgHomeBgAnimation,
+                    height: size.height * 0.28,),
                   ),
                   TitleSuggestHomeWidget(
                     sHeight: size.height * 0.093,
                     sWidth: size.width,
                   ),
                   const FooterHomeWidget(
-                      imgHeight: 220,
+                      imgHeight: 200,
                       imgWidth: 180,
                       sTextHeader: 24,
                       sTextSubTitle: 10,
@@ -61,6 +69,11 @@ class HomePage extends StatelessWidget {
                     pLeft: 41,
                     aLeft: -0.70,
                     sbWidth: 150,
+                  ),
+                 ClipRRect(
+                    borderRadius: BorderRadius.circular(1000),
+                    child: GifView.asset(imgHomeBgAnimation,
+                    height: size.height * 0.3,),
                   ),
                  TitleSuggestHomeWidget(
                     sHeight: size.height * 0.25,

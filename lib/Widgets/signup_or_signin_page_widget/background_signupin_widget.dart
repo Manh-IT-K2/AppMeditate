@@ -23,12 +23,15 @@ class BackgroundSignUpOrSignIn extends StatelessWidget {
             ),
           ),
         ),
-        Align(
-          alignment: Alignment.topCenter,
-          child: SvgPicture.asset(
-            imgLogoBlack,
-            width: size.width * 0.5,
-            alignment: Alignment.center,
+        Padding(
+          padding: const EdgeInsets.only(top: 15),
+          child: Align(
+            alignment: Alignment.topCenter,
+            child: SvgPicture.asset(
+              imgLogoBlack,
+              width: size.width * 0.5,
+              alignment: Alignment.center,
+            ),
           ),
         ),
         Padding(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meditation_app/Constant/colors.dart';
-import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Utils/theme.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 
 class BodyTextSignUpOrSignIn extends StatelessWidget {
   const BodyTextSignUpOrSignIn({
@@ -15,7 +15,7 @@ class BodyTextSignUpOrSignIn extends StatelessWidget {
         Align(
           alignment: const Alignment(0.0, 0.25),
           child: Text(
-            txtSignUpInTitle,
+            translation(context).txtSignUpInTitle,
             textAlign: TextAlign.center,
             style: Primaryfont.bold(24).copyWith(
               color: Colors.black,
@@ -25,7 +25,7 @@ class BodyTextSignUpOrSignIn extends StatelessWidget {
         Align(
           alignment: const Alignment(0.0, 0.40),
           child: Text(
-           txtSignUpInSubTitle,
+            translation(context).txtSignUpInSubTitle,
             textAlign: TextAlign.center,
             style: Primaryfont.ligh(14)
                 .copyWith(color: kColorDartGrey, height: 1.5),

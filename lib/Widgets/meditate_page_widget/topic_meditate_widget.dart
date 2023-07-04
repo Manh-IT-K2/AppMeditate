@@ -4,9 +4,11 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:meditation_app/Common/data/data_controller.dart';
+import 'package:meditation_app/Common/screen/detail_meditation_screen.dart';
+import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Utils/theme.dart';
-import 'package:meditation_app/Widgets/meditate_page_widget/meditation_detail_page.dart';
 import 'package:meditation_app/controller/meditate_controller.dart';
+import 'package:meditation_app/controller/music_controller.dart';
 import 'package:meditation_app/model/meditation_model.dart';
 
 class TopicMeditateWidget extends StatefulWidget {
@@ -38,6 +40,7 @@ class _TopicMeditateWidgetState extends State<TopicMeditateWidget>
   Widget build(BuildContext context) {
     final controller = Get.put(MeditionController());
     final dataController = Get.put(DataController());
+    final controllerMusic = Get.put(MusicController());
     final size = context.screenSize;
     //FutureBuilder cập nhật chế độ xem khi dữ liệu đến
     return FutureBuilder<List<MeditationModel>>(
@@ -71,11 +74,15 @@ class _TopicMeditateWidgetState extends State<TopicMeditateWidget>
               // nhấn vào sẽ chuyển sang trang reminderspage
               onTap: () {
                 //Navigator.of(context).pushNamed('$RemindersPage');
-                Get.to(() => const MeditationDetailPage(), arguments: {
-                  "idMeditation": dataController.idMeditation.value =
-                      meditate.id,
-                  "titleMeditation": dataController.titleMeditation.value =
-                      meditate.title
+                Get.to(() => MeditationDetailPage(
+                  icon: Icons.sunny,
+                  colorText: Colors.black,
+                  colorItem: kColorLightYellow,
+                  backgroundColor: Colors.white,
+                  future: controllerMusic.getMusicMeditate(meditate.id),
+                ), arguments: {
+                   "titleMeditation": dataController.titleMeditation.value =
+                       meditate.title
                 });
               },
               child: DecoratedBox(

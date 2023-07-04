@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:meditation_app/Constant/image_string.dart';
-import 'package:meditation_app/Pages/container_page.dart';
 
 class AppbarCourseDetailWidget extends StatelessWidget {
   const AppbarCourseDetailWidget({
@@ -28,58 +28,58 @@ class AppbarCourseDetailWidget extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   child: CircleAvatar(
                     radius: 20,
-                    backgroundColor: Colors.white,
-                    child: IconButton(
-                      alignment: Alignment.center,
-                      onPressed: () {
-                        Navigator.of(context).pushNamed('$ContainerPage');
-                        SaveChange.indexPage = 2;
-                      },
-                      icon: const Icon(Icons.arrow_back),
-                      color: Colors.black,
-                      iconSize: 20,
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 3,
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: CircleAvatar(
-                    radius: 20,
                     backgroundColor: const Color.fromRGBO(34, 34, 34, 0.475),
                     child: IconButton(
                       alignment: Alignment.center,
                       onPressed: () {
-
-                      },
-                      icon: Image.asset(imgCourseDetailHeart),
-                      iconSize: 20,
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: CircleAvatar(
-                    radius: 20,
-                    backgroundColor: const Color.fromRGBO(25, 25, 26, 0.475),
-                    child: IconButton(
-                      alignment: Alignment.center,
-                      onPressed: () {
                         //Navigator.of(context).pushNamed('$ContainerPage');
+                        Get.back();
                       },
-                      icon: Image.asset(
-                        imgCourseDetailDowload,
-                      ),
+                      icon: const Icon(Icons.arrow_back),
                       color: Colors.white,
                       iconSize: 20,
                     ),
                   ),
                 ),
               ),
+              // Expanded(
+              //   flex: 3,
+              //   child: Align(
+              //     alignment: Alignment.centerRight,
+              //     child: CircleAvatar(
+              //       radius: 20,
+              //       backgroundColor: const Color.fromRGBO(34, 34, 34, 0.475),
+              //       child: IconButton(
+              //         alignment: Alignment.center,
+              //         onPressed: () {
+
+              //         },
+              //         icon: Image.asset(imgCourseDetailHeart),
+              //         iconSize: 20,
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              // Expanded(
+              //   child: Align(
+              //     alignment: Alignment.centerRight,
+              //     child: CircleAvatar(
+              //       radius: 20,
+              //       backgroundColor: const Color.fromRGBO(25, 25, 26, 0.475),
+              //       child: IconButton(
+              //         alignment: Alignment.center,
+              //         onPressed: () {
+              //           //Navigator.of(context).pushNamed('$ContainerPage');
+              //         },
+              //         icon: Image.asset(
+              //           imgCourseDetailDowload,
+              //         ),
+              //         color: Colors.white,
+              //         iconSize: 20,
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),

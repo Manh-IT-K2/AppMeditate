@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Constant/image_string.dart';
-import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Utils/theme.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 
 class OverviewUserWidget extends StatelessWidget {
   const OverviewUserWidget({super.key});
@@ -22,13 +22,13 @@ class OverviewUserWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  txtUserOverview,
+                  translation(context).txtUserOverview,
                   style: Primaryfont.bold(14).copyWith(color: Colors.black),
                 ),
                 Row(
                   children: [
                     Text(
-                      'Total',
+                      translation(context).txtTotal,
                       style: Primaryfont.ligh(14)
                           .copyWith(color: kColorDartPrimary),
                     ),
@@ -58,12 +58,12 @@ class OverviewUserWidget extends StatelessWidget {
                         height: 25,
                       ),
                       Text(
-                        'Lesson',
+                        translation(context).txtLesson,
                         style: Primaryfont.thin(14)
                             .copyWith(color: Colors.black, height: 2),
                       ),
                       Text(
-                        'count',
+                        translation(context).txtCount,
                         style: Primaryfont.thin(14)
                             .copyWith(color: Colors.black, height: 1.2),
                       ),
@@ -85,12 +85,12 @@ class OverviewUserWidget extends StatelessWidget {
                         height: 25,
                       ),
                       Text(
-                        'Meditation',
+                        translation(context).txtMeditation1,
                         style: Primaryfont.thin(14)
                             .copyWith(color: Colors.black, height: 2),
                       ),
                       Text(
-                        'Minute',
+                        translation(context).txtMinute,
                         style: Primaryfont.thin(14)
                             .copyWith(color: Colors.black, height: 1.2),
                       ),
@@ -112,12 +112,12 @@ class OverviewUserWidget extends StatelessWidget {
                         height: 25,
                       ),
                       Text(
-                        'Current',
+                        translation(context).txtCurrent,
                         style: Primaryfont.thin(14)
                             .copyWith(color: Colors.black, height: 2),
                       ),
                       Text(
-                        'Streak',
+                        translation(context).txtStreak,
                         style: Primaryfont.thin(14)
                             .copyWith(color: Colors.black, height: 1.2),
                       ),

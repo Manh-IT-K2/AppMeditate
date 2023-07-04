@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Constant/image_string.dart';
-import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Utils/theme.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 import 'package:meditation_app/controller/signin_controller.dart';
 
 class GetStatedHeader extends StatelessWidget {
@@ -34,19 +34,20 @@ class GetStatedHeader extends StatelessWidget {
                 return RichText(
                   textAlign: TextAlign.center,
                   text: TextSpan(
-                      text: "Hi $username ! Wecome\n",
-                      style: Primaryfont.medium(30).copyWith(
-                        color: kColorLightYellow,
-                        height: 1.3,
+                    text: "${translation(context).txtHi} $username ! ${translation(context).txtWecome}\n",
+                    style: Primaryfont.medium(30).copyWith(
+                      color: kColorLightYellow,
+                      height: 1.3,
+                    ),
+                    children: [
+                      TextSpan(
+                        text: translation(context).tGetstartedTitle2,
+                        style: Primaryfont.thin(30).copyWith(
+                          color: kColorLightYellow,
+                        ),
                       ),
-                      children: [
-                        TextSpan(
-                          text: tGetstartedTitle2,
-                          style: Primaryfont.thin(30).copyWith(
-                            color: kColorLightYellow,
-                          ),
-                        )
-                      ]),
+                    ],
+                  ),
                 );
               },
             ),
@@ -62,7 +63,7 @@ class GetStatedHeader extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: FittedBox(
                   child: Text(
-                    tGetstartedSubTitle,
+                    translation(context).tGetstartedSubTitle,
                     style: Primaryfont.ligh(16).copyWith(
                       color: kColorLightGrey,
                       height: 1.5,

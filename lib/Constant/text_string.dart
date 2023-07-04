@@ -82,26 +82,28 @@ String txtSetting = "Settings";
 
 // Text Course Detail Page
 String txtCourseDetailHeaderTitle = "Happy Morning";
-String txtCourseDetailHeaderSubTitle1 = "COURSE";
+String txtCourseDetailHeaderSubTitle1 = "RELAXATION";
 String txtCourseDetailHeaderSubTitle2 = "Ease the mind into a restful night’s sleep with\nthese deep, amblent tones.";
+String txtCourseDetailHeaderSubTitle3 = "PODCASTS";
+String txtCourseDetailHeaderSubTitle4 = "Enjoy the interesting knowledge shared by scientists\nto help you relax your mind and relieve stress.";
 String txtCourseDetailHeaderTitleFavorite = "favorits";
 String txtCourseDetailHeaderTitleListening = "listening";
 String txtCourseDetailBodyTitle = "Choose a Theme";
-String txtCourseDetailTabbarTitle1 = "RELAXPIANO";
-String txtCourseDetailTabbarTitle2 = "RELAXJAZZ";
-String txtCourseDetailTabbarTitle3 = "FAVORITE";
+String txtCourseDetailTabbarTitle1 = "RELAX PIANO";
+String txtCourseDetailTabbarTitle2 = "RELAX JAZZ";
+String txtCourseDetailTabbarTitle3 = "MALE VOICE";
+String txtCourseDetailTabbarTitle4 = "FEMALE VOICE";
+String txtCourseDetailTabbarTitle5 = "FAVORITE";
 
 // Text User Page
 String txtUserFunction1 = "Be Premium";
-String txtUserFunction2 = "My favourite";
+String txtUserFunction2 = "My Favourite";
 String txtUserFunction3 = "My Offline";
 String txtUserOverview = "Overview";
-String txtUserOverview1 = "Overview";
-String txtUserOverview2 = "Overview";
-String txtUserOverview3 = "Overview";
+
 
 // Text Music Page
-String txtMusicHeaderTitle = "Music Relax";
+String txtMusicHeaderTitle = "Music Chill";
 String txtMusicHeaderSubTitle = "Enjoy soothing music to help relax your mind and\n gently inspire your work";
 
 

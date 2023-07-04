@@ -4,6 +4,7 @@ import 'package:meditation_app/Constant/image_string.dart';
 import 'package:meditation_app/Pages/sign_in_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/controller/change_password_controller.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 import 'package:meditation_app/controller/signup_controller.dart';
 import 'package:meditation_app/model/users_model.dart';
 
@@ -36,7 +37,7 @@ class ForgetChangePassword extends StatelessWidget {
               Align(
                 alignment: Alignment.center,
                 child: Text(
-                  "Change Password",
+                 translation(context).txtChangePassword,
                   style: Primaryfont.bold(24)
                       .copyWith(color: Colors.black, height: 2),
                 ),
@@ -44,7 +45,7 @@ class ForgetChangePassword extends StatelessWidget {
               Align(
                 alignment: Alignment.center,
                 child: Text(
-                  "Please enter a new password that is easiest\n for you to remember.",
+                  translation(context).txtTitleFogetPass,
                   textAlign: TextAlign.center,
                   style: Primaryfont.ligh(14)
                       .copyWith(color: Colors.grey, height: 1.5),
@@ -67,7 +68,7 @@ class ForgetChangePassword extends StatelessWidget {
                             showErrorNewPass.value = false;
                           },
                           controller: controller.newPassword,
-                          text: const Text("New Password"),
+                          text: Text(translation(context).txtNewPass),
                           isHidenPass: isHidenNewPass,
                         );
                       },
@@ -95,11 +96,11 @@ class ForgetChangePassword extends StatelessWidget {
                       builder: (context, value, child) {
                         return inputTextField(
                           onChange: (value) {
-                            confirmPassError = "Password incorrect";
+                            confirmPassError = translation(context).txtIncorrectPassword;
                             showErrorConfirmPass.value = false;
                           },
                           controller: controller.confirmPassword,
-                          text: const Text("Confirm Password"),
+                          text: Text(translation(context).txtConfirmPass),
                           isHidenPass: isHidenRePass,
                         );
                       },
@@ -136,8 +137,8 @@ class ForgetChangePassword extends StatelessWidget {
 
                             // check String null
                             if (newPassword == "" || confirmPassword == "") {
-                              Get.snackbar("Error!",
-                                  "You have not entered the complete information?.",
+                              Get.snackbar(translation(context).txtError,
+                                  translation(context).txtSnackErrPass,
                                   icon: const Icon(Icons.error,
                                       color: Colors.white),
                                   snackPosition: SnackPosition.TOP,
@@ -157,7 +158,7 @@ class ForgetChangePassword extends StatelessWidget {
                               controller.updatePassword(userId!, newPassword);
                               Get.to(() => const SignIn());
                               Get.snackbar(
-                                  "Success!", "Password update successful.",
+                                  translation(context).txtSuccess, translation(context).txtSnackSuccessUpdatePass,
                                   icon: const Icon(Icons.error,
                                       color: Colors.white),
                                   snackPosition: SnackPosition.TOP,
@@ -175,7 +176,7 @@ class ForgetChangePassword extends StatelessWidget {
                           ),
                         ),
                         child: Text(
-                          "Save Change",
+                         translation(context).txtSaveChange,
                           style: Primaryfont.bold(14)
                               .copyWith(color: Colors.white),
                         ),
@@ -192,6 +193,7 @@ class ForgetChangePassword extends StatelessWidget {
   }
 }
 
+// ignore: camel_case_types, must_be_immutable
 class inputTextField extends StatelessWidget {
   inputTextField(
       {super.key,

@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:meditation_app/Constant/colors.dart';
-import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/Widgets/course_detail_page_widget/TabBar/relaxjazz_tabbar_widget.dart';
 import 'package:meditation_app/Widgets/course_detail_page_widget/TabBar/relaxpiano_tabbar_widget.dart';
+import 'package:meditation_app/controller/language_controller.dart';
+import 'package:meditation_app/model/musics_model.dart';
 
+// ignore: must_be_immutable
 class BodyCourseDetailWidget extends StatelessWidget {
-  const BodyCourseDetailWidget({
+  BodyCourseDetailWidget({
     super.key,
+    required this.futureOne,
+    required this.futureTwo,
+    required this.titleOne,
+    required this.titleTwo,
   });
 
+  String titleOne, titleTwo;
+  Future<List<MusicsModel>> futureOne, futureTwo;
   @override
   Widget build(BuildContext context) {
     final size = context.screenSize;
@@ -19,7 +27,7 @@ class BodyCourseDetailWidget extends StatelessWidget {
           alignment: Alignment.centerLeft,
           margin: const EdgeInsets.only(top: 30),
           child: Text(
-            txtCourseDetailBodyTitle,
+            translation(context).txtCourseDetailBodyTitle,
             style: Primaryfont.ligh(24).copyWith(color: Colors.black),
           ),
         ),
@@ -46,7 +54,7 @@ class BodyCourseDetailWidget extends StatelessWidget {
                 width: size.width/3,
                 child: Tab(
                   child: Text(
-                    txtCourseDetailTabbarTitle1,
+                   titleOne,
                     style: const TextStyle(
                       fontFamily: 'HelveticaNeue',
                     ),
@@ -57,7 +65,7 @@ class BodyCourseDetailWidget extends StatelessWidget {
                 width: size.width/3,
                 child: Tab(
                   child: Text(
-                    txtCourseDetailTabbarTitle2,
+                    titleTwo,
                     style: const TextStyle(
                       fontFamily: 'HelveticaNeue',
                       fontSize: 14,
@@ -68,12 +76,12 @@ class BodyCourseDetailWidget extends StatelessWidget {
             ],
           ),
         ),
-        const Flexible(
+        Flexible(
           flex: 1,
           child: TabBarView(
             children: [
-              RelaxPianoWidget(),
-              RelaxJazzWidget(),
+              RelaxPianoWidget(future: futureOne,),
+              RelaxJazzWidget(future: futureTwo,),
             ],
           ),
         ),

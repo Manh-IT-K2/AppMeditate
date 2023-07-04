@@ -5,6 +5,7 @@ import 'package:meditation_app/Common/widget/reponsive_builder.dart';
 import 'package:meditation_app/Constant/image_string.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/controller/editprofile_controller.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 import 'package:meditation_app/model/users_model.dart';
 import 'widget_account_infor_screen/body_form_widget_account_infor_gender.dart';
 import 'widget_account_infor_screen/body_form_widget_account_infor_main.dart';
@@ -42,7 +43,7 @@ class _AccountInforState extends State<AccountInfor>
   @override
   Widget build(BuildContext context) {
     final size = context.screenSize;
-    final formKey = GlobalKey<FormState>();
+    //final formKey = GlobalKey<FormState>();
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -50,7 +51,7 @@ class _AccountInforState extends State<AccountInfor>
           child: ReponsiveBuilder(
             portrait: Container(
               padding: const EdgeInsets.only(left: 30, right: 30, bottom: 12),
-              child: FutureBuilder<UsersModel>(
+              child: FutureBuilder<UsersModel?>(
                 future: controller.getUser(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
@@ -66,7 +67,8 @@ class _AccountInforState extends State<AccountInfor>
                         ),
                       ),
                     ); // show a loading indicator while waiting for the Future to complete
-                  } else if (snapshot.hasError) {
+                  } else 
+                  if (snapshot.hasError) {
                     return Text(
                         'Error: ${snapshot.error}'); // show an error message if the Future returned an error
                   } else if (snapshot.hasData) {
@@ -86,45 +88,42 @@ class _AccountInforState extends State<AccountInfor>
                     ValueNotifier<String> gender =
                         ValueNotifier<String>(user.gender ?? "");
                     var id = user.id;
-                    return Form(
-                      key: formKey,
-                      child: Column(
-                        children: [
-                          HeaderWidgetAccountInfor(
-                              formKey: formKey,
-                              id: id,
-                              user: user,
-                              fullName: fullName,
-                              email: email,
-                              phone: phone,
-                              gender: gender,
-                              day: day,
-                              month: month,
-                              year: year),
-                          BodyFormWidgetAccountInforMain(
-                              type: type,
-                              image: image,
-                              fullName: fullName,
-                              phone: phone,
-                              email: email),
-                          BodyFormWidgetAccountInforGender(
-                              sWidth: 40, size: size, gender: gender),
-                          BodyFormWidgetAcountInforBirtday(
-                              day: day, month: month, year: year),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          Text(
-                            "Joined ${user.joinDay}",
-                            style: Primaryfont.bold(12)
-                                .copyWith(color: Colors.black),
-                          )
-                        ],
-                      ),
+                    return Column(
+                      children: [
+                        HeaderWidgetAccountInfor(
+                            //formKey: formKey,
+                            id: id,
+                            user: user,
+                            fullName: fullName,
+                            email: email,
+                            phone: phone,
+                            gender: gender,
+                            day: day,
+                            month: month,
+                            year: year),
+                        BodyFormWidgetAccountInforMain(
+                            type: type,
+                            image: image,
+                            fullName: fullName,
+                            phone: phone,
+                            email: email),
+                        BodyFormWidgetAccountInforGender(
+                            sWidth: 40, size: size, gender: gender),
+                        BodyFormWidgetAcountInforBirtday(
+                            day: day, month: month, year: year),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Text(
+                          "${translation(context).txtJoined} ${user.joinDay}",
+                          style: Primaryfont.bold(12)
+                              .copyWith(color: Colors.black),
+                        )
+                      ],
                     );
                   } else {
                     // Handle the case when the Future returns null
-                    return const Text('No data available');
+                    return  Center(child: Text(translation(context).txtNoData));
                   }
                 },
               ),
@@ -132,7 +131,7 @@ class _AccountInforState extends State<AccountInfor>
             landscape: Container(
               padding: const EdgeInsets.only(
                   top: 30, left: 30, right: 30, bottom: 12),
-              child: FutureBuilder<UsersModel>(
+              child: FutureBuilder<UsersModel?>(
                 future: controller.getUser(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
@@ -169,45 +168,42 @@ class _AccountInforState extends State<AccountInfor>
                     ValueNotifier<String> gender =
                         ValueNotifier<String>(user.gender ?? "");
                     var id = user.id;
-                    return Form(
-                      key: formKey,
-                      child: Column(
-                        children: [
-                          HeaderWidgetAccountInfor(
-                              formKey: formKey,
-                              id: id,
-                              user: user,
-                              fullName: fullName,
-                              email: email,
-                              phone: phone,
-                              gender: gender,
-                              day: day,
-                              month: month,
-                              year: year),
-                          BodyFormWidgetAccountInforMain(
-                              type: type,
-                              image: image,
-                              fullName: fullName,
-                              phone: phone,
-                              email: email),
-                          BodyFormWidgetAccountInforGender(
-                              sWidth: 150, size: size, gender: gender),
-                          BodyFormWidgetAcountInforBirtday(
-                              day: day, month: month, year: year),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          Text(
-                            "Joined ${user.joinDay}",
-                            style: Primaryfont.bold(12)
-                                .copyWith(color: Colors.black),
-                          )
-                        ],
-                      ),
+                    return Column(
+                      children: [
+                        HeaderWidgetAccountInfor(
+                            //formKey: formKey,
+                            id: id,
+                            user: user,
+                            fullName: fullName,
+                            email: email,
+                            phone: phone,
+                            gender: gender,
+                            day: day,
+                            month: month,
+                            year: year),
+                        BodyFormWidgetAccountInforMain(
+                            type: type,
+                            image: image,
+                            fullName: fullName,
+                            phone: phone,
+                            email: email),
+                        BodyFormWidgetAccountInforGender(
+                            sWidth: 150, size: size, gender: gender),
+                        BodyFormWidgetAcountInforBirtday(
+                            day: day, month: month, year: year),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Text(
+                          "${translation(context).txtJoined} ${user.joinDay}",
+                          style: Primaryfont.bold(12)
+                              .copyWith(color: Colors.black),
+                        )
+                      ],
                     );
                   } else {
                     // Handle the case when the Future returns null
-                    return const Text('No data available');
+                    return  Center(child: Text(translation(context).txtNoData));
                   }
                 },
               ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meditation_app/Constant/colors.dart';
-import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Pages/chooce_topic_page.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 
 class GetStartedButton extends StatelessWidget {
   const GetStartedButton({
@@ -19,7 +19,7 @@ class GetStartedButton extends StatelessWidget {
     final userName = Get.arguments;
     return ElevatedButton(
       onPressed: () {
-       //Navigator.of(context).pushNamed('$ChooseTopicPage');
+        //Navigator.of(context).pushNamed('$ChooseTopicPage');
         Get.off(() => const ChooseTopicPage(), arguments: userName);
       },
       style: ButtonStyle(
@@ -34,7 +34,7 @@ class GetStartedButton extends StatelessWidget {
         foregroundColor: MaterialStateProperty.all(kColorDartGrey),
         textStyle: textStyle,
       ),
-      child: Text(tGetstartedButtonTitle),
+      child: Text(translation(context).tGetstartedButtonTitle),
     );
   }
 }

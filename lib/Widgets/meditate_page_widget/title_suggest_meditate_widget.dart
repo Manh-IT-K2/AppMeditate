@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Constant/image_string.dart';
-import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Utils/theme.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 
 class TitleSuggestMeditateWidget extends StatelessWidget {
   const TitleSuggestMeditateWidget({
@@ -36,14 +36,14 @@ class TitleSuggestMeditateWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      txtMeditateBodyHeaderTitle,
+                      translation(context).txtMeditateBodyHeaderTitle,
                       style: Primaryfont.medium(18).copyWith(
                         color: Colors.black,
                         height: 1.5,
                       ),
                     ),
                     Text(
-                      txtMeditateBodyHeaderSubTitle,
+                      translation(context).txtMeditateBodyHeaderSubTitle,
                       style: Primaryfont.ligh(10).copyWith(
                         color: kColorDartPrimary,
                         height: 2,

@@ -119,7 +119,7 @@ class _DetailMusicFavoriteState extends State<DetailMusicFavorite> {
                         StreamBuilder<Duration?>(
                           stream: DarkMode.play.durationStream,
                           builder: (context, snapshot) {
-                            if (snapshot.hasData && snapshot.hasData != null) {
+                            if (snapshot.hasData) {
                               _totalDuration = snapshot.data;
                             } else {
                               return const Text('0:00');

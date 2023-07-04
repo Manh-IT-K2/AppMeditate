@@ -17,13 +17,18 @@ class DataController extends GetxController{
     phone.value = value;
   }
 
+  //
   var email = "".obs;
   setEmail(String value){
     email.value = value;
   }
 
+  //
   var idMeditation = "".obs;
   var titleMeditation = "".obs;
+
+  //
+  var titleMeditationDailyThought = "".obs;
 
   //
   var idSleep = "".obs;

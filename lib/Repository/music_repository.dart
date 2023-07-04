@@ -19,12 +19,41 @@ class MusicRepository extends GetxController {
     return musicList;
   }
 
+  // get Detail music
+  Future<MusicsModel> getDetailMusic(String id) async {
+    final snapshot =
+        await _db.collection("musics").where("id", isEqualTo: id).get();
+    final music =
+        snapshot.docs.map((e) => MusicsModel.fromDocumentSnapshot(e)).single;
+    return music;
+  }
+
   // get list music chose meditation
-  Future<List<MusicsModel>> getMusicMeditate(String idMeditation, String idTopic) async {
+  Future<List<MusicsModel>> getMusicMeditate(
+      String idMeditation, String idTopic) async {
     final list = <MusicsModel>[];
-    final listRef = _db.collection('musics').where("idTopic", isEqualTo: idTopic).where("idMeditation", isEqualTo: idMeditation). where("meditation", isEqualTo: "meditate");
+    final listRef = _db
+        .collection('musics')
+        .where("idTopic", isEqualTo: idTopic)
+        .where("idMeditation", isEqualTo: idMeditation)
+        .where("meditation", isEqualTo: "meditate");
     final querySnapshot = await listRef.get();
-    for(var docSnapshot in querySnapshot.docs){
+    for (var docSnapshot in querySnapshot.docs) {
+      final music = MusicsModel.fromDocumentSnapshot(docSnapshot);
+      list.add(music);
+    }
+    return list;
+  }
+
+  // get list music chose meditation
+  Future<List<MusicsModel>> getMusicMeditateDailyThought(String idTopic) async {
+    final list = <MusicsModel>[];
+    final listRef = _db
+        .collection('musics')
+        .where("idTopic", isEqualTo: idTopic)
+        .where("meditation", isEqualTo: "DailyThought");
+    final querySnapshot = await listRef.get();
+    for (var docSnapshot in querySnapshot.docs) {
       final music = MusicsModel.fromDocumentSnapshot(docSnapshot);
       list.add(music);
     }
@@ -32,11 +61,16 @@ class MusicRepository extends GetxController {
   }
 
   // get list music chose sleep
-  Future<List<MusicsModel>> getMusicSleep(String idSleep, String idTopic) async {
+  Future<List<MusicsModel>> getMusicSleep(
+      String idSleep, String idTopic) async {
     final list = <MusicsModel>[];
-    final listRef = _db.collection('musics').where("idTopic", isEqualTo: idTopic).where("idSleep", isEqualTo: idSleep).where("meditation", isEqualTo: "sleep");
+    final listRef = _db
+        .collection('musics')
+        .where("idTopic", isEqualTo: idTopic)
+        .where("idSleep", isEqualTo: idSleep)
+        .where("meditation", isEqualTo: "sleep");
     final querySnapshot = await listRef.get();
-    for(var docSnapshot in querySnapshot.docs){
+    for (var docSnapshot in querySnapshot.docs) {
       final music = MusicsModel.fromDocumentSnapshot(docSnapshot);
       list.add(music);
     }
@@ -44,11 +78,16 @@ class MusicRepository extends GetxController {
   }
 
   // get list music chose sleep
-  Future<List<MusicsModel>> getMusicMeditationCoursePiano(String idTopic) async {
+  Future<List<MusicsModel>> getMusicMeditationRelaxationPiano(
+      String idTopic) async {
     final list = <MusicsModel>[];
-    final listRef = _db.collection('musics').where("idTopic", isEqualTo: idTopic).where("meditation", isEqualTo: "CourseBasic").where("genres", isEqualTo: "piano");
+    final listRef = _db
+        .collection('musics')
+        .where("idTopic", isEqualTo: idTopic)
+        .where("meditation", isEqualTo: "RelaxationMusic")
+        .where("genres", isEqualTo: "piano");
     final querySnapshot = await listRef.get();
-    for(var docSnapshot in querySnapshot.docs){
+    for (var docSnapshot in querySnapshot.docs) {
       final music = MusicsModel.fromDocumentSnapshot(docSnapshot);
       list.add(music);
     }
@@ -56,15 +95,53 @@ class MusicRepository extends GetxController {
   }
 
   // get list music chose sleep
-  Future<List<MusicsModel>> getMusicMeditationCourseJazz(String idTopic) async {
+  Future<List<MusicsModel>> getMusicMeditationRelaxationJazz(
+      String idTopic) async {
     final list = <MusicsModel>[];
-    final listRef = _db.collection('musics').where("idTopic", isEqualTo: idTopic).where("meditation", isEqualTo: "CourseBasic").where("genres", isEqualTo: "jazz");
+    final listRef = _db
+        .collection('musics')
+        .where("idTopic", isEqualTo: idTopic)
+        .where("meditation", isEqualTo: "RelaxationMusic")
+        .where("genres", isEqualTo: "jazz");
     final querySnapshot = await listRef.get();
-    for(var docSnapshot in querySnapshot.docs){
+    for (var docSnapshot in querySnapshot.docs) {
       final music = MusicsModel.fromDocumentSnapshot(docSnapshot);
       list.add(music);
     }
     return list;
   }
 
+  // get list music chose sleep
+  Future<List<MusicsModel>> getMusicMeditationPodcastMaleVoice(
+      String idTopic) async {
+    final list = <MusicsModel>[];
+    final listRef = _db
+        .collection('musics')
+        .where("idTopic", isEqualTo: idTopic)
+        .where("meditation", isEqualTo: "EnglishPodcast")
+        .where("genres", isEqualTo: "malevoice");
+    final querySnapshot = await listRef.get();
+    for (var docSnapshot in querySnapshot.docs) {
+      final music = MusicsModel.fromDocumentSnapshot(docSnapshot);
+      list.add(music);
+    }
+    return list;
+  }
+
+  // get list music chose sleep
+  Future<List<MusicsModel>> getMusicMeditationPodcastFemaleVoice(
+      String idTopic) async {
+    final list = <MusicsModel>[];
+    final listRef = _db
+        .collection('musics')
+        .where("idTopic", isEqualTo: idTopic)
+        .where("meditation", isEqualTo: "EnglishPodcast")
+        .where("genres", isEqualTo: "femalevoice");
+    final querySnapshot = await listRef.get();
+    for (var docSnapshot in querySnapshot.docs) {
+      final music = MusicsModel.fromDocumentSnapshot(docSnapshot);
+      list.add(music);
+    }
+    return list;
+  }
 }

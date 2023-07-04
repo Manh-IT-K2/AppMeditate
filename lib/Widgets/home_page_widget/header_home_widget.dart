@@ -3,8 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Constant/image_string.dart';
-import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Utils/theme.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 import 'package:meditation_app/controller/signin_controller.dart';
 
 class HeaderHomeWidget extends StatelessWidget {
@@ -20,6 +20,15 @@ class HeaderHomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(SignInController());
+    final currentTime = DateTime.now();
+    final currentHour = currentTime.hour;
+
+    String greatingText;
+    if(currentHour > 6 && currentHour < 18){
+      greatingText = translation(context).txtGoodMorning;
+    }else {
+      greatingText = translation(context).txtGoodEvening;
+    }
     return Container(
       padding: const EdgeInsets.only(top: 20, left: 12),
       child: Column(
@@ -43,14 +52,14 @@ class HeaderHomeWidget extends StatelessWidget {
                 child: RichText(
                   textAlign: TextAlign.left,
                   text: TextSpan(
-                    text: "$txtHomeHeaderTitle $username\n",
+                    text: "$greatingText, $username\n",
                     style: Primaryfont.bold(sTextTitle!).copyWith(
                       color: Colors.black,
                       height: 1.5,
                     ),
                     children: [
                       TextSpan(
-                        text: txtHomeHeaderSubTitle,
+                        text: translation(context).txtHomeHeaderSubTitle,
                         style: Primaryfont.medium(sTextSubTitle!)
                             .copyWith(color: kColorDartPrimary),
                       ),

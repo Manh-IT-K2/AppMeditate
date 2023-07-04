@@ -30,13 +30,15 @@ class AppBarDetailMusicFavoriteWidget extends StatelessWidget {
               ),
             ),
           ),
-          Text('CHILL',
-              style: TextStyle(
-                color: DarkMode.darkLight.value ? Colors.black : Colors.pink,
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                fontFamily: 'HelveticaNeue',
-              )),
+          Text(
+            'CHILL',
+            style: TextStyle(
+              color: DarkMode.darkLight.value ? Colors.black : Colors.pink,
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              fontFamily: 'HelveticaNeue',
+            ),
+          ),
           SizedBox(
             width: 50,
             height: 50,

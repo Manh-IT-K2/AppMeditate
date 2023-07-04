@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Utils/theme.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 
 class HeaderChooseTopicWidget extends StatelessWidget {
   const HeaderChooseTopicWidget({
@@ -27,22 +27,24 @@ class HeaderChooseTopicWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: FittedBox(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        txtHeaderChooseTopicTitle1,
-                        style: Primaryfont.bold(28),
-                      )),
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      translation(context).txtHeaderChooseTopicTitle1,
+                      style: Primaryfont.bold(28),
+                    ),
+                  ),
                 ),
                 const SizedBox(
                   height: 8,
                 ),
                 Expanded(
                   child: FittedBox(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        txtHeaderChooseTopicTitle2,
-                        style: Primaryfont.ligh(24),
-                      )),
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      translation(context).txtHeaderChooseTopicTitle2,
+                      style: Primaryfont.ligh(24),
+                    ),
+                  ),
                 ),
                 const SizedBox(
                   height: 8,
@@ -54,18 +56,19 @@ class HeaderChooseTopicWidget extends StatelessWidget {
             height: 8,
           ),
           Flexible(
-              flex: 1,
-              child: FittedBox(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  txtHeaderChooseTopicSubTitle1,
-                  style: Primaryfont.ligh(20)
-                      .copyWith(color: const Color(0xFFA1A4B2)),
-                ),
-              )),
+            flex: 1,
+            child: FittedBox(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                 translation(context).txtHeaderChooseTopicSubTitle1,
+                style: Primaryfont.ligh(20)
+                    .copyWith(color: const Color(0xFFA1A4B2)),
+              ),
+            ),
+          ),
           const Spacer(
             flex: 2,
-          )
+          ),
         ],
       ),
     );

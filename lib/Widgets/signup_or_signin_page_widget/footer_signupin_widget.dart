@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meditation_app/Constant/colors.dart';
-import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Pages/sign_in_page.dart';
 import 'package:meditation_app/Pages/sign_up_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 
 class FooterSignUpOrSignIn extends StatelessWidget {
   const FooterSignUpOrSignIn({
@@ -38,7 +38,7 @@ class FooterSignUpOrSignIn extends StatelessWidget {
                 fixedSize: size,
               ),
               child: Text(
-               txtSignUp,
+                translation(context).txtSignUp,
                 style: Primaryfont.ligh(14).copyWith(color: Colors.white),
               ),
             ),
@@ -50,16 +50,16 @@ class FooterSignUpOrSignIn extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                 txtAlreadyAccount,
+                  translation(context).txtAlreadyAccount,
                   style:
                       Primaryfont.medium(12).copyWith(color: kColorDartPrimary),
                 ),
                 TextButton(
                   onPressed: () {
-                    Get.off(() => const SignIn());
+                    Get.to(() => const SignIn());
                   },
                   child: Text(
-                    txtSignIn,
+                    translation(context).txtSignIn,
                     style: Primaryfont.medium(12).copyWith(
                       color: kColorPrimary,
                     ),

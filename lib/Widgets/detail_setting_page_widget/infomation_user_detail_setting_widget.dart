@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/Widgets/detail_setting_page_widget/detail_setting_infomation_user/account_infor_screen.dart';
 import 'package:meditation_app/Widgets/detail_setting_page_widget/detail_setting_infomation_user/change_password_screen.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 
 class InfomationUserDetailSettingWidget extends StatelessWidget {
   const InfomationUserDetailSettingWidget({
@@ -43,7 +43,7 @@ class InfomationUserDetailSettingWidget extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      txtDetailSettingInfomationUser1,
+                      translation(context).txtDetailSettingInfomationUser1,
                       style:
                           Primaryfont.medium(14).copyWith(color: Colors.black),
                     ),
@@ -79,7 +79,7 @@ class InfomationUserDetailSettingWidget extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      txtDetailSettingInfomationUser2,
+                      translation(context).txtDetailSettingInfomationUser2,
                       style:
                           Primaryfont.medium(14).copyWith(color: Colors.black),
                     ),
@@ -115,7 +115,7 @@ class InfomationUserDetailSettingWidget extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      txtDetailSettingInfomationUser3,
+                      translation(context).txtDetailSettingInfomationUser3,
                       style:
                           Primaryfont.medium(14).copyWith(color: Colors.black),
                     ),

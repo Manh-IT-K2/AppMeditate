@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Constant/image_string.dart';
-import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Utils/theme.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 
 class BodytextRowSignUpOrSignIn extends StatelessWidget {
   const BodytextRowSignUpOrSignIn({
@@ -35,7 +35,7 @@ class BodytextRowSignUpOrSignIn extends StatelessWidget {
             child: Align(
               alignment: Alignment.topCenter,
               child: Text(
-                txtSignUpInTitle,
+                translation(context).txtSignUpInTitle,
                 textAlign: TextAlign.center,
                 style: Primaryfont.bold(34).copyWith(
                   color: Colors.black,
@@ -44,7 +44,7 @@ class BodytextRowSignUpOrSignIn extends StatelessWidget {
             ),
           ),
           Text(
-           txtSignUpInSubTitle,
+            translation(context).txtSignUpInSubTitle,
             textAlign: TextAlign.center,
             style: Primaryfont.ligh(20)
                 .copyWith(color: kColorDartGrey, height: 1.5),

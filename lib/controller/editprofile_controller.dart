@@ -13,8 +13,13 @@ class EditProfileController extends GetxController {
   final userRepoo = Get.put(SignInController());
 
   // get detail user
-  Future<UsersModel> getUser() async {
-    return await userRepo.getUserDetail(await userRepoo.getStringUsername());
+  Future<UsersModel?> getUser() async {
+    final username = await userRepoo.getStringUsername();
+    if(username.isEmpty){
+      return null;
+    }else {
+      return await userRepo.getUserDetail(username);
+    }
   }
 
   Future<UsersModel> getUserr(String userName) async {

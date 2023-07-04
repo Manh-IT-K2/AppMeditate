@@ -102,6 +102,38 @@ class StatisticalRepository extends GetxController {
     }
   }
 
+  // delete fullIdUser download
+  Future<void> deleteFullByUserId(String userId) async {
+    // Tham chiếu đến bảng "statisticals"
+    CollectionReference collectionRef = _db.collection('statisticals');
+
+    // Lấy tất cả các tài liệu trong bảng "statisticals"
+    QuerySnapshot snapshot = await collectionRef.get();
+
+    // Duyệt qua danh sách tài liệu và cập nhật danh sách idUser mới
+    for (QueryDocumentSnapshot doc in snapshot.docs) {
+      var docData = doc.data();
+
+      if (docData != null && docData is Map<String, dynamic>) {
+        //xác định kiểu dữ liệu của đối tượng doc.data()
+        if (docData.containsKey('idUser')) {
+          var idUserList = docData['idUser'];
+          int totalDownload = docData['download'];
+          if (idUserList is List<dynamic>) {
+            // Kiểm tra nếu userId có tồn tại trong danh sách idUser
+            if (idUserList.contains(userId)) {
+              // Xóa userId khỏi danh sách idUser
+              idUserList.remove(userId);
+              totalDownload -= 1;
+              // Cập nhật lại danh sách idUser mới trong tài liệu
+              await doc.reference.update({'idUser': idUserList,'download': totalDownload});
+            }
+          }
+        }
+      }
+    }
+  }
+
   // add idUser
   Future<void> addIdUser(String id, String idUser) async {
     await _db.collection("statisticals").doc(id).update({
@@ -113,6 +145,21 @@ class StatisticalRepository extends GetxController {
   Future<List<StatisticalModel>> getStatistical() async {
     final list = <StatisticalModel>[];
     final snapshot = await _db.collection("statisticals").get();
+    for (var docSnapshot in snapshot.docs) {
+      final data = StatisticalModel.fromDocumentSnapshot(docSnapshot);
+      list.add(data);
+    }
+    return list;
+  }
+
+  // get a statis detail
+  Future<List<StatisticalModel>> getStatisticalByMostViews() async {
+    final list = <StatisticalModel>[];
+    final snapshot = await _db
+        .collection("statisticals")
+        .orderBy("view", descending: true) // Sắp xếp theo lượt xem giảm dần
+        .limit(10) // Giới hạn kết quả trả về là 10
+        .get();
     for (var docSnapshot in snapshot.docs) {
       final data = StatisticalModel.fromDocumentSnapshot(docSnapshot);
       list.add(data);
@@ -145,7 +192,7 @@ class StatisticalRepository extends GetxController {
   }
 
   // check favourite
-  Future<bool> checkFavourite(String idMusic, String idUser) {
+  Future<bool> checkFavouriteOrDownload(String idMusic, String idUser) {
     return _db
         .collection("statisticals")
         .where("idMusic", isEqualTo: idMusic)

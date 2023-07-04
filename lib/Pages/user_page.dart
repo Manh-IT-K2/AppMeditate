@@ -15,9 +15,9 @@ class UserAfsarPage extends StatelessWidget {
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.only(top: 20, bottom: 20),
-          child: SingleChildScrollView(
+          child: const SingleChildScrollView(
             child: Column(
-              children: const [
+              children: [
                 AppBarUserWidget(),
                 ChartUserWidget(),
                 OverviewUserWidget(),

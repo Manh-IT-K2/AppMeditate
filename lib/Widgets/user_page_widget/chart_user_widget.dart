@@ -2,6 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Utils/theme.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 
 // thanh cá nhân
 class IndividualBar {
@@ -146,14 +147,14 @@ class ChartUserWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Last 7 days',
+                  translation(context).txtLast7days,
                   style: Primaryfont.bold(14).copyWith(color: Colors.black),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'minute',
+                      translation(context).txtMinute,
                       style: Primaryfont.ligh(14)
                           .copyWith(color: kColorDartPrimary),
                     ),

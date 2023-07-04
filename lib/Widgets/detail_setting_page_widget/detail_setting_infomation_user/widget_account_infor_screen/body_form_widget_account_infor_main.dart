@@ -14,6 +14,7 @@ import 'package:meditation_app/Widgets/detail_setting_page_widget/detail_setting
 import 'package:meditation_app/Widgets/detail_setting_page_widget/detail_setting_infomation_user/widget_account_infor_screen/change_avata_user.dart';
 import 'package:meditation_app/controller/editprofile_controller.dart';
 import 'package:meditation_app/controller/forget_password_controller.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 import 'package:meditation_app/controller/signin_controller.dart';
 import 'package:meditation_app/controller/signup_controller.dart';
 
@@ -93,11 +94,13 @@ class _BodyFormWidgetAccountInforMainState
                   height: 80,
                   width: 80,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(40),
-                    border: Border.all(color: color, width: 2),
-                    image: DecorationImage(
-                        image: widget.type?  Image.file(imageFile).image: AssetImage(widget.image), fit: BoxFit.contain)),
-                  
+                      borderRadius: BorderRadius.circular(40),
+                      border: Border.all(color: color, width: 2),
+                      image: DecorationImage(
+                          image: widget.type
+                              ? Image.file(imageFile).image
+                              : AssetImage(widget.image),
+                          fit: BoxFit.contain)),
                 );
               },
             ),
@@ -113,7 +116,8 @@ class _BodyFormWidgetAccountInforMainState
                 padding: const EdgeInsets.all(5),
                 child: InkWell(
                   onTap: () {
-                    ChageAvataUser().BuildShowmodalBottomSheet(context, color, widget.image);
+                    ChageAvataUser().BuildShowmodalBottomSheet(
+                        context, color, widget.image);
                   },
                   child: Container(
                     width: 10,
@@ -151,7 +155,7 @@ class _BodyFormWidgetAccountInforMainState
                   );
                 } else {
                   return Text(
-                    'Loading...',
+                    translation(context).txtLoading,
                     style: Primaryfont.bold(16).copyWith(color: Colors.black),
                   );
                 }
@@ -160,11 +164,11 @@ class _BodyFormWidgetAccountInforMainState
             IconButton(
               onPressed: () async {
                 final usersModel = await getIdUser.getUser();
-                int statusChangeUser = usersModel.statusChageUser;
+                int statusChangeUser = usersModel!.statusChageUser;
                 if (statusChangeUser == 1) {
                   // ignore: use_build_context_synchronously
-                  DialogMessage.show(context,
-                      "Your account cannot be changed again ! Because each account can only be changed once.");
+                  DialogMessage.show(
+                      context, translation(context).txtMessageChangeUserNameE);
                 } else {
                   // ignore: use_build_context_synchronously
                   showDialog(
@@ -181,7 +185,7 @@ class _BodyFormWidgetAccountInforMainState
                             width: 5,
                           ),
                           Text(
-                            "Change Username !",
+                            translation(context).txtChangeUserName,
                             style: Primaryfont.bold(20)
                                 .copyWith(color: Colors.black),
                           ),
@@ -222,8 +226,8 @@ class _BodyFormWidgetAccountInforMainState
                                       onChanged: (value) {
                                         textError = "";
                                         showError.value = false;
-                                        RegExp regExp =
-                                            RegExp(r'^(?=.*[A-Z]).{5,9}$');
+                                        RegExp regExp = RegExp(
+                                            r'^(?=.*[A-Z])(?!.*[\s!@#$%^&*()\-=_+[\]{}|;:",.<>?`~]).{5,9}$');
                                         bool isValid = regExp.hasMatch(
                                             getIdUser.userName.text.trim());
                                         if (isValid) {
@@ -256,7 +260,7 @@ class _BodyFormWidgetAccountInforMainState
                               height: 20,
                             ),
                             Text(
-                              "You can only change your username once, are you sure you want to change it?",
+                              translation(context).txtMessageChangeUserNameS,
                               style: Primaryfont.medium(14)
                                   .copyWith(color: Colors.black),
                             ),
@@ -264,44 +268,48 @@ class _BodyFormWidgetAccountInforMainState
                         ),
                       ),
                       actions: [
+                        // TextButton(
+                        //   child: Text(
+                        //     "Cancel",
+                        //     style: Primaryfont.bold(16)
+                        //         .copyWith(color: Colors.black),
+                        //   ),
+                        //   onPressed: () {
+                        //     //Navigator.pop(context);
+                        //   },
+                        // ),
                         TextButton(
                           child: Text(
-                            "Cancel",
-                            style: Primaryfont.bold(16)
-                                .copyWith(color: Colors.black),
-                          ),
-                          onPressed: () => Navigator.pop(context),
-                        ),
-                        TextButton(
-                          child: Text(
-                            "OK",
+                            translation(context).txtOk,
                             style: Primaryfont.bold(16)
                                 .copyWith(color: Colors.black),
                           ),
                           onPressed: () async {
                             final userName = getIdUser.userName.text.trim();
-                            RegExp regExp = RegExp(r'^(?=.*[A-Z]).{5,9}$');
-                            bool isValid =
-                                regExp.hasMatch(getIdUser.userName.text.trim());
+                            RegExp regExp = RegExp(
+                                r'^(?=.*[A-Z])(?!.*[\s!@#$%^&*()\-=_+[\]{}|;:",.<>?`~]).{5,9}$');
+                            bool isValid = regExp.hasMatch(userName);
                             if (userName == "") {
                               validUsername.value = false;
                               showError.value = true;
-                              textError = "Not be empty";
+                              textError = translation(context).txtCheckEmpty;
                             } else if (!isValid) {
                               validUsername.value = false;
                               showError.value = true;
-                              textError = "Invalid username";
+                              textError =
+                                  translation(context).txtCheckUsernameInvalid;
                             } else {
-                              final userId = usersModel.id;
+                              final userId = usersModel.id ?? "";
                               if (await checkUsername.checkUserName(userName)) {
                                 validUsername.value = false;
                                 showError.value = true;
-                                textError = "Username exists";
+                                textError =
+                                    translation(context).txtCheckUsernameExists;
                               } else {
                                 validUsername.value = true;
                                 // SaveChange.userName = userName;
                                 statusLogin.saveUsername(userName);
-                                getIdUser.updateUsername(userId!, userName);
+                                getIdUser.updateUsername(userId, userName);
                                 SizedBox(
                                   width: size.width,
                                   height: size.height,
@@ -335,7 +343,7 @@ class _BodyFormWidgetAccountInforMainState
           height: 50,
         ),
         EditTextfieldWidget(
-          label: "FullName",
+          label: translation(context).txtFullName,
           //prefix: const Icon(Icons.person),
           sWitdh: size.width,
           controller: widget.fullName,
@@ -346,71 +354,69 @@ class _BodyFormWidgetAccountInforMainState
           ),
         ),
         EditTextfieldWidget(
-          label: "Phone",
+          label: translation(context).txtPhone,
           //prefix: const Icon(Icons.phone),
           sWitdh: size.width,
           controller: widget.phone,
           suffix: ButtonLinkWidget(
             func: () {
               Get.to(() => ForgetPasswordTextfieldScreen(
-                    lbTextField: "Phone",
+                    lbTextField: translation(context).txtPhone,
                     iconData: Icons.phone,
                     controller: controller.phone,
                     assetImage: imgForgetPaswordPhoneBG,
-                    title: "Phone number verification !",
-                    subTitle:
-                        "Please enter the phone number you are using, please do not\n use a virtual phone number",
+                    title: translation(context).txtPhoneVerificationTitle,
+                    subTitle: translation(context).txtPhoneVerificationSubTitle,
                     onPressedBT: () async {
-                      if (formKey.currentState!.validate()) {
-                        final phoneNumber = controller.phone.text.trim();
-                        RegExp phoneExp = RegExp(
-                            r"^(?:\+84|0)(3[2-9]\d{8}|5\d{8}|7[0-9]\d{7}|8[1-9]\d{7}|9[0-1]\d{7}|9[4-9]\d{7})$");
-                        String phone =
-                            phoneNumber.replaceAll(RegExp(r'[()\s]+'), '');
-                        bool checkPhone = await controller.checkPhone(phone);
-                        bool isValid = phoneExp.hasMatch(phone);
-                        final userModel = await getIdUser.getUser();
-                        final userId = userModel.id;
-                        getPhone.setPhone(phoneNumber);
-                        if (phoneNumber == "") {
-                          // ignore: use_build_context_synchronously
-                          DialogMessage.show(context, "Not be empty.");
-                        } else if (!isValid) {
-                          isIconValid.value = false;
-                          // ignore: use_build_context_synchronously
-                          DialogMessage.show(context,
-                              "The phone number you entered is invalid or exists! try again.");
-                        } else if (checkPhone) {
-                          // ignore: use_build_context_synchronously
-                          DialogMessage.show(
-                              context, "Registered phone number.");
-                        } else {
-                          controller.phoneAuthentication(phoneNumber);
-                          Get.to(
-                              () => OTPScreen(
-                                    text: controller.phone.text.trim(),
-                                    onPressed: () async {
-                                      if (otp == null) {
-                                        // ignore: use_build_context_synchronously
-                                        DialogMessage.show(
-                                          context,
-                                          "Your please enter the code OTP.",
-                                        );
-                                      } else if (await controller
-                                          .verifyOTP(otp)) {
-                                        getIdUser.updatePhone(userId!, phone);
-                                        Get.to(() => const AccountInfor());
-                                      } else {
-                                        // ignore: use_build_context_synchronously
-                                        DialogMessage.show(
-                                          context,
-                                          "Incorrect otp code please re-enter.",
-                                        );
-                                      }
-                                    },
-                                  ),
-                              arguments: getPhone.phone.value);
-                        }
+                      final phoneNumber = controller.phone.text.trim();
+                      RegExp phoneExp = RegExp(
+                          r"^(?:\+84|0)(3[2-9]\d{8}|5\d{8}|7[0-9]\d{7}|8[1-9]\d{7}|9[0-1]\d{7}|9[4-9]\d{7})$");
+                      String phone =
+                          phoneNumber.replaceAll(RegExp(r'[()\s]+'), '');
+                      bool checkPhone = await controller.checkPhone(phone);
+                      bool isValid = phoneExp.hasMatch(phone);
+                      final userModel = await getIdUser.getUser();
+                      final userId = userModel!.id;
+                      getPhone.setPhone(phoneNumber);
+                      if (phoneNumber == "") {
+                        // ignore: use_build_context_synchronously
+                        DialogMessage.show(
+                            context, translation(context).txtCheckEmpty);
+                      } else if (!isValid) {
+                        isIconValid.value = false;
+                        // ignore: use_build_context_synchronously
+                        DialogMessage.show(context,
+                            translation(context).txtMessageCheckPhoneE);
+                      } else if (checkPhone) {
+                        // ignore: use_build_context_synchronously
+                        DialogMessage.show(context,
+                            translation(context).txtMessageCheckPhoneE1);
+                      } else {
+                        controller.phoneAuthentication(phoneNumber);
+                        Get.to(
+                            () => OTPScreen(
+                                  text: controller.phone.text.trim(),
+                                  onPressed: () async {
+                                    if (otp == null) {
+                                      // ignore: use_build_context_synchronously
+                                      DialogMessage.show(
+                                        context,
+                                        translation(context).txtMessageEnterOtp,
+                                      );
+                                    } else if (await controller
+                                        .verifyOTP(otp)) {
+                                      getIdUser.updatePhone(userId!, phone);
+                                      Get.to(() => const AccountInfor());
+                                    } else {
+                                      // ignore: use_build_context_synchronously
+                                      DialogMessage.show(
+                                        context,
+                                        translation(context).txtMessageCheckOtp,
+                                      );
+                                    }
+                                  },
+                                ),
+                            arguments: getPhone.phone.value);
                       }
                     },
                     onChangedTF: (value) {
@@ -433,69 +439,66 @@ class _BodyFormWidgetAccountInforMainState
           ),
         ),
         EditTextfieldWidget(
-          label: "Email",
+          label: translation(context).tEmail,
           sWitdh: size.width,
           controller: widget.email,
           suffix: ButtonLinkWidget(
             func: () {
               Get.to(
                 () => ForgetPasswordTextfieldScreen(
-                  title: "Email",
-                  subTitle:
-                      "Please enter the email you are using, do not enter\n a virtual email !",
-                  lbTextField: "Email",
+                  title: translation(context).tEmail,
+                  subTitle: translation(context).txtEmailVerificationSubTitle,
+                  lbTextField: translation(context).tEmail,
                   assetImage: imgForgetPaswordEmailBG,
                   controller: controller.email,
                   iconData: Icons.email,
                   onPressedBT: () async {
-                    if (formKey.currentState!.validate()) {
-                      final email = controller.email.text.trim();
-                      final emailRegex =
-                          RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{3}$');
-                      bool isvalid = emailRegex.hasMatch(email);
-                      bool validEmail = await controller.checkEmail(email);
-                      final userModel = await getIdUser.getUser();
-                      final userId = userModel.id;
-                      if (email == "") {
-                        // ignore: use_build_context_synchronously
-                        DialogMessage.show(
-                            context, "Not be empty ! try again.");
-                      } else if (!isvalid) {
-                        // ignore: use_build_context_synchronously
-                        DialogMessage.show(
-                            context, "Invalid email ! try again.");
-                      } else if (validEmail) {
-                        // ignore: use_build_context_synchronously
-                        DialogMessage.show(context,
-                            "Email has been posted linked to another account ! Try again.");
-                      } else {
-                        Random random = Random();
-                        int otpEmail = random.nextInt(900000) + 100000;
-                        String otps = otpEmail.toString();
-                        controller.sendOtpEmail(email, otpEmail.toString());
-                        Get.to(
-                          () => OTPScreen(
-                            text: email,
-                            onPressed: () async {
-                              if (otp == null) {
-                                DialogMessage.show(
-                                  context,
-                                  "Your please enter the code OTP.",
-                                );
-                              } else if (otp == otps) {
-                                getIdUser.updateEmail(userId!, email);
-                                Get.to(() => const AccountInfor());
-                              } else {
-                                // ignore: use_build_context_synchronously
-                                DialogMessage.show(
-                                  context,
-                                  "Incorrect otp code please re-enter.",
-                                );
-                              }
-                            },
-                          ),
-                        );
-                      }
+                    final email = controller.email.text.trim();
+                    final emailRegex =
+                        RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{3}$');
+                    bool isvalid = emailRegex.hasMatch(email);
+                    bool validEmail = await controller.checkEmail(email);
+                    final userModel = await getIdUser.getUser();
+                    final userId = userModel!.id;
+                    if (email == "") {
+                      // ignore: use_build_context_synchronously
+                      DialogMessage.show(
+                          context, translation(context).txtCheckEmpty);
+                    } else if (!isvalid) {
+                      // ignore: use_build_context_synchronously
+                      DialogMessage.show(
+                          context, translation(context).txtMessageCheckEmailE);
+                    } else if (validEmail) {
+                      // ignore: use_build_context_synchronously
+                      DialogMessage.show(
+                          context, translation(context).txtMessageCheckEmailE1);
+                    } else {
+                      Random random = Random();
+                      int otpEmail = random.nextInt(900000) + 100000;
+                      String otps = otpEmail.toString();
+                      controller.sendOtpEmail(email, otpEmail.toString());
+                      Get.to(
+                        () => OTPScreen(
+                          text: email,
+                          onPressed: () async {
+                            if (otp == null) {
+                              DialogMessage.show(
+                                context,
+                                translation(context).txtMessageEnterOtp,
+                              );
+                            } else if (otp == otps) {
+                              getIdUser.updateEmail(userId!, email);
+                              Get.to(() => const AccountInfor());
+                            } else {
+                              // ignore: use_build_context_synchronously
+                              DialogMessage.show(
+                                context,
+                                translation(context).txtMessageCheckOtp,
+                              );
+                            }
+                          },
+                        ),
+                      );
                     }
                   },
                   onChangedTF: (value) {
@@ -529,8 +532,8 @@ class ButtonLinkWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 45,
-      height: 50,
+      width: 50,
+      height: 60,
       padding: const EdgeInsets.only(bottom: 20),
       child: InkWell(
         onTap: func,
@@ -543,7 +546,7 @@ class ButtonLinkWidget extends StatelessWidget {
               size: 20,
             ),
             Text(
-              "Link",
+              translation(context).txtLink,
               style: Primaryfont.bold(10).copyWith(color: text),
             ),
           ],
@@ -553,6 +556,7 @@ class ButtonLinkWidget extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class EditTextfieldWidget extends StatelessWidget {
   EditTextfieldWidget(
       {super.key,

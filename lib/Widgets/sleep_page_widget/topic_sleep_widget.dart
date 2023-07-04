@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:meditation_app/Common/data/data_controller.dart';
+import 'package:meditation_app/Common/screen/detail_meditation_screen.dart';
 import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Utils/theme.dart';
-import 'package:meditation_app/Widgets/sleep_page_widget/sleep_page_detail.dart';
+import 'package:meditation_app/controller/music_controller.dart';
 import 'package:meditation_app/controller/sleep_controller.dart';
 import 'package:meditation_app/model/sleep_model.dart';
 
@@ -19,6 +20,7 @@ class TopicSleepWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(SleepController());
     final dataController = Get.put(DataController());
+    final controllerMusic = Get.put(MusicController());
     return FutureBuilder<List<SleepModel>>(
       future: controller.getSleepList(),
       builder: (context, snapshot) {
@@ -40,10 +42,14 @@ class TopicSleepWidget extends StatelessWidget {
             return InkWell(
               // nhấn vào sẽ chuyển sang trang reminderspage
               onTap: () {
-                print(sleep.id);
-                Get.to(() => const SleepDetailPage(), arguments: {
-                  "idSleep": dataController.idSleep.value = sleep.id,
-                  "titleSleep": dataController.titleSleep.value = sleep.title
+                Get.to(() => MeditationDetailPage(
+                  icon: Icons.mode_night,
+                  colorText: Colors.white,
+                  colorItem: const Color.fromARGB(255, 28, 35, 86),
+                  backgroundColor: const Color(0xFF1F265E),
+                  future: controllerMusic.getMusicSleep(sleep.id),
+                ), arguments: {
+                  "titleMeditation": dataController.titleSleep.value = sleep.title
                 });
               },
               child: DecoratedBox(

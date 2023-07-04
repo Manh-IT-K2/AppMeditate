@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meditation_app/Utils/theme.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 
 class DialogMessage {
   static void show(var context, String text) {
@@ -15,7 +16,7 @@ class DialogMessage {
             ),
             const SizedBox(width: 5,),
             Text(
-              "Error !",
+             translation(context).txtError,
               style: Primaryfont.bold(20).copyWith(color: Colors.red),
             ),
           ],

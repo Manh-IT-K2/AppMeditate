@@ -57,7 +57,7 @@ class ReminderTimeSelectsWidget extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 5.0),
                       child: Text(
-                        index < 10 ? '0' + index.toString() : index.toString(),
+                        index < 10 ? '0$index' : index.toString(),
                         style:
                             Primaryfont.bold(24).copyWith(color: Colors.black),
                       ),

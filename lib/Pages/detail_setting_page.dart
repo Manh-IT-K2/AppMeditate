@@ -17,10 +17,10 @@ class DetailSettingUser extends StatelessWidget {
       body: SafeArea(
         child: Container(
           margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
-          child: SingleChildScrollView(
+          child: const SingleChildScrollView(
             child: ReponsiveBuilder(
               portrait: Column(
-                children: const [
+                children: [
                   HeaderDetailSettingWidget(),
                   InfomationUserDetailSettingWidget(),
                   NotificationDetailSettingWidget(),
@@ -28,7 +28,7 @@ class DetailSettingUser extends StatelessWidget {
                 ],
               ),
               landscape: Column(
-                children: const [
+                children: [
                   HeaderDetailSettingWidget(),
                   InfomationUserDetailSettingWidget(),
                   NotificationDetailSettingWidget(),

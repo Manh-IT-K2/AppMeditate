@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Constant/image_string.dart';
-import 'package:meditation_app/Pages/container_page.dart';
 import 'package:meditation_app/Pages/course_details_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
+import 'package:meditation_app/controller/language_controller.dart';
+import 'package:meditation_app/controller/music_controller.dart';
+import 'package:meditation_app/controller/statistical_controller.dart';
 
 class BodyHomeWidgetOne extends StatelessWidget {
   const BodyHomeWidgetOne({
@@ -19,8 +22,10 @@ class BodyHomeWidgetOne extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final contronller = Get.put(MusicController());
+    final controllerStatistical = Get.put(StatisticalController());
     return Container(
-      margin: const EdgeInsets.only(top: 10, left: 12, right: 12),
+      margin: const EdgeInsets.only(top: 10, left: 12, right: 12, bottom: 12),
       child: Row(
         children: [
           Container(
@@ -49,14 +54,14 @@ class BodyHomeWidgetOne extends StatelessWidget {
                   alignment: const Alignment(-0.70, 0.0),
                   child: RichText(
                     text: TextSpan(
-                      text: 'Basics\n',
+                      text: 'English\n',
                       style: Primaryfont.bold(20).copyWith(
                         color: kColorLightYellow,
                         height: 1.5,
                       ),
                       children: [
                         TextSpan(
-                          text: 'COURSE',
+                          text: 'PODCAST',
                           style: Primaryfont.bold(10)
                               .copyWith(color: kColorLightYellow),
                         ),
@@ -69,7 +74,7 @@ class BodyHomeWidgetOne extends StatelessWidget {
                   child: Row(
                     children: [
                       Text(
-                        '3-10 MIN',
+                        '10-30 ${translation(context).txtMin}',
                         style: Primaryfont.medium(12)
                             .copyWith(color: kColorLightGrey),
                       ),
@@ -77,7 +82,7 @@ class BodyHomeWidgetOne extends StatelessWidget {
                         width: sbWidth,
                       ),
                       MaterialButton(
-                        onPressed: () {
+                        onPressed: () async {
                           // Navigator.push(
                           //   context,
                           //   MaterialPageRoute(
@@ -87,8 +92,19 @@ class BodyHomeWidgetOne extends StatelessWidget {
                           //     },
                           //   ),
                           // );
-                          SaveChange.indexPage = 2;
-                          Navigator.of(context).pushNamed('$CourseDetails');
+                         
+                         
+                         Get.to(() => CourseDetails(
+                          titleDetail: translation(context).txtCourseDetailHeaderSubTitle3,
+                          subTitleDetail: translation(context).txtCourseDetailHeaderSubTitle4,
+                          titleOne: translation(context).txtCourseDetailTabbarTitle3, 
+                          titleTwo: translation(context).txtCourseDetailTabbarTitle4, 
+                          futureListen: controllerStatistical.getTotalViewEnglishPodcast(),
+                          futureFavourite: controllerStatistical.getTotalFavouriteEnglishPodcast(),
+                          futureOne: contronller.getMusicMeditationPodcastMaleVoice(),
+                          futureTwo:  contronller.getMusicMeditationPodcastFemaleVoice(),
+                          ),
+                          );
                         },
                         color: Colors.white,
                         height: 40,
@@ -97,7 +113,7 @@ class BodyHomeWidgetOne extends StatelessWidget {
                           borderRadius: BorderRadius.circular(38),
                         ),
                         child: Text(
-                          'START',
+                          translation(context).txtStart,
                           style: Primaryfont.ligh(12)
                               .copyWith(color: Colors.black),
                         ),
@@ -136,12 +152,12 @@ class BodyHomeWidgetOne extends StatelessWidget {
                   alignment: Alignment(aLeft, 0.0),
                   child: RichText(
                     text: TextSpan(
-                      text: 'Relexation\n',
+                      text: "${translation(context).txtRelexation}\n",
                       style: Primaryfont.bold(20)
                           .copyWith(color: Colors.black, height: 1.5),
                       children: [
                         TextSpan(
-                          text: 'MUSIC',
+                          text: translation(context).txtMusic,
                           style: Primaryfont.bold(10)
                               .copyWith(color: Colors.black),
                         ),
@@ -155,7 +171,7 @@ class BodyHomeWidgetOne extends StatelessWidget {
                     //crossAxisAlignment: CrossAxisAlignment.baseline,
                     children: [
                       Text(
-                        '3-10 MIN',
+                        '3-10 ${translation(context).txtMin}',
                         style: Primaryfont.medium(12)
                             .copyWith(color: Colors.black),
                       ),
@@ -163,7 +179,19 @@ class BodyHomeWidgetOne extends StatelessWidget {
                         width: sbWidth,
                       ),
                       MaterialButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                         Get.to(() => CourseDetails(
+                          titleDetail: translation(context).txtCourseDetailHeaderSubTitle1,
+                          subTitleDetail: translation(context).txtCourseDetailHeaderSubTitle2,
+                          titleOne: translation(context).txtCourseDetailTabbarTitle1, 
+                          titleTwo: translation(context).txtCourseDetailTabbarTitle2, 
+                          futureFavourite: controllerStatistical.getTotalFavouriteRelaxationMusic(),
+                          futureListen: controllerStatistical.getTotalViewRelaxationMusic(),
+                          futureOne: contronller.getMusicMeditationRelaxationPiano(),
+                          futureTwo: contronller.getMusicMeditationRelaxationJazz(),
+                          ),
+                          );
+                        },
                         minWidth: 54,
                         height: 40,
                         color: const Color(0xFF263238),
@@ -171,7 +199,7 @@ class BodyHomeWidgetOne extends StatelessWidget {
                           borderRadius: BorderRadius.circular(38),
                         ),
                         child: Text(
-                          'START',
+                          translation(context).txtStart,
                           style: Primaryfont.ligh(12).copyWith(
                             color: Colors.white,
                           ),

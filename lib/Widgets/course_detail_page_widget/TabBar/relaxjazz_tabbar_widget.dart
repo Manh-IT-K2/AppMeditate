@@ -1,33 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gif_view/gif_view.dart';
 import 'package:meditation_app/Common/data/data_controller.dart';
 import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Constant/image_string.dart';
+import 'package:meditation_app/Pages/container_page.dart';
 import 'package:meditation_app/Pages/detail_music_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
-import 'package:meditation_app/controller/music_controller.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 import 'package:meditation_app/model/musics_model.dart';
 
+// ignore: must_be_immutable
 class RelaxJazzWidget extends StatelessWidget {
-  const RelaxJazzWidget({super.key});
+  RelaxJazzWidget({
+    super.key,
+    required this.future,
+  });
 
+  Future<List<MusicsModel>> future;
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(MusicController());
     final dataController = Get.put(DataController());
     final size = context.screenSize;
     return SingleChildScrollView(
       child: Column(
         children: [
           FutureBuilder<List<MusicsModel>>(
-            future: controller.getMusicMeditationCourseJazz(),
+            future: future,
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
                 return SizedBox(
                   width: size.width,
                   height: 150,
-                  child: const Center(
-                    child: CircularProgressIndicator(),
+                  child: Center(
+                    child: GifView.asset(imgcircular, height: 80,),
                   ),
                 );
               }
@@ -37,7 +43,7 @@ class RelaxJazzWidget extends StatelessWidget {
                   for (var jazzs in jazz)
                     Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 5),
+                          horizontal: 10, vertical: 15),
                       decoration: const BoxDecoration(
                         border: Border(
                           bottom: BorderSide(color: Colors.grey, width: 0.3),
@@ -63,6 +69,7 @@ class RelaxJazzWidget extends StatelessWidget {
                             width: 200,
                             child: InkWell(
                               onTap: () {
+                                 SaveChange.checkMusicImage = false;
                                 Get.to(
                                     DetailMusic(
                                       bgColor: kColorLightGrey,
@@ -97,7 +104,7 @@ class RelaxJazzWidget extends StatelessWidget {
                                   Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      '0 - 3 MIN',
+                                      translation(context).txtAboutTime,
                                       style: Primaryfont.ligh(12).copyWith(
                                           color: kColorDartPrimary,
                                           height: 1.5),

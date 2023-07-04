@@ -1,11 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:math' as math;
 import 'package:just_audio/just_audio.dart';
+import 'package:meditation_app/Common/message/dialog_message.dart';
 import 'package:meditation_app/Constant/image_string.dart';
+import 'package:meditation_app/Pages/container_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/controller/editprofile_controller.dart';
+import 'package:meditation_app/controller/music_controller.dart';
 import 'package:meditation_app/controller/statistical_controller.dart';
 import 'package:meditation_app/model/statistical_model.dart';
 
@@ -37,12 +42,16 @@ class _DetailMusicState extends State<DetailMusic>
   Duration _position = const Duration();
 
   final controllerStatistical = Get.put(StatisticalController());
+  final controllerMusic = Get.put(MusicController());
   final user = Get.put(EditProfileController());
   int view = 0;
   int favourite = 0;
   int download = 0;
   late bool checkFavourite;
   late bool checkLike;
+  late bool checkDownload;
+  late bool checkDownloaded;
+  late File imageMusicPath;
 
   late AnimationController _animationController;
   bool isPlaying = false;
@@ -63,6 +72,7 @@ class _DetailMusicState extends State<DetailMusic>
   // init
   @override
   void initState() {
+    imageMusicPath = File(musicImage);
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 5),
@@ -87,19 +97,19 @@ class _DetailMusicState extends State<DetailMusic>
         });
       }
     });
-    advancedPlayer.setUrl(musicUrl);
-
+    if (SaveChange.checkMusicImage == true) {
+      advancedPlayer.setFilePath(musicUrl);
+    } else {
+      advancedPlayer.setUrl(musicUrl);
+    }
     super.initState();
   }
-
-  // @override
-  // void dispose(){
-  //   advancedPlayer.dispose();
-  //   _animationController.dispose();
-  //   controllerStatistical.dispose();
-  //   user.dispose();
-  //   super.dispose();
-  // }
+//   @override
+// void dispose() {
+//   advancedPlayer.dispose();
+//   _animationController.dispose();
+//   super.dispose();
+// }
 
   // update view
   void updateView() async {
@@ -115,12 +125,12 @@ class _DetailMusicState extends State<DetailMusic>
       String id = statisticals.id ?? "";
       int totalView = statisticals.view!;
       totalView += view;
-      await controllerStatistical.addIdUser(id, "${idUser.id}02");
+      await controllerStatistical.addIdUser(id, "${idUser!.id}View");
       await controllerStatistical.updateViewStatistical(id, totalView);
     } else {
       StatisticalModel statistical = StatisticalModel(
           view: view,
-          idUser: ["${idUser.id}02"],
+          idUser: ["${idUser!.id}View"],
           favourite: favourite,
           download: download,
           idMusic: musicId);
@@ -139,10 +149,10 @@ class _DetailMusicState extends State<DetailMusic>
       if (checkLike == true) {
         favourite -= 1;
         totalFavourite += favourite;
-        await controllerStatistical.deleteIdUser(id);
+        await controllerStatistical.deleteIdUserFavourite(id);
       } else {
         totalFavourite += 1;
-        await controllerStatistical.addIdUser(id, idUser.id!);
+        await controllerStatistical.addIdUser(id, idUser!.id!);
       }
       await controllerStatistical.updateFavouriteStatistical(
           id, totalFavourite);
@@ -150,13 +160,39 @@ class _DetailMusicState extends State<DetailMusic>
       favourite += 1;
       StatisticalModel statistical = StatisticalModel(
           view: view,
-          idUser: ["${idUser.id}"],
+          idUser: ["${idUser!.id}"],
           favourite: favourite,
           download: download,
           idMusic: musicId);
       controllerStatistical.createStatistical(statistical);
     }
     favourite = 0;
+  }
+
+  updateDownload() async {
+    final idUser = await user.getUser();
+    if (await controllerStatistical.checkStatistical(musicId)) {
+      final statisticals =
+          await controllerStatistical.getDetailStatistical(musicId);
+      String id = statisticals.id ?? "";
+      int totalDownload = statisticals.download!;
+      download += 1;
+      totalDownload += download;
+      //await controllerStatistical.deleteIdUser(id);
+      await controllerStatistical.addIdUser(id, "${idUser!.id!}DL");
+      await controllerStatistical.updateDownloadStatistical(id, totalDownload);
+      controllerMusic.downloadMusic(musicUrl, musicImage, musicId);
+    } else {
+      download += 1;
+      StatisticalModel statistical = StatisticalModel(
+          view: view,
+          idUser: ["${idUser!.id}DL"],
+          favourite: favourite,
+          download: download,
+          idMusic: musicId);
+      controllerStatistical.createStatistical(statistical);
+      controllerMusic.downloadMusic(musicUrl, musicImage, musicId);
+    }
   }
 
   // fomat time music
@@ -391,7 +427,9 @@ class _DetailMusicState extends State<DetailMusic>
                     border: Border.all(
                         color: Colors.grey.withOpacity(0.5), width: 2),
                     image: DecorationImage(
-                      image: NetworkImage(musicImage),
+                      image: SaveChange.checkMusicImage
+                          ? Image.file(imageMusicPath).image
+                          : NetworkImage(musicImage),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -417,33 +455,33 @@ class _DetailMusicState extends State<DetailMusic>
       backgroundColor: widget.bgColor,
       body: Stack(
         children: [
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            height: size.height / 4,
-            child: Image.network(
-              musicImage,
-              width: size.width,
-              fit: BoxFit.cover,
-            ),
-          ),
-          Positioned(
-            top: 0,
-            left: 20,
-            right: 20,
+          SaveChange.checkMusicImage
+              ? Image.file(
+                  imageMusicPath,
+                  width: size.width,
+                  fit: BoxFit.cover,
+                )
+              : Image.network(
+                  musicImage,
+                  width: size.width,
+                  fit: BoxFit.cover,
+                ),
+          Container(
+            padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
             child: AppBar(
+              toolbarHeight: 40,
               leading: CircleAvatar(
                 radius: 20,
-                backgroundColor: Colors.white,
+                backgroundColor: const Color.fromRGBO(34, 34, 34, 0.475),
                 child: IconButton(
                   alignment: Alignment.center,
                   onPressed: () {
                     Get.back();
+                    advancedPlayer.stop();
                   },
                   icon: const Icon(Icons.arrow_back),
-                  color: Colors.black,
-                  iconSize: 30,
+                  color: Colors.white,
+                  iconSize: 20,
                 ),
               ),
               actions: [
@@ -463,10 +501,12 @@ class _DetailMusicState extends State<DetailMusic>
                       child: IconButton(
                         alignment: Alignment.center,
                         onPressed: () async {
+                          //  if(SaveChange.checkMusicImage == false){
                           await updateFavourite();
                           setState(() {
                             checkLike = !checkLike;
                           });
+                          //}
                         },
                         icon: checkLike
                             ? Image.asset(imgCourseDetailHeartSelected)
@@ -479,15 +519,39 @@ class _DetailMusicState extends State<DetailMusic>
                 const SizedBox(
                   width: 20,
                 ),
-                CircleAvatar(
-                  radius: 20,
-                  backgroundColor: const Color.fromRGBO(34, 34, 34, 0.475),
-                  child: IconButton(
-                    alignment: Alignment.center,
-                    onPressed: () {},
-                    icon: Image.asset(imgCourseDetailDowload),
-                    iconSize: 20,
-                  ),
+                FutureBuilder(
+                  future: controllerStatistical.checkDownload(musicId),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      if (kDebugMode) {
+                        print("Error: ${snapshot.error}");
+                      }
+                    }
+                    checkDownload = snapshot.data ?? false;
+                    checkDownloaded = checkDownload;
+                    return CircleAvatar(
+                      radius: 20,
+                      backgroundColor: const Color.fromRGBO(34, 34, 34, 0.475),
+                      child: IconButton(
+                        alignment: Alignment.center,
+                        onPressed: () async {
+                          if (checkDownload) {
+                            DialogMessage.show(
+                                context, "The song has been downloaded");
+                          } else {
+                            await updateDownload();
+                            setState(() {
+                              checkDownloaded = !checkDownloaded;
+                            });
+                          }
+                        },
+                        icon: checkDownloaded
+                            ? Image.asset(imgCourseDetailDownloadSelected)
+                            : Image.asset(imgCourseDetailDowload),
+                        iconSize: 20,
+                      ),
+                    );
+                  },
                 ),
               ],
               backgroundColor: Colors.transparent,
@@ -516,20 +580,20 @@ class _DetailMusicState extends State<DetailMusic>
                     alignment: Alignment.center,
                     child: Text(
                       musicTitle,
-                      style: Primaryfont.bold(30).copyWith(color: Colors.black),
+                      style: Primaryfont.bold(20).copyWith(color: widget.color),
                     ),
                   ),
                   Text(
                     musicAuthor,
-                    style: Primaryfont.medium(15)
-                        .copyWith(color: Colors.black, height: 2),
+                    style: Primaryfont.medium(14)
+                        .copyWith(color: widget.color, height: 2),
                   ),
                   const SizedBox(
-                    height: 50,
+                    height: 40,
                   ),
                   loadAsset(),
                   const SizedBox(
-                    height: 50,
+                    height: 30,
                   ),
                   slider(),
                   Padding(

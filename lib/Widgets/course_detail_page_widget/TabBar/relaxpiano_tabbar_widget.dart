@@ -1,33 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gif_view/gif_view.dart';
 import 'package:meditation_app/Common/data/data_controller.dart';
 import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Constant/image_string.dart';
+import 'package:meditation_app/Pages/container_page.dart';
 import 'package:meditation_app/Pages/detail_music_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
-import 'package:meditation_app/controller/music_controller.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 import 'package:meditation_app/model/musics_model.dart';
 
+// ignore: must_be_immutable
 class RelaxPianoWidget extends StatelessWidget {
-  const RelaxPianoWidget({super.key});
-
+  RelaxPianoWidget({
+    super.key,
+    required this.future
+    });
+  Future<List<MusicsModel>> future;
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(MusicController());
     final dataController = Get.put(DataController());
     final size = context.screenSize;
     return SingleChildScrollView(
       child: Column(
         children: [
           FutureBuilder<List<MusicsModel>>(
-            future: controller.getMusicMeditationCoursePiano(),
+            future: future,
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
                 return SizedBox(
                   width: size.width,
                   height: 150,
-                  child: const Center(
-                    child: CircularProgressIndicator(),
+                  child: Center(
+                    child: GifView.asset(imgcircular, height: 80,),
                   ),
                 );
               } else {
@@ -64,6 +69,7 @@ class RelaxPianoWidget extends StatelessWidget {
                             ),
                             InkWell(
                               onTap: () {
+                                SaveChange.checkMusicImage = false;
                                 Get.to(
                                     DetailMusic(
                                       bgColor: kColorLightGrey,
@@ -100,7 +106,7 @@ class RelaxPianoWidget extends StatelessWidget {
                                     Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text(
-                                        '0 - 3 MIN',
+                                        translation(context).txtAboutTime,
                                         style: Primaryfont.ligh(12).copyWith(
                                             color: kColorDartPrimary,
                                             height: 1.5),

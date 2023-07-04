@@ -9,6 +9,7 @@ import 'package:meditation_app/Constant/image_string.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/Widgets/detail_setting_page_widget/detail_setting_infomation_user/account_infor_screen.dart';
 import 'package:meditation_app/controller/editprofile_controller.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 import 'package:meditation_app/model/users_model.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -100,22 +101,20 @@ class ChageAvataUser {
           height: size.height,
           child: Column(
             children: [
-              const SizedBox(
-                height: 10,
-              ),
               InkWell(
                 onTap: () async {
                   Map<Permission, PermissionStatus> statuses = await [
-                    Permission.storage,
+                    //Permission.storage,
                     Permission.camera,
                   ].request();
-                  if (statuses[Permission.storage]!.isGranted &&
+                  if (
+                      //statuses[Permission.storage]!.isGranted &&
                       statuses[Permission.camera]!.isGranted) {
                     // ignore: use_build_context_synchronously
                     showImagePicker(context);
                   } else {
                     // ignore: use_build_context_synchronously
-                    DialogMessage.show(context, "No permission provided.");
+                    DialogMessage.show(context, translation(context).txtPermission);
                   }
                 },
                 child: const CircleAvatar(
@@ -134,7 +133,7 @@ class ChageAvataUser {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "Choose border color",
+                 translation(context).txtChooseColor,
                   style: Primaryfont.bold(20).copyWith(color: Colors.black),
                 ),
               ),
@@ -190,7 +189,7 @@ class ChageAvataUser {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "Choose avata",
+                  translation(context).txtChooseAvt,
                   style: Primaryfont.bold(20).copyWith(color: Colors.black),
                 ),
               ),
@@ -246,17 +245,33 @@ class ChageAvataUser {
               ),
               TextButton(
                 onPressed: () async {
-                  UsersModel user = await contronller.getUser();
-                  userId = user.id!;
+                  UsersModel? user = await contronller.getUser();
+                  userId = user!.id!;
                   final image = avts[selectedAvataIndex.value];
                   bool type = false;
-                  contronller.saveColor(colors[selectedColorIndex.value]);
-                  controller.updateTypeImage(userId, type);
-                  contronller.updateAvata(userId, image);
+                  
+                  if (user.image != null) {
+                    final checkImage = user.image!.contains(
+                        "/data/user/0/com.example.meditation_app/cache/");
+                    contronller.saveColor(colors[selectedColorIndex.value]);
+                    if (checkImage == false) {
+                      controller.updateTypeImage(userId, type);
+                      contronller.updateAvata(userId, image);
+                      selectedAvataIndex.value = 0;
+                    } else if (selectedAvataIndex.value != 0) {
+                      controller.updateTypeImage(userId, type);
+                      contronller.updateAvata(userId, image);
+                    }
+                    
+                  }else{
+                    contronller.saveColor(colors[selectedColorIndex.value]);
+                    controller.updateTypeImage(userId, type);
+                    contronller.updateAvata(userId, image);
+                  }
                   Get.offAll(() => const AccountInfor());
                 },
                 child: Text(
-                  "Save change ?",
+                  translation(context).txtSaveChange,
                   style: Primaryfont.bold(20).copyWith(color: Colors.lightBlue),
                 ),
               ),
@@ -284,46 +299,46 @@ class ChageAvataUser {
               children: [
                 Expanded(
                   child: InkWell(
-                    child: const Column(
+                    child: Column(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.image,
                           size: 60.0,
                         ),
-                        SizedBox(height: 12.0),
+                        const SizedBox(height: 12.0),
                         Text(
-                          "Gallery",
+                         translation(context).txtGallery,
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16, color: Colors.black),
+                          style: const TextStyle(fontSize: 16, color: Colors.black),
                         ),
                       ],
                     ),
                     onTap: () {
-                      _imgFromGallery();
+                      _imgFromGallery(context);
                       Navigator.pop(context);
                     },
                   ),
                 ),
                 Expanded(
                   child: InkWell(
-                    child: const SizedBox(
+                    child: SizedBox(
                       child: Column(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.camera_alt,
                             size: 60.0,
                           ),
-                          SizedBox(height: 12.0),
+                          const SizedBox(height: 12.0),
                           Text(
-                            "Camera",
+                            translation(context).txtCamera,
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 16, color: Colors.black),
+                            style: const TextStyle(fontSize: 16, color: Colors.black),
                           ),
                         ],
                       ),
                     ),
                     onTap: () {
-                      _imgFromCamera();
+                      _imgFromCamera(context);
                       Navigator.pop(context);
                     },
                   ),
@@ -337,29 +352,29 @@ class ChageAvataUser {
   }
 
   // crop image from gallery
-  _imgFromGallery() async {
+  _imgFromGallery(BuildContext context) async {
     await picker
         .pickImage(source: ImageSource.gallery, imageQuality: 50)
         .then((value) {
       if (value != null) {
-        _cropImage(File(value.path));
+        _cropImage(File(value.path), context);
       }
     });
   }
 
   // crop image from camera
-  _imgFromCamera() async {
+  _imgFromCamera(BuildContext context) async {
     await picker
         .pickImage(source: ImageSource.camera, imageQuality: 50)
         .then((value) {
       if (value != null) {
-        _cropImage(File(value.path));
+        _cropImage(File(value.path), context);
       }
     });
   }
 
   // crop image
-  _cropImage(File imgFile) async {
+  _cropImage(File imgFile,  BuildContext context,) async {
     final croppedFile = await ImageCropper().cropImage(
         sourcePath: imgFile.path,
         aspectRatioPresets: Platform.isAndroid
@@ -382,19 +397,19 @@ class ChageAvataUser {
               ],
         uiSettings: [
           AndroidUiSettings(
-              toolbarTitle: "Image Cropper",
+              toolbarTitle: translation(context).txtCropImage,
               toolbarColor: Colors.deepOrange,
               toolbarWidgetColor: Colors.white,
               initAspectRatio: CropAspectRatioPreset.original,
               lockAspectRatio: false),
           IOSUiSettings(
-            title: "Image Cropper",
+            title: translation(context).txtCropImage,
           )
         ]);
     if (croppedFile != null) {
       imageCache.clear();
-      UsersModel user = await contronller.getUser();
-      userId = user.id!;
+      UsersModel? user = await contronller.getUser();
+      userId = user!.id!;
       imageFile = File(croppedFile.path);
       String file = imageFile!.path;
       bool type = true;

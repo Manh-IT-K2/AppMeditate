@@ -1,11 +1,11 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meditation_app/Constant/image_string.dart';
 import 'package:meditation_app/Pages/detail_setting_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/controller/editprofile_controller.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 import 'package:meditation_app/model/users_model.dart';
 
 class AppBarUserWidget extends StatelessWidget {
@@ -14,7 +14,7 @@ class AppBarUserWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final contronller = Get.put(EditProfileController());
-    return FutureBuilder<UsersModel>(
+    return FutureBuilder<UsersModel?>(
       future: contronller.getUser(),
       builder: ( context, snapshot) {
         if (snapshot.hasData) {
@@ -57,7 +57,8 @@ class AppBarUserWidget extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.of(context).pushNamed("$DetailSettingUser");
+                    // Navigator.of(context).pushNamed("$DetailSettingUser");
+                    Get.to(() => const DetailSettingUser());
                   },
                   //borderRadius: BorderRadius.circular(20),
                   hoverColor: Colors.transparent,
@@ -72,7 +73,7 @@ class AppBarUserWidget extends StatelessWidget {
           );
         } else {
           return Text(
-            'Loading...',
+            translation(context).txtLoading,
             style: Primaryfont.bold(16).copyWith(color: Colors.black),
           );
         }

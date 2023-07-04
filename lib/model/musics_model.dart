@@ -59,4 +59,17 @@ class MusicsModel {
         meditation: data["meditation"],
         genres: data["genres"]);
   }
+  factory MusicsModel.fromJson(Map<String, dynamic> json) {
+    return MusicsModel(
+        id: json["id"],
+        title: json["title"],
+        author: json["author"],
+        image: json["image"],
+        url: json["url"],
+        idTopic: json["idTopic"],
+        idSleep: json["idSleep"],
+        idMeditation: json["idMeditation"],
+        meditation: json["meditation"],
+        genres: json["genres"]);
+  }
 }

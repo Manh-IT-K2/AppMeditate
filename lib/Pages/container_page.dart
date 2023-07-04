@@ -8,6 +8,7 @@ import 'package:meditation_app/Pages/meditate_page.dart';
 import 'package:meditation_app/Pages/music_page.dart';
 import 'package:meditation_app/Pages/sleep_page.dart';
 import 'package:meditation_app/Pages/user_page.dart';
+
 class ContainerPage extends StatefulWidget {
   const ContainerPage({super.key});
 
@@ -17,7 +18,8 @@ class ContainerPage extends StatefulWidget {
 
 class _ContainerPageState extends State<ContainerPage> {
   int _selectIndex = SaveChange.indexPage;
-  void _navigateBottombar(int index) {
+
+  void _navigateBottombar(int index) async {
     setState(() {
       _selectIndex = index;
     });
@@ -28,13 +30,12 @@ class _ContainerPageState extends State<ContainerPage> {
     const MeditatePage(),
     const HomePage(),
     const MusicPage(),
-    const UserAfsarPage()
+    const UserAfsarPage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     //final size = context.screenSize;
-   
     return Scaffold(
       backgroundColor:
           _selectIndex == 0 ? const Color(0xFF1F265E) : kColorLightGrey,
@@ -69,10 +70,13 @@ class _ContainerPageState extends State<ContainerPage> {
     );
   }
 }
+
 // change switch and index page
 class SaveChange {
   static String userName = Get.arguments ?? "";
   static Color colorBoder = Colors.white;
   static List<bool> changeSwitch = [false, false];
   static int indexPage = 2;
+  static bool checkMusicImage = false;
+  static bool checkFavouriteDownload = false;
 }

@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meditation_app/Common/data/data_controller.dart';
 import 'package:meditation_app/Constant/image_string.dart';
-import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Pages/get_started_page.dart';
-import 'package:meditation_app/Pages/signup_or_singin_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/controller/auth_service_controller.dart';
 import 'package:meditation_app/controller/forget_password_controller.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 import 'package:meditation_app/controller/signin_controller.dart';
 import 'package:meditation_app/controller/signup_controller.dart';
 import 'package:meditation_app/model/users_model.dart';
@@ -43,7 +42,8 @@ class form_header_widget extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: IconButton(
               onPressed: () {
-                Navigator.of(context).pushNamed('$SingupOrSignin');
+                //Navigator.of(context).pushNamed('$SingupOrSignin');
+                Get.back();
               },
               icon: Image.asset(imgBack),
               hoverColor: const Color.fromARGB(255, 241, 241, 241),
@@ -51,7 +51,7 @@ class form_header_widget extends StatelessWidget {
             ),
           ),
           Text(
-            txtHeaderSignup,
+            translation(context).txtHeaderSignup,
             style: Primaryfont.bold(24),
           ),
           const SizedBox(
@@ -106,7 +106,7 @@ class form_header_widget extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    txtWithFacebook,
+                    translation(context).txtWithFacebook,
                     style: Primaryfont.medium(14).copyWith(color: Colors.white),
                   ),
                 ),
@@ -171,7 +171,7 @@ class form_header_widget extends StatelessWidget {
                   ),
                   Expanded(
                     child: Text(
-                      txtWithGoogle,
+                      translation(context).txtWithGoogle,
                       style:
                           Primaryfont.medium(14).copyWith(color: Colors.black),
                     ),
@@ -191,7 +191,7 @@ class form_header_widget extends StatelessWidget {
             height: 30,
           ),
           Text(
-            txtwithEmail,
+            translation(context).txtwithEmail,
             style: Primaryfont.medium(14).copyWith(
               color: const Color(0xFFA1A4B2),
             ),

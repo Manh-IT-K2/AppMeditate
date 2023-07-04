@@ -6,6 +6,8 @@ String imgLogoBlack = "assets/images/common_image/ic_logoBlack.svg";
 String imgIcMoon = "assets/images/common_image/ic_moon.png";
 String imgIcKids = "assets/images/common_image/ic_kids.png";
 String imgChatbotError = "assets/images/common_image/ic_chatbotError.png";
+String imgcircular = "assets/images/common_image/circular.gif";
+String imgConnetionInternet = "assets/images/common_image/animation_connection_internet.gif";
 
 // Getstarted Page Image
 String tBackgroundGetstartedImage = 'assets/images/get_started_page_image/bg_get_started.png';
@@ -35,6 +37,7 @@ String imgHomeBgDailythounght = "assets/images/home_page_image/bg_dailythounght.
 String imgHomeIcPlay = "assets/images/home_page_image/ic_play.png";
 String imgHomeBgFoucus = "assets/images/home_page_image/bg_foucus.png";
 String imgHomeBgHepiness = "assets/images/home_page_image/bg_hepiness.png";
+String imgHomeBgAnimation = "assets/images/home_page_image/bg_animation.gif";
 
 // Meditate Page Image
 String imgMeditateBgDailycalm = "assets/images/meditate_page_imge/bg_dailycalm.png";
@@ -47,11 +50,17 @@ String imgCourseDetailBg = "assets/images/course_detail_page_image/bg_coursedeta
 String imgCourseDetailHeart = "assets/images/course_detail_page_image/ic_heart.png";
 String imgCourseDetailHeartSelected = "assets/images/course_detail_page_image/ic_heart_selected.png";
 String imgCourseDetailDowload = "assets/images/course_detail_page_image/ic_dowload.png";
+String imgCourseDetailDownloadSelected = "assets/images/course_detail_page_image/ic_download_selected.png";
 
 // User Page Image
 String imgUserAlarmclock = "assets/images/user_page_image/ic_alarmclock.png";
 String imgUserTelevision = "assets/images/user_page_image/ic_television.png";
 String imgUserTodolist = "assets/images/user_page_image/ic_todolist.png";
+String imgUserMyOffline = "assets/images/user_page_image/my_offline.gif";
+String imgUserMyFavourite = "assets/images/user_page_image/my_favourite.gif";
+String imgBgBedtimeMorning = "assets/images/user_page_image/bg_bedtime_morning.jpeg";
+String imgBgBedtimeSleep = "assets/images/user_page_image/bg_bedtime_sleep.jpeg";
+String imgBgChangeLanguage = "assets/images/user_page_image/bg_change_language.gif";
 String avt1 = "assets/images/user_page_image/avt1.png";
 String avt2 = "assets/images/user_page_image/avt2.png";
 String avt3 = "assets/images/user_page_image/avt3.png";

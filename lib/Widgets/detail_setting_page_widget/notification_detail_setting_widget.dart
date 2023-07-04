@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:meditation_app/Constant/text_string.dart';
+import 'package:get/get.dart';
+import 'package:meditation_app/Pages/reminders_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
+import 'package:meditation_app/Widgets/detail_setting_page_widget/detail_setting_notification/bedtime_reminder_screen.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 
 class NotificationDetailSettingWidget extends StatelessWidget {
   const NotificationDetailSettingWidget({
@@ -40,16 +43,21 @@ class NotificationDetailSettingWidget extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      txtDetailSettingNotification1,
+                      translation(context).txtDetailSettingNotification1,
                       style:
                           Primaryfont.medium(14).copyWith(color: Colors.black),
                     ),
                   ],
                 ),
-                const Icon(
-                  Icons.arrow_forward,
-                  color: Colors.grey,
-                  size: 25,
+                InkWell(
+                  onTap: () {
+                    Get.to(() => const RemindersPage());
+                  },
+                  child: const Icon(
+                    Icons.arrow_forward,
+                    color: Colors.grey,
+                    size: 25,
+                  ),
                 )
               ],
             ),
@@ -71,16 +79,21 @@ class NotificationDetailSettingWidget extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      txtDetailSettingNotification2,
+                      translation(context).txtDetailSettingNotification2,
                       style:
                           Primaryfont.medium(14).copyWith(color: Colors.black),
                     ),
                   ],
                 ),
-                const Icon(
-                  Icons.arrow_forward,
-                  color: Colors.grey,
-                  size: 25,
+                InkWell(
+                  onTap: () {
+                    Get.to(() => BedtimeReminderScreen());
+                  },
+                  child: const Icon(
+                    Icons.arrow_forward,
+                    color: Colors.grey,
+                    size: 25,
+                  ),
                 ),
               ],
             ),

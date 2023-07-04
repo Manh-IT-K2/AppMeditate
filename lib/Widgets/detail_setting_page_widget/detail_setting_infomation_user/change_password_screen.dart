@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meditation_app/Constant/image_string.dart';
-import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Pages/container_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/Widgets/signin_page_widget/forget_password/forget_password_screen.dart';
 import 'package:meditation_app/controller/change_password_controller.dart';
 import 'package:meditation_app/controller/editprofile_controller.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 import 'package:meditation_app/controller/signup_controller.dart';
 
 class ChangePasswordScreen extends StatelessWidget {
@@ -27,170 +27,177 @@ class ChangePasswordScreen extends StatelessWidget {
     String newPasswordError = "";
     String oldPasswordError = "";
     String confirmPassError = "";
-    final formKey = GlobalKey<FormState>();
+    //final formKey = GlobalKey<FormState>();
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
+        child: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.only(bottom: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                IconButton(
-                  onPressed: () {
-                   Get.back();
-                  },
-                  icon: const Icon(Icons.arrow_back,
-                      size: 30, color: Colors.black),
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      icon: const Icon(Icons.arrow_back,
+                          size: 30, color: Colors.black),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      translation(context).txtBack,
+                      style: Primaryfont.bold(14).copyWith(color: Colors.black),
+                    ),
+                  ],
+                ),
+                Image(
+                  image: AssetImage(imgChangePasswordBG),
+                  height: 250,
                 ),
                 const SizedBox(
-                  width: 10,
+                  height: 20,
                 ),
-                Text(
-                  "Back",
-                  style: Primaryfont.bold(14).copyWith(color: Colors.black),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    translation(context).txtChangePassword,
+                    style: Primaryfont.bold(24).copyWith(color: Colors.black),
+                  ),
                 ),
-              ],
-            ),
-            Image(image: AssetImage(imgChangePasswordBG)),
-            const SizedBox(
-              height: 20,
-            ),
-            Align(
-              alignment: Alignment.center,
-              child: Text(
-                "Changes Password",
-                style: Primaryfont.bold(24).copyWith(color: Colors.black),
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Form(
-              key: formKey,
-              child: Container(
-                padding: const EdgeInsets.only(left: 30, right: 30),
-                child: Column(
-                  children: [
-                    ValueListenableBuilder(
-                      valueListenable: isHidenPass,
-                      builder: (context, value, child) {
-                        return inputTextField(
-                          onChange: (value) {
-                            oldPasswordError = "Incorrect password";
-                            showErrorOldPass.value = false;
-                          },
-                          controller: controller.oldPassword,
-                          text: "Password",
-                          isHidenPass: isHidenPass,
-                        );
-                      },
-                    ),
-                    ValueListenableBuilder(
-                      valueListenable: showErrorOldPass,
-                      builder: (context, value, child) {
-                        return showErrorOldPass.value
-                            ? Padding(
-                                padding: const EdgeInsets.only(top: 10),
-                                child: Text(
-                                  oldPasswordError,
-                                  style: Primaryfont.bold(12)
-                                      .copyWith(color: Colors.red),
-                                ),
-                              )
-                            : const SizedBox.shrink();
-                      },
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    ValueListenableBuilder(
-                      valueListenable: isHidenNewPass,
-                      builder: (context, value, child) {
-                        return inputTextField(
-                          onChange: (value) {
-                            newPasswordError = controllers.validatePassword(
-                                controller.newPassword.text.trim());
-                            showErrorNewPass.value = false;
-                          },
-                          controller: controller.newPassword,
-                          text: "New Password",
-                          isHidenPass: isHidenNewPass,
-                        );
-                      },
-                    ),
-                    ValueListenableBuilder(
-                      valueListenable: showErrorNewPass,
-                      builder: (context, value, child) {
-                        return showErrorNewPass.value
-                            ? Padding(
-                                padding: const EdgeInsets.only(top: 10),
-                                child: Text(
-                                  newPasswordError,
-                                  style: Primaryfont.bold(12)
-                                      .copyWith(color: Colors.red),
-                                ),
-                              )
-                            : const SizedBox.shrink();
-                      },
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    ValueListenableBuilder(
-                      valueListenable: isHidenRePass,
-                      builder: (context, value, child) {
-                        return inputTextField(
-                          onChange: (p0) {
-                            confirmPassError = "Password incorrect";
-                            showErrorConfirmPass.value = false;
-                          },
-                          controller: controller.confirmPassword,
-                          text: "Confirm Password",
-                          isHidenPass: isHidenRePass,
-                        );
-                      },
-                    ),
-                    ValueListenableBuilder(
-                      valueListenable: showErrorConfirmPass,
-                      builder: (context, value, child) {
-                        return showErrorConfirmPass.value
-                            ? Padding(
-                                padding: const EdgeInsets.only(top: 10),
-                                child: Text(
-                                  confirmPassError,
-                                  style: Primaryfont.bold(12)
-                                      .copyWith(color: Colors.red),
-                                ),
-                              )
-                            : const SizedBox.shrink();
-                      },
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Align(
-                     alignment: Alignment.centerRight,
-                      child: TextButton(
-                        onPressed: () {
-                         ForgetPasswordScreen.BuildShowmodalBottomSheet(context);
+                const SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  padding: const EdgeInsets.only(left: 30, right: 30),
+                  child: Column(
+                    children: [
+                      ValueListenableBuilder(
+                        valueListenable: isHidenPass,
+                        builder: (context, value, child) {
+                          return inputTextField(
+                            onChange: (value) {
+                              oldPasswordError =
+                                  translation(context).txtIncorrectPassword;
+                              showErrorOldPass.value = false;
+                            },
+                            controller: controller.oldPassword,
+                            text: translation(context).txtPassword,
+                            isHidenPass: isHidenPass,
+                          );
                         },
-                        child: Text(
-                          txtForgotPassword,
-                          style: Primaryfont.medium(14)
-                              .copyWith(color: Colors.black),
+                      ),
+                      ValueListenableBuilder(
+                        valueListenable: showErrorOldPass,
+                        builder: (context, value, child) {
+                          return showErrorOldPass.value
+                              ? Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: Text(
+                                    oldPasswordError,
+                                    style: Primaryfont.bold(12)
+                                        .copyWith(color: Colors.red),
+                                  ),
+                                )
+                              : const SizedBox.shrink();
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      ValueListenableBuilder(
+                        valueListenable: isHidenNewPass,
+                        builder: (context, value, child) {
+                          return inputTextField(
+                            onChange: (value) {
+                              newPasswordError = controllers.validatePassword(
+                                  controller.newPassword.text.trim());
+                              showErrorNewPass.value = false;
+                            },
+                            controller: controller.newPassword,
+                            text: translation(context).txtNewPass,
+                            isHidenPass: isHidenNewPass,
+                          );
+                        },
+                      ),
+                      ValueListenableBuilder(
+                        valueListenable: showErrorNewPass,
+                        builder: (context, value, child) {
+                          return showErrorNewPass.value
+                              ? Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: Text(
+                                    newPasswordError,
+                                    style: Primaryfont.bold(12)
+                                        .copyWith(color: Colors.red),
+                                  ),
+                                )
+                              : const SizedBox.shrink();
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      ValueListenableBuilder(
+                        valueListenable: isHidenRePass,
+                        builder: (context, value, child) {
+                          return inputTextField(
+                            onChange: (p0) {
+                              confirmPassError =
+                                  translation(context).txtIncorrectPassword;
+                              showErrorConfirmPass.value = false;
+                            },
+                            controller: controller.confirmPassword,
+                            text: translation(context).txtConfirmPass,
+                            isHidenPass: isHidenRePass,
+                          );
+                        },
+                      ),
+                      ValueListenableBuilder(
+                        valueListenable: showErrorConfirmPass,
+                        builder: (context, value, child) {
+                          return showErrorConfirmPass.value
+                              ? Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: Text(
+                                    confirmPassError,
+                                    style: Primaryfont.bold(12)
+                                        .copyWith(color: Colors.red),
+                                  ),
+                                )
+                              : const SizedBox.shrink();
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: TextButton(
+                          onPressed: () {
+                            ForgetPasswordScreen.BuildShowmodalBottomSheet(
+                                context);
+                          },
+                          child: Text(
+                            translation(context).txtForgotPassword,
+                            style: Primaryfont.medium(14)
+                                .copyWith(color: Colors.black),
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Container(
-                      padding: const EdgeInsets.only(left: 30, right: 30),
-                      width: size.width,
-                      height: 60,
-                      child: ElevatedButton(
-                        onPressed: () async {
-                          if (formKey.currentState!.validate()) {
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Container(
+                        padding: const EdgeInsets.only(left: 30, right: 30),
+                        width: size.width,
+                        height: 60,
+                        child: ElevatedButton(
+                          onPressed: () async {
+                            //if (formKey.currentState!.validate()) {
                             final oldPAssword =
                                 controller.oldPassword.text.trim();
                             final newPassword =
@@ -198,15 +205,15 @@ class ChangePasswordScreen extends StatelessWidget {
                             final confirmPassword =
                                 controller.confirmPassword.text.trim();
                             final userModel = await getIdUser.getUser();
-                            final userId = userModel.id;
+                            final userId = userModel!.id;
                             bool isCheckPass = await controller.checkPassword(
                                 SaveChange.userName, oldPAssword);
                             // check String null
                             if (oldPAssword == "" ||
                                 newPassword == "" ||
                                 confirmPassword == "") {
-                              Get.snackbar("Error!",
-                                  "You have not entered the complete information?.",
+                              Get.snackbar(translation(context).txtError,
+                                  translation(context).txtSnackErrPass,
                                   icon: const Icon(Icons.error,
                                       color: Colors.white),
                                   snackPosition: SnackPosition.TOP,
@@ -223,7 +230,7 @@ class ChangePasswordScreen extends StatelessWidget {
                               showErrorNewPass.value = true;
                             } else if (newPassword == oldPAssword) {
                               newPasswordError =
-                                  "Please set a different password than the old password";
+                                  translation(context).txtErrPass;
                               showErrorNewPass.value = true;
                             }
                             // check password match or not
@@ -234,7 +241,9 @@ class ChangePasswordScreen extends StatelessWidget {
                               Get.off(() => Container());
                               SaveChange.indexPage = 4;
                               Get.snackbar(
-                                  "Success!", "Password update successful.",
+                                  translation(context).txtSuccess,
+                                  translation(context)
+                                      .txtSnackSuccessUpdatePass,
                                   icon: const Icon(Icons.error,
                                       color: Colors.white),
                                   snackPosition: SnackPosition.TOP,
@@ -242,27 +251,27 @@ class ChangePasswordScreen extends StatelessWidget {
                                   backgroundColor: Colors.green,
                                   colorText: Colors.white);
                             }
-                          }
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
-                          shadowColor: Colors.pink,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.black,
+                            shadowColor: Colors.pink,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                          ),
+                          child: Text(
+                            translation(context).txtSaveChange,
+                            style: Primaryfont.bold(14)
+                                .copyWith(color: Colors.white),
                           ),
                         ),
-                        child: Text(
-                          "Save Change",
-                          style: Primaryfont.bold(14)
-                              .copyWith(color: Colors.white),
-                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

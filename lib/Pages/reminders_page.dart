@@ -5,6 +5,7 @@ import 'package:meditation_app/Widgets/reminder_page_widget/reminder_day_select_
 import 'package:meditation_app/Widgets/reminder_page_widget/reminder_footer_widget.dart';
 import 'package:meditation_app/Widgets/reminder_page_widget/reminder_time_select_widget.dart';
 import 'package:meditation_app/Widgets/reminder_page_widget/reminder_title_widget.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 
 class RemindersPage extends StatelessWidget {
   const RemindersPage({super.key});
@@ -22,8 +23,8 @@ class RemindersPage extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: ReminderTitleWidget(
-                  title: txtReminderTitle1,
-                  subtitle: txtReminderSubTitle1,
+                  title: translation(context).txtReminderTitle1,
+                  subtitle: translation(context).txtReminderSubTitle1,
                 ),
               ),
               const Expanded(
@@ -36,8 +37,8 @@ class RemindersPage extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: ReminderTitleWidget(
-                  title: txtReminderTitle2,
-                  subtitle: txtReminderSubTitle2,
+                  title: translation(context).txtReminderTitle2,
+                  subtitle: translation(context).txtReminderSubTitle2,
                 ),
               ),
               const Expanded(
@@ -58,8 +59,8 @@ class RemindersPage extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(top: 30, left: 30),
                         child: ReminderTitleWidget(
-                          title: txtReminderTitle1,
-                          subtitle: txtReminderSubTitle1,
+                          title: translation(context).txtReminderTitle1,
+                          subtitle: translation(context).txtReminderSubTitle1,
                         ),
                       ),
                     ),
@@ -81,8 +82,8 @@ class RemindersPage extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(top: 30),
                         child: ReminderTitleWidget(
-                          title: txtReminderTitle2,
-                          subtitle: txtReminderSubTitle2,
+                          title: translation(context).txtReminderTitle2,
+                          subtitle: translation(context).txtReminderSubTitle2,
                         ),
                       ),
                     ),

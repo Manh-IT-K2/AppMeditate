@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meditation_app/Utils/theme.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 
 final ValueNotifier<bool> displayDayList = ValueNotifier<bool>(false);
 final ValueNotifier<bool> displayMonthList = ValueNotifier<bool>(false);
@@ -86,7 +87,7 @@ class BodyFormWidgetAcountInforBirtday extends StatelessWidget {
     return Column(
       children: [
         Text(
-          "Day of birt",
+          translation(context).txtBirtDay,
           style: Primaryfont.bold(16).copyWith(color: Colors.black),
         ),
         const SizedBox(
@@ -110,6 +111,7 @@ class BodyFormWidgetAcountInforBirtday extends StatelessWidget {
                             inputField(
                               width: 100.0,
                               text: "Day",
+                              textLabel: translation(context).txtDay,
                               controller: day,
                             ),
                             displayDayList.value
@@ -125,6 +127,7 @@ class BodyFormWidgetAcountInforBirtday extends StatelessWidget {
                             inputField(
                               width: 100.0,
                               text: "Month",
+                              textLabel: translation(context).txtMonth,
                               //data: dayOfBirt[1],
                               controller: month,
                             ),
@@ -141,6 +144,7 @@ class BodyFormWidgetAcountInforBirtday extends StatelessWidget {
                             inputField(
                               width: 110.0,
                               text: "Year",
+                              textLabel: translation(context).txtYear,
                               //data: dayOfBirt[2],
                               controller: year,
                             ),
@@ -165,6 +169,7 @@ class BodyFormWidgetAcountInforBirtday extends StatelessWidget {
   }
 }
 
+// ignore: camel_case_types, must_be_immutable
 class selectionField extends StatelessWidget {
   selectionField({
     super.key,
@@ -230,15 +235,17 @@ class selectionField extends StatelessWidget {
   }
 }
 
+// ignore: camel_case_types, must_be_immutable
 class inputField extends StatelessWidget {
   inputField({
     super.key,
     required this.text,
+    required this.textLabel,
     required this.controller,
     required this.width,
     //required this.data,
   });
-  final String text;
+  final String text, textLabel;
   final double width;
   //var data;
   TextEditingController controller;
@@ -261,7 +268,7 @@ class inputField extends StatelessWidget {
         controller: controller,
         cursorColor: Colors.pink,
         decoration: InputDecoration(
-          labelText: text,
+          labelText: textLabel,
           hintStyle: const TextStyle(color: Colors.pink),
           fillColor: Colors.white,
           filled: true,

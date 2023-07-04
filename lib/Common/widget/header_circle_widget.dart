@@ -4,8 +4,10 @@ import 'package:meditation_app/Utils/theme.dart';
 class HeaderCircleWidget extends StatelessWidget {
   const HeaderCircleWidget({
     super.key,
+    required this.color
   });
 
+  final Color color;
   @override
   Widget build(BuildContext context) {
     final size = context.screenSize;
@@ -18,7 +20,7 @@ class HeaderCircleWidget extends StatelessWidget {
             width: 30,
             height: 30,
             decoration: BoxDecoration(
-              color: const Color(0xFF1ECBE9),
+              color: color,
               borderRadius: BorderRadius.circular(25),
             ),
             child: const Icon(
@@ -34,7 +36,7 @@ class HeaderCircleWidget extends StatelessWidget {
             width: 40,
             height: 40,
             decoration: BoxDecoration(
-              color: const Color(0xFF1ECBE9),
+              color: color,
               borderRadius: BorderRadius.circular(25),
             ),
             child: const Icon(
@@ -50,7 +52,7 @@ class HeaderCircleWidget extends StatelessWidget {
             width: 50,
             height: 50,
             decoration: BoxDecoration(
-              color: const Color(0xFF1ECBE9),
+              color: color,
               borderRadius: BorderRadius.circular(25),
             ),
             child: const Icon(
@@ -66,7 +68,7 @@ class HeaderCircleWidget extends StatelessWidget {
             width: 40,
             height: 40,
             decoration: BoxDecoration(
-              color: const Color(0xFF1ECBE9),
+              color: color,
               borderRadius: BorderRadius.circular(25),
             ),
             child: const Icon(
@@ -82,7 +84,7 @@ class HeaderCircleWidget extends StatelessWidget {
           height: 30,
           child: Container(
             decoration: BoxDecoration(
-              color: const Color(0xFF1ECBE9),
+              color: color,
               borderRadius: BorderRadius.circular(25),
             ),
             child: const Icon(

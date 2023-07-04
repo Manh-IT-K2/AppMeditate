@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:meditation_app/Common/screen/my_list_screen.dart';
 import 'package:meditation_app/Constant/colors.dart';
-import 'package:meditation_app/Constant/text_string.dart';
+import 'package:meditation_app/Constant/image_string.dart';
+import 'package:meditation_app/Pages/container_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
+import 'package:meditation_app/controller/language_controller.dart';
+import 'package:meditation_app/controller/music_controller.dart';
+import 'package:meditation_app/controller/statistical_controller.dart';
 
 class FunctionUserWidget extends StatelessWidget {
   const FunctionUserWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controllerStatistical = Get.put(StatisticalController());
+    final controllerMusic = Get.put(MusicController());
     return Container(
       margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
       decoration: BoxDecoration(
@@ -43,15 +51,20 @@ class FunctionUserWidget extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      txtUserFunction1,
+                      translation(context).txtUserFunction1,
                       style: Primaryfont.bold(14).copyWith(color: Colors.black),
                     ),
                   ],
                 ),
-                const Icon(
-                  Icons.arrow_forward,
-                  color: Colors.grey,
-                  size: 25,
+                InkWell(
+                  onTap: () {
+                  
+                  },
+                  child: const Icon(
+                    Icons.arrow_forward,
+                    color: Colors.grey,
+                    size: 25,
+                  ),
                 )
               ],
             ),
@@ -78,15 +91,28 @@ class FunctionUserWidget extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      txtUserFunction2,
+                      translation(context).txtUserFunction2,
                       style: Primaryfont.bold(14).copyWith(color: Colors.black),
                     ),
                   ],
                 ),
-                const Icon(
-                  Icons.arrow_forward,
-                  color: Colors.grey,
-                  size: 25,
+                InkWell(
+                  onTap: () {
+                    SaveChange.checkMusicImage = true;
+                    SaveChange.checkFavouriteDownload = true;
+                    Get.to(
+                        () => MyListScreen(
+                          title: translation(context).txtUserFunction2, 
+                          gif: imgUserMyFavourite,
+                          icon: Icons.favorite, 
+                          colorIcon: Colors.pink, 
+                          future:  controllerStatistical.getListFavouriteByUser()));
+                  },
+                  child: const Icon(
+                    Icons.arrow_forward,
+                    color: Colors.grey,
+                    size: 25,
+                  ),
                 ),
               ],
             ),
@@ -113,15 +139,27 @@ class FunctionUserWidget extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      txtUserFunction3,
+                      translation(context).txtUserFunction3,
                       style: Primaryfont.bold(14).copyWith(color: Colors.black),
                     ),
                   ],
                 ),
-                const Icon(
-                  Icons.arrow_forward,
-                  color: Colors.grey,
-                  size: 25,
+                InkWell(
+                  onTap: () {
+                    SaveChange.checkMusicImage = false;
+                    SaveChange.checkFavouriteDownload = false;
+                    Get.to(() => MyListScreen(
+                      title: translation(context).txtUserFunction3, 
+                      gif: imgUserMyOffline,
+                      icon: Icons.delete_outline, 
+                      colorIcon: Colors.black, 
+                      future: controllerMusic.loadMusicList()));
+                  },
+                  child: const Icon(
+                    Icons.arrow_forward,
+                    color: Colors.grey,
+                    size: 25,
+                  ),
                 ),
               ],
             ),

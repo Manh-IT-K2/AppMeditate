@@ -57,7 +57,7 @@ class UsersModel {
     return UsersModel(
         id: data["id"],
         userName: data["userName"],
-        passWord: data["passWord"],
+        passWord: data["passWord"] ?? "",
         fullName: data["fullName"],
         email: data["email"],
         phone: data["phone"],
@@ -66,6 +66,6 @@ class UsersModel {
         joinDay: data["joinDay"],
         statusChageUser: data["statusChageUser"],
         image: data["image"],
-        typeImage: data["typeImage"]);
+        typeImage: data["typeImage"] ?? "");
   }
 }

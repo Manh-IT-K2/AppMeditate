@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:meditation_app/Constant/colors.dart';
-import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Utils/theme.dart';
-import 'package:meditation_app/controller/statistical_controller.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 
+// ignore: must_be_immutable
 class RecordCourseDetailWidget extends StatelessWidget {
-  const RecordCourseDetailWidget({
+  RecordCourseDetailWidget({
     super.key,
+    required this.futureFavourite,
+    required this.futureListten,
   });
 
+  Future<int?> futureListten, futureFavourite;
   @override
   Widget build(BuildContext context) {
-    final controllerStatistical = Get.put(StatisticalController());
     return Container(
       padding: const EdgeInsets.only(bottom: 15),
       decoration: const BoxDecoration(
@@ -27,9 +28,9 @@ class RecordCourseDetailWidget extends StatelessWidget {
             size: 20,
           ),
           FutureBuilder(
-            future: controllerStatistical.getTotalFavouriteCourseBasic(),
+            future: futureFavourite,
             builder: ((context, snapshot) {
-              final data = snapshot.data ?? 0;
+              int data = snapshot.data ?? 0;
               String favourite = data.toStringAsFixed(1);
               return Padding(
                 padding: const EdgeInsets.only(left: 10),
@@ -43,7 +44,7 @@ class RecordCourseDetailWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      txtCourseDetailHeaderTitleFavorite,
+                      translation(context).txtCourseDetailHeaderTitleFavorite,
                       style: Primaryfont.ligh(14)
                           .copyWith(color: kColorDartPrimary, height: 1),
                     ),
@@ -61,9 +62,9 @@ class RecordCourseDetailWidget extends StatelessWidget {
             ),
           ),
           FutureBuilder(
-            future: controllerStatistical.getTotalViewCourseBasic(),
+            future: futureListten,
             builder: (BuildContext context, AsyncSnapshot<int?> snapshot) {
-              int? view = snapshot.data ?? 0;
+              int? view = snapshot.data?? 0;
               String views = view.toStringAsFixed(1);
               return Padding(
                 padding: const EdgeInsets.only(left: 10),
@@ -77,7 +78,7 @@ class RecordCourseDetailWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      txtCourseDetailHeaderTitleListening,
+                      translation(context).txtCourseDetailHeaderTitleListening,
                       style: Primaryfont.ligh(14)
                           .copyWith(color: kColorDartPrimary, height: 1),
                     ),

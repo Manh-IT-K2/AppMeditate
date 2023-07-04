@@ -5,6 +5,7 @@ import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Pages/container_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
+import 'package:meditation_app/controller/language_controller.dart';
 
 class ReminderFooterWidget extends StatelessWidget {
   const ReminderFooterWidget({
@@ -41,7 +42,7 @@ class ReminderFooterWidget extends StatelessWidget {
             child: TextButton(
               onPressed: () {},
               child: Text(
-                txtNothank,
+                translation(context).txtNothank,
                 style: Primaryfont.medium(14).copyWith(color: kColorDartGrey),
               ),
             ),
