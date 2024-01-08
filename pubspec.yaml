@@ -88,6 +88,9 @@ dependencies:
   ##
   timezone: ^0.9.2
   firebase_messaging: ^14.6.4
+  http: ^0.13.5
+  sqflite: ^2.2.8+4
+  flutter_dnd: ^0.1.4+1
 
 
 dev_dependencies:
@@ -118,6 +121,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - acount.json
     - assets/
     - assets/images/
     - assets/images/user_page_image/

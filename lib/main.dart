@@ -9,33 +9,16 @@ import 'package:meditation_app/Constant/image_string.dart';
 import 'package:meditation_app/Pages/signup_or_singin_page.dart';
 import 'package:meditation_app/Pages/container_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
-import 'package:meditation_app/Widgets/detail_setting_page_widget/detail_setting_notification/callback_dispatcher.dart';
 import 'package:meditation_app/controller/language_controller.dart';
 import 'package:meditation_app/controller/statistical_controller.dart';
 import 'package:meditation_app/firebase_options.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:workmanager/workmanager.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+final navigatorKey = GlobalKey<NavigatorState>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  Workmanager().initialize(callbackDispatcher);
-  Workmanager().registerPeriodicTask(
-    "showNotification", // Tên công việc
-    "showNotificationTask", // Tên task
-    frequency: const Duration(hours: 1), // Tần suất chạy công việc
-  );
-  // final firebaseMessagingService = FirebaseMessagingService();
-  // await firebaseMessagingService.initialize();
-  // final notificationService = NotificationService();
-  // await notificationService.initialize();
-  // await FirebaseMessaging.instance.setAutoInitEnabled(true);
-  // //final fcmToken = await FirebaseMessaging.instance.getToken();
-  // FirebaseMessaging.instance.onTokenRefresh
-  // .listen((fcmToken) { })
-  // .onError((err){});
-  //print("token : $fcmToken");
   // Firebase.initializeApp(
   //   options:const FirebaseOptions(
   // apiKey: 'AIzaSyB1AEjbQmAWPSU98eiRA1DzJ-mMLpQwkXM',
@@ -84,12 +67,14 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Locale? _locale;
 
+  // set locale
   setLocale(Locale locale){
     setState(() {
       _locale = locale;
     });
   }
 
+  // đã thay đổi phụ thuộc Language
   @override
   void didChangeDependencies(){
     getLocale().then((locale) => setLocale(locale));

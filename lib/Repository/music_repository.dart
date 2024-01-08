@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:meditation_app/model/musics_model.dart';
 
@@ -7,17 +8,28 @@ class MusicRepository extends GetxController {
   final _db = FirebaseFirestore.instance;
 
   // get list music
-  Future<List<MusicsModel>> getMusicList(String idTopic) async {
+Future<List<MusicsModel>?> getMusicList(String idTopic) async {
+  try {
+    print("cc " + idTopic);
     final musicList = <MusicsModel>[];
     final musicsRef =
         _db.collection('musics').where("idTopic", isEqualTo: idTopic);
     final querySnapshot = await musicsRef.get();
+
     for (var docSnapshot in querySnapshot.docs) {
       final music = MusicsModel.fromDocumentSnapshot(docSnapshot);
       musicList.add(music);
     }
-    return musicList;
+
+    return musicList.isEmpty ? null : musicList;
+  } catch (e) {
+    if (kDebugMode) {
+      print("Error fetching music list: $e");
+    }
+    return null;
   }
+}
+
 
   // get Detail music
   Future<MusicsModel> getDetailMusic(String id) async {

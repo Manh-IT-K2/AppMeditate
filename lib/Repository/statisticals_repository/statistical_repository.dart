@@ -27,6 +27,48 @@ class StatisticalRepository extends GetxController {
     }
   }
 
+  // update listenedCount statistical
+  Future<void> updateListenedCountStatistical(
+      String id, bool listenedCount) async {
+    try {
+      await _db
+          .collection("statisticals")
+          .doc(id)
+          .update({"listenedCount": listenedCount});
+    } catch (e) {
+      if (kDebugMode) {
+        print(e.toString());
+      }
+    }
+  }
+
+  // update meditationMinute statistical
+  Future<void> updateMeditationMinuteStatistical(
+      String id, int meditationMinute) async {
+    try {
+      await _db
+          .collection("statisticals")
+          .doc(id)
+          .update({"meditationMinute": meditationMinute});
+    } catch (e) {
+      if (kDebugMode) {
+        print(e.toString());
+      }
+    }
+  }
+
+  // update currentStreak Statistical
+  Future<void> updateCurrentStreakStatistical(String id, int currentStreak) async {
+    try {
+      await _db.collection("statisticals")
+      .doc(id)
+      .update({"currentStreak" : currentStreak});
+    } catch (e) {
+      if (kDebugMode) {
+        print(e.toString());
+      }
+    }
+  }
   // update favourite statistical
   Future<void> updateFavouriteStatistical(String id, int favourite) async {
     try {
@@ -126,7 +168,8 @@ class StatisticalRepository extends GetxController {
               idUserList.remove(userId);
               totalDownload -= 1;
               // Cập nhật lại danh sách idUser mới trong tài liệu
-              await doc.reference.update({'idUser': idUserList,'download': totalDownload});
+              await doc.reference
+                  .update({'idUser': idUserList, 'download': totalDownload});
             }
           }
         }
@@ -152,6 +195,97 @@ class StatisticalRepository extends GetxController {
     return list;
   }
 
+// get statistical meditation minute of "Mon"
+Future<List<StatisticalModel>> getMeditationOfMonday() async {
+  final list = <StatisticalModel>[];
+  final snapshot = await _db.collection("statisticals").where("date", isGreaterThanOrEqualTo: "Mon").get();
+  for (var docSnapshot in snapshot.docs) {
+    final data = StatisticalModel.fromDocumentSnapshot(docSnapshot);
+    if (data.date!.contains("Mon")) {
+      list.add(data);
+    }
+  }
+  return list;
+}
+
+// get statistical meditation minute of "Tue"
+Future<List<StatisticalModel>> getMeditationOfTue() async {
+  final list = <StatisticalModel>[];
+  final snapshot = await _db.collection("statisticals").where("date", isGreaterThanOrEqualTo: "Tue").get();
+  for(var docSnapshot in snapshot.docs){
+    final data = StatisticalModel.fromDocumentSnapshot(docSnapshot);
+    if(data.date!.contains("Tue")){
+      list.add(data);
+    }
+  }
+  return list;
+}
+
+// get statistical meditation minute of "Wed"
+Future<List<StatisticalModel>> getMeditationOfWed() async {
+  final list = <StatisticalModel>[];
+  final snapshot = await _db.collection("statisticals").where("date", isGreaterThanOrEqualTo: "Wed").get();
+  for(var docSnapshot in snapshot.docs){
+    final data = StatisticalModel.fromDocumentSnapshot(docSnapshot);
+    if(data.date!.contains("Wed")){
+      list.add(data);
+    }
+  }
+  return list;
+}
+
+// get statistical meditation minute of "Thu"
+Future<List<StatisticalModel>> getMeditationOfThu() async {
+  final list = <StatisticalModel>[];
+  final snapshot = await _db.collection("statisticals").where("date", isGreaterThanOrEqualTo: "Thu").get();
+  for(var docSnapshot in snapshot.docs){
+    final data = StatisticalModel.fromDocumentSnapshot(docSnapshot);
+    if(data.date!.contains("Thu")){
+      list.add(data);
+    }
+  }
+  return list;
+}
+// get statistical meditation minute of "Fri"
+Future<List<StatisticalModel>> getMeditationOfFri() async {
+  final list = <StatisticalModel>[];
+  final snapshot = await _db.collection("statisticals").where("date", isGreaterThanOrEqualTo: "Fri").get();
+  for(var docSnapshot in snapshot.docs){
+    final data = StatisticalModel.fromDocumentSnapshot(docSnapshot);
+    if(data.date!.contains("Fri")){
+      list.add(data);
+    }
+  }
+  return list;
+}
+
+// get statistical meditation minute of "Sat"
+Future<List<StatisticalModel>> getMeditationOfSat() async {
+  final list = <StatisticalModel>[];
+  final snapshot = await _db.collection("statisticals").where("date", isGreaterThanOrEqualTo: "Sat").get();
+  for(var docSnapshot in snapshot.docs){
+    final data = StatisticalModel.fromDocumentSnapshot(docSnapshot);
+    if(data.date!.contains("Sat")){
+      list.add(data);
+    }
+  }
+  return list;
+}
+
+// get statistical meditation minute of "Sun"
+Future<List<StatisticalModel>> getMeditationOfSun() async {
+  final list = <StatisticalModel>[];
+  final snapshot = await _db.collection("statisticals").where("date", isGreaterThanOrEqualTo: "Sun").get();
+  for(var docSnapshot in snapshot.docs){
+    final data = StatisticalModel.fromDocumentSnapshot(docSnapshot);
+    if(data.date!.contains("Sun")){
+      list.add(data);
+    }
+  }
+  return list;
+}
+
+
   // get a statis detail
   Future<List<StatisticalModel>> getStatisticalByMostViews() async {
     final list = <StatisticalModel>[];
@@ -168,10 +302,11 @@ class StatisticalRepository extends GetxController {
   }
 
   // get a statis detail
-  Future<StatisticalModel> getDetailStatistical(String idMusic) async {
+  Future<StatisticalModel> getDetailStatistical(String idMusic, String date) async {
     final snapshot = await _db
         .collection("statisticals")
         .where("idMusic", isEqualTo: idMusic)
+        .where("date", isEqualTo: date)
         .get();
     final data = snapshot.docs
         .map((e) => StatisticalModel.fromDocumentSnapshot(e))
@@ -179,11 +314,27 @@ class StatisticalRepository extends GetxController {
     return data;
   }
 
+  // get getListStatisticalOfIduser
+  Future<List<StatisticalModel>> getListStatisticalOfIduser(
+      String idUser) async {
+    final list = <StatisticalModel>[];
+    final snapshot = await _db
+        .collection("statisticals")
+        .where("idUser", arrayContains: idUser)
+        .get();
+    for (var docSnapshot in snapshot.docs) {
+      final data = StatisticalModel.fromDocumentSnapshot(docSnapshot);
+      list.add(data);
+    }
+    return list;
+  }
+
   // check statistical already axists
-  Future<bool> checkStatistical(String idMusic) async {
+  Future<bool> checkStatistical(String idMusic, String dateToday) async {
     final snapshot = await _db
         .collection("statisticals")
         .where("idMusic", isEqualTo: idMusic)
+        .where("date", isEqualTo: dateToday)
         .get();
     if (snapshot.size != 0) {
       return true;

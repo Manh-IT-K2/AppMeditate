@@ -204,7 +204,7 @@ class _MyListScreenState extends State<MyListScreen> {
                                 IconButton(
                                   onPressed: () async {
                                     final statistical = await controllerStatistical
-                                        .getDetailStatistical(music.id);
+                                        .getDetailStatistical(music.id, dateStatistical());
                                     final totalDownload = statistical.download! - 1;
                                     final totalFourite = statistical.favourite! - 1;
                                     if (SaveChange.checkMusicImage == true) {

@@ -1,0 +1,14 @@
+{
+    "type": "service_account",
+    "project_id": "meditate-app-e19c8",
+    "private_key_id": "c29fba788db3a62341a34e711f63cad584e1a1fc",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCqSKQEpDaVHhl7\ncd0DwGISIEXH8/d/yN9ZgivB1CRaNBDwRl9v7XM934TrD0Tf2B0XUiomIVmZ6m4y\nHBbIodAGdlE6HCuni6t28z8h2jD+4pOGfV97+0qtqyDzZoQKs7Yieo46KH1e049h\nmfgh+f80eN2bcg3SUu4c2xDzgkrJGB4mSzZcda9/ePiBRVc0d4w57hB6vOIOeZHb\nwu3ChxUt96x+wRlw0GJYXgpO4ko4ria7PTjL+1xSio+kyuLC28NkhVT7RnKGKeLC\nHk06Zak0g70iCoXopQ7x6J58TlNG9aBhAMaWakKEzz7qv8M95AU+YBK4gva5PNkE\nqH3rIwFlAgMBAAECggEAHGNhUrPEtL3wnhuYrsYtI1v1fjT+OzO0BpJUtKrnB5G8\nDC6TPQ/vQS6pFF32i8HV8bwdMj+nlikWx2xW4QpW6ajieEdXgMZgZsN9MCnVtrxz\nvz1aBIubgtHve5yI4VbeA6f+W5RB+GPZOLqIOzPYF7mZqk9MnhZ8w1tDG3GKgbUp\nKb0xofx+6B9oUCjxCMXY665tioMUBExsU8RY+IVmSi0LDHIeD085NZT8R3GQ4l3B\nDpvd1i5RoXpaJBHZM1TL+/vSGVSCnbUlaHPovLcajFZMTLDGW9bX0YvapxlmJl7D\nZ2GS6JFTZtwMl46cCgd4OcDdnr+3NQV0MG9bL7YUYQKBgQDtgZ7qnyJfyECIelON\nOCxguXayzhiULw4HTrQkcbByLBHdblxCpUdpcyym2X5Ys9OKVtcdVBqw6fzNX/ti\nOsKDOfq/935ycxBTGz6U5yb/UGi+lzgbavVQtIsF+EhuKOApbkQ49FBejgEBDVuL\nKqIuur9b7mb+wqHrR+kC732UoQKBgQC3iwaB/VLqYtUmlljl3n4Iqk/AM+HQwTOV\n1xnjFkOlw77NiRIfPT0ORNDPRYZVEREl6Uh2cATN7UdFJlJE9dNWU0HPRyp5x/9q\nWPnySk9DnFoaKWUCmgJ8UEsxJsXSwMu6IgPFP7uX9i+UnvwFBx0poshqLfU9BrFM\n24p7lbKyRQKBgCfKo7ljV/r8LfOvqvfqBWVfLUffx7Zr+8m1ofDJK2q1f3i92K9B\nyakdJsn9fnGWD0cKLZg4UxB442X1QsS+W4Bo4l3vNTwvkviZg+6mm54C9smXxEqz\nrM4MsY4afugV6RiH5N418JEm8XwfpMq4Jdv2ZcEdPBxKt54Xui5HuZ6BAoGASQrh\ntx96PN7CFs4kaK5nl8k3XbUH+8y3W70zhyTYHQLOTvtqo9X6E1CdjK8Na5MUMPMq\nrD+eGdmA0GsUuG7gAO23NecLZ1WJNuhb5+lcq/pv/RNWKHfj31cQ5WmZtmqVaOia\neYgIfswxWUL/5nxTRbuLaH4Lp5KfQofoD5CegcUCgYBGUoHoMpt34EMkx0O78Q75\neDmSPiuFdy7IxgNO1L687Kk9OXcfGope51k4eWYNK3TGHfeQeR50T7YLpzVpPS48\nH55zjIWtekotKxAUn7eE8QnJ+Fhj1CfXVHVuS9stpP+KavpB2FaKaFvtmYW+xPMr\n85568qzx45MfZuZgUc39HA==\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-adminsdk-beygh@meditate-app-e19c8.iam.gserviceaccount.com",
+    "client_id": "108584144720233708641",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-beygh%40meditate-app-e19c8.iam.gserviceaccount.com",
+    "universe_domain": "googleapis.com"
+  }
+  

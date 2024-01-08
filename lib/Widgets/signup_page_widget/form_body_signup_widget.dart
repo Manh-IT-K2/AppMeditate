@@ -281,7 +281,8 @@ class _form_body_signup_widgetState extends State<form_body_signup_widget> {
                   userName: controller.userName.text.trim(),
                   passWord: controller.passWord.text.trim(),
                   statusChageUser: 0,
-                  joinDay: formattedDate);
+                  joinDay: formattedDate,
+                  dowloadCellular: false);
               try {
                 bool isValid = await controller.checkUserName(users.userName);
                 if (users.userName == "" ||

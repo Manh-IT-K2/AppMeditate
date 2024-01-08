@@ -54,20 +54,6 @@ class _AccountInforState extends State<AccountInfor>
               child: FutureBuilder<UsersModel?>(
                 future: controller.getUser(),
                 builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return SizedBox(
-                      width: size.width,
-                      height: size.height,
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: SpinKitFadingCircle(
-                          color: Colors.pink,
-                          size: 50.0,
-                          controller: _animationController,
-                        ),
-                      ),
-                    ); // show a loading indicator while waiting for the Future to complete
-                  } else 
                   if (snapshot.hasError) {
                     return Text(
                         'Error: ${snapshot.error}'); // show an error message if the Future returned an error
@@ -122,8 +108,18 @@ class _AccountInforState extends State<AccountInfor>
                       ],
                     );
                   } else {
-                    // Handle the case when the Future returns null
-                    return  Center(child: Text(translation(context).txtNoData));
+                    return SizedBox(
+                      width: size.width,
+                      height: size.height,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: SpinKitFadingCircle(
+                          color: Colors.pink,
+                          size: 50.0,
+                          controller: _animationController,
+                        ),
+                      ),
+                    ); 
                   }
                 },
               ),

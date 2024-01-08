@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meditation_app/Common/widget/reponsive_builder.dart';
-import 'package:meditation_app/Constant/text_string.dart';
 import 'package:meditation_app/Widgets/reminder_page_widget/reminder_day_select_widget.dart';
 import 'package:meditation_app/Widgets/reminder_page_widget/reminder_footer_widget.dart';
 import 'package:meditation_app/Widgets/reminder_page_widget/reminder_time_select_widget.dart';

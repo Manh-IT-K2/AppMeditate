@@ -79,11 +79,11 @@ class _HeaderWidgetAccountInforState extends State<HeaderWidgetAccountInfor>  wi
         ),
         TextButton(
           onPressed: () async {
+              final usersModel = await getStatusChageUser.getUser();
             //if (widget._formKey.currentState!.validate()) {
-              if (widget.email.text != "" || widget.phone.text != "") {
+              if (widget.email.text != usersModel?.email || widget.phone.text != usersModel?.phone) {
                 DialogMessage.show(context, translation(context).txtMessageLink);
               } else {
-                final usersModel = await getStatusChageUser.getUser();
                 String? image = usersModel!.image;
                 int statusChangeUser = usersModel.statusChageUser;
                 bool typeImage = usersModel.typeImage;
@@ -101,7 +101,7 @@ class _HeaderWidgetAccountInforState extends State<HeaderWidgetAccountInfor>  wi
                     joinDay: widget.user.joinDay,
                     birtDay:
                         "${widget.day.text.trim()} / ${widget.month.text.trim()} / ${widget.year.text.trim()}");
-
+    
                 await controller.updateUser(users, widget.id!);
                 //await Future.delayed(const Duration(seconds: 2));
                 SizedBox(
@@ -127,7 +127,7 @@ class _HeaderWidgetAccountInforState extends State<HeaderWidgetAccountInfor>  wi
           },
           child: Text(
             translation(context).txtSave,
-            style: Primaryfont.bold(16).copyWith(color: Colors.pink),
+            style: Primaryfont.bold(16).copyWith(color: Colors.black),
           ),
         ),
       ],

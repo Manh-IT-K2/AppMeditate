@@ -4,6 +4,7 @@ import 'package:meditation_app/Common/screen/my_list_screen.dart';
 import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Constant/image_string.dart';
 import 'package:meditation_app/Pages/container_page.dart';
+import 'package:meditation_app/Pages/unlock_premium_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/controller/language_controller.dart';
 import 'package:meditation_app/controller/music_controller.dart';
@@ -58,7 +59,7 @@ class FunctionUserWidget extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                  
+                    Get.to(() => const UnclockPremium());
                   },
                   child: const Icon(
                     Icons.arrow_forward,

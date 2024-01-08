@@ -79,4 +79,8 @@ class SaveChange {
   static int indexPage = 2;
   static bool checkMusicImage = false;
   static bool checkFavouriteDownload = false;
+  static String hour = "";
+  static String minute = "";
+  static String timeFormat = "";
+  static String day = "";
 }

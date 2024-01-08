@@ -67,6 +67,7 @@ class form_header_widget extends StatelessWidget {
                     final displayName = user!.displayName ?? "";
                     final email = user.email ?? "";
                     if (await checkEmail.checkEmail(email)) {
+                      saveLoginSatus.saveUsername(userPass);
                       final userModel = await checkEmail.getUserWithEmail(email);
                       dataController.setUserName(userModel.userName);
                       saveLoginSatus.saveUsername(userPass);
@@ -74,6 +75,7 @@ class form_header_widget extends StatelessWidget {
                       Get.to(() => const GetstartedPage(),
                           arguments: dataController.userName.value);
                     } else {
+                      saveLoginSatus.saveUsername(userPass);
                       dataController.setUserName(username);
                       saveLoginSatus.saveUsername(userPass);
                       UsersModel usersModel = UsersModel(
@@ -134,6 +136,7 @@ class form_header_widget extends StatelessWidget {
                     final displayName = user!.displayName ?? "";
                     final email = user.email ?? "";
                     if (await checkEmail.checkEmail(email)) {
+                      saveLoginSatus.saveUsername(userPass);
                       final userModel = await checkEmail.getUserWithEmail(email);
                       dataController.setUserName(userModel.userName);
                       saveLoginSatus.saveUsername(userPass);
@@ -141,6 +144,7 @@ class form_header_widget extends StatelessWidget {
                       Get.to(() => const GetstartedPage(),
                           arguments: dataController.userName.value);
                     } else {
+                      saveLoginSatus.saveUsername(userPass);
                       dataController.setUserName(username);
                       saveLoginSatus.saveUsername(userPass);
                       UsersModel usersModel = UsersModel(

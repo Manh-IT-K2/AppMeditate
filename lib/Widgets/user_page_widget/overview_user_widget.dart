@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Constant/image_string.dart';
 import 'package:meditation_app/Utils/theme.dart';
+import 'package:meditation_app/controller/current_streak_controller.dart';
 import 'package:meditation_app/controller/language_controller.dart';
+import 'package:meditation_app/controller/statistical_controller.dart';
 
 class OverviewUserWidget extends StatelessWidget {
   const OverviewUserWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controllerStatistical = Get.put(StatisticalController());
+    final controllerCurrentStreak = Get.put(CurrentStreakController());
     return Container(
       height: 180,
       margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
@@ -67,10 +72,16 @@ class OverviewUserWidget extends StatelessWidget {
                         style: Primaryfont.thin(14)
                             .copyWith(color: Colors.black, height: 1.2),
                       ),
-                      Text(
-                        '15',
-                        style: Primaryfont.bold(24)
-                            .copyWith(color: kColorPrimary, height: 2),
+                      FutureBuilder<int>(
+                        future: controllerStatistical.listenedCount(),
+                        builder: (context, snapshot) {
+                          int count = snapshot.data ?? 0;
+                          return Text(
+                            "$count",
+                            style: Primaryfont.bold(24)
+                                .copyWith(color: kColorPrimary, height: 2),
+                          );
+                        },
                       ),
                     ],
                   ),
@@ -94,10 +105,16 @@ class OverviewUserWidget extends StatelessWidget {
                         style: Primaryfont.thin(14)
                             .copyWith(color: Colors.black, height: 1.2),
                       ),
-                      Text(
-                        '423',
-                        style: Primaryfont.bold(24)
-                            .copyWith(color: kColorPrimary, height: 2),
+                      FutureBuilder<int>(
+                        future: controllerStatistical.meditationMinuteCount(),
+                        builder: (context, snapshot) {
+                          int count = snapshot.data ?? 0;
+                          return Text(
+                            "$count",
+                            style: Primaryfont.bold(24)
+                                .copyWith(color: kColorPrimary, height: 2),
+                          );
+                        },
                       ),
                     ],
                   ),
@@ -121,11 +138,16 @@ class OverviewUserWidget extends StatelessWidget {
                         style: Primaryfont.thin(14)
                             .copyWith(color: Colors.black, height: 1.2),
                       ),
-                      Text(
-                        '12',
-                        style: Primaryfont.bold(24)
-                            .copyWith(color: kColorPrimary, height: 2),
-                      ),
+                      FutureBuilder(
+                          future: controllerCurrentStreak.countStreak(),
+                          builder: (context, snapshot) {
+                            int count = snapshot.data ?? 0;
+                            return Text(
+                              "$count",
+                              style: Primaryfont.bold(24)
+                                  .copyWith(color: kColorPrimary, height: 2),
+                            );
+                          }),
                     ],
                   ),
                 ),

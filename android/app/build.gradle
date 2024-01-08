@@ -35,6 +35,20 @@ android {
     // lintOptions {
     //     warning('Unchecked')
     // }
+    signingConfigs {
+        release {
+            storeFile file("/Users/Quanmanh/NNDART/app_meditate/myalias.jks")
+            storePassword "041802"
+            keyAlias "Myalias"
+            keyPassword "071002"
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            // ...
+        }
+    }
     
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -80,6 +94,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.facebook.android:facebook-login:latest.release'
+    implementation 'com.facebook.android:facebook-android-sdk:[8,9)' 
     def exoplayer_version = "2.15.1"
     implementation "com.google.android.exoplayer:exoplayer-core:$exoplayer_version"
     implementation "com.google.android.exoplayer:exoplayer-dash:$exoplayer_version"

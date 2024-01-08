@@ -1,18 +1,39 @@
+import 'dart:async';
 import 'dart:io';
 
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'dart:math' as math;
 import 'package:just_audio/just_audio.dart';
 import 'package:meditation_app/Common/message/dialog_message.dart';
 import 'package:meditation_app/Constant/image_string.dart';
 import 'package:meditation_app/Pages/container_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
+import 'package:meditation_app/controller/current_streak_controller.dart';
 import 'package:meditation_app/controller/editprofile_controller.dart';
 import 'package:meditation_app/controller/music_controller.dart';
 import 'package:meditation_app/controller/statistical_controller.dart';
+import 'package:meditation_app/model/currentstreak_model.dart';
 import 'package:meditation_app/model/statistical_model.dart';
+
+// get date now
+String dateStatistical() {
+  DateTime now = DateTime.now();
+  String formattedDate = DateFormat('dd/MM/yyyy').format(now);
+  String formattedDay = DateFormat.E().format(now);
+  return "$formattedDay $formattedDate";
+}
+
+// String previousDateFormatted() {
+//   DateTime now = DateTime.now();
+//   DateTime previousDay = now.subtract(Duration(days: 1)); // Lấy ngày trước đó
+//   String formattedDate = DateFormat('dd/MM/yyyy').format(previousDay);
+//   String formattedDay = DateFormat.E().format(previousDay);
+//   return "$formattedDay $formattedDate";
+// }
 
 class DetailMusic extends StatefulWidget {
   const DetailMusic({
@@ -42,9 +63,17 @@ class _DetailMusicState extends State<DetailMusic>
   Duration _position = const Duration();
 
   final controllerStatistical = Get.put(StatisticalController());
+  //
   final controllerMusic = Get.put(MusicController());
+  //
   final user = Get.put(EditProfileController());
+  //
+  final currentStreak = Get.put(CurrentStreakController());
+  // Tạo một biến để lưu thời gian nghe
+  Duration meditationMinute = Duration.zero;
+  Timer? listeningTimer;
   int view = 0;
+  bool listenedCount = false;
   int favourite = 0;
   int download = 0;
   late bool checkFavourite;
@@ -52,6 +81,7 @@ class _DetailMusicState extends State<DetailMusic>
   late bool checkDownload;
   late bool checkDownloaded;
   late File imageMusicPath;
+  int complete = 0;
 
   late AnimationController _animationController;
   bool isPlaying = false;
@@ -92,9 +122,15 @@ class _DetailMusicState extends State<DetailMusic>
       if (event.processingState == ProcessingState.completed) {
         // Điều khiển đĩa xoay ngừng
         _animationController.stop();
-        setState(() {
-          isPlaying = false;
-        });
+        listenedCount = true;
+        updateMeditationMinute(meditationMinute.inSeconds, listenedCount, "LC");
+        if (mounted) {
+          setState(() {
+            isPlaying = false;
+            meditationMinute = Duration.zero;
+            listeningTimer!.cancel();
+          });
+        }
       }
     });
     if (SaveChange.checkMusicImage == true) {
@@ -104,12 +140,23 @@ class _DetailMusicState extends State<DetailMusic>
     }
     super.initState();
   }
+
 //   @override
 // void dispose() {
 //   advancedPlayer.dispose();
 //   _animationController.dispose();
 //   super.dispose();
 // }
+  void startListeningTime() {
+    listeningTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      // Cập nhật thời gian nghe
+      if (mounted) {
+        setState(() {
+          meditationMinute += const Duration(seconds: 1);
+        });
+      }
+    });
+  }
 
   // update view
   void updateView() async {
@@ -119,16 +166,34 @@ class _DetailMusicState extends State<DetailMusic>
       view = 0;
     }
     final idUser = await user.getUser();
-    if (await controllerStatistical.checkStatistical(musicId)) {
-      final statisticals =
-          await controllerStatistical.getDetailStatistical(musicId);
-      String id = statisticals.id ?? "";
-      int totalView = statisticals.view!;
-      totalView += view;
-      await controllerStatistical.addIdUser(id, "${idUser!.id}View");
-      await controllerStatistical.updateViewStatistical(id, totalView);
+    //String checkDate = statisticals.date ?? "";
+    if (await controllerStatistical.checkStatistical(
+        musicId, dateStatistical())) {
+      final statisticals = await controllerStatistical.getDetailStatistical(
+          musicId, dateStatistical());
+      if (statisticals.date == dateStatistical()) {
+        String id = statisticals.id!;
+        int totalView = statisticals.view!;
+        totalView += view;
+        await controllerStatistical.addIdUser(id, "${idUser!.id}View");
+        await controllerStatistical.updateViewStatistical(id, totalView);
+      } else {
+        StatisticalModel statistical = StatisticalModel(
+            meditationMinute: meditationMinute.inSeconds,
+            date: dateStatistical(),
+            listenedCount: listenedCount,
+            view: view,
+            idUser: ["${idUser!.id}View"],
+            favourite: favourite,
+            download: download,
+            idMusic: musicId);
+        controllerStatistical.createStatistical(statistical);
+      }
     } else {
       StatisticalModel statistical = StatisticalModel(
+          meditationMinute: meditationMinute.inSeconds,
+          date: dateStatistical(),
+          listenedCount: listenedCount,
           view: view,
           idUser: ["${idUser!.id}View"],
           favourite: favourite,
@@ -141,24 +206,30 @@ class _DetailMusicState extends State<DetailMusic>
   // update view
   updateFavourite() async {
     final idUser = await user.getUser();
-    if (await controllerStatistical.checkStatistical(musicId)) {
-      final statisticals =
-          await controllerStatistical.getDetailStatistical(musicId);
-      String id = statisticals.id ?? "";
-      int totalFavourite = statisticals.favourite!;
-      if (checkLike == true) {
-        favourite -= 1;
-        totalFavourite += favourite;
-        await controllerStatistical.deleteIdUserFavourite(id);
-      } else {
-        totalFavourite += 1;
-        await controllerStatistical.addIdUser(id, idUser!.id!);
+    if (await controllerStatistical.checkStatistical(
+        musicId, dateStatistical())) {
+      final statisticals = await controllerStatistical.getDetailStatistical(
+          musicId, dateStatistical());
+      if (statisticals.date == dateStatistical()) {
+        String id = statisticals.id ?? "";
+        int totalFavourite = statisticals.favourite!;
+        if (checkLike == true) {
+          favourite -= 1;
+          totalFavourite += favourite;
+          await controllerStatistical.deleteIdUserFavourite(id);
+        } else {
+          totalFavourite += 1;
+          await controllerStatistical.addIdUser(id, idUser!.id!);
+        }
+        await controllerStatistical.updateFavouriteStatistical(
+            id, totalFavourite);
       }
-      await controllerStatistical.updateFavouriteStatistical(
-          id, totalFavourite);
     } else {
       favourite += 1;
       StatisticalModel statistical = StatisticalModel(
+          meditationMinute: 0,
+          listenedCount: listenedCount,
+          date: dateStatistical(),
           view: view,
           idUser: ["${idUser!.id}"],
           favourite: favourite,
@@ -171,20 +242,27 @@ class _DetailMusicState extends State<DetailMusic>
 
   updateDownload() async {
     final idUser = await user.getUser();
-    if (await controllerStatistical.checkStatistical(musicId)) {
-      final statisticals =
-          await controllerStatistical.getDetailStatistical(musicId);
-      String id = statisticals.id ?? "";
-      int totalDownload = statisticals.download!;
-      download += 1;
-      totalDownload += download;
-      //await controllerStatistical.deleteIdUser(id);
-      await controllerStatistical.addIdUser(id, "${idUser!.id!}DL");
-      await controllerStatistical.updateDownloadStatistical(id, totalDownload);
-      controllerMusic.downloadMusic(musicUrl, musicImage, musicId);
+    if (await controllerStatistical.checkStatistical(
+        musicId, dateStatistical())) {
+      final statisticals = await controllerStatistical.getDetailStatistical(
+          musicId, dateStatistical());
+      if (statisticals.date == dateStatistical()) {
+        String id = statisticals.id ?? "";
+        int totalDownload = statisticals.download!;
+        download += 1;
+        totalDownload += download;
+        //await controllerStatistical.deleteIdUser(id);
+        await controllerStatistical.addIdUser(id, "${idUser!.id!}DL");
+        await controllerStatistical.updateDownloadStatistical(
+            id, totalDownload);
+        controllerMusic.downloadMusic(musicUrl, musicImage, musicId);
+      }
     } else {
       download += 1;
       StatisticalModel statistical = StatisticalModel(
+          meditationMinute: 0,
+          listenedCount: listenedCount,
+          date: dateStatistical(),
           view: view,
           idUser: ["${idUser!.id}DL"],
           favourite: favourite,
@@ -192,6 +270,62 @@ class _DetailMusicState extends State<DetailMusic>
           idMusic: musicId);
       controllerStatistical.createStatistical(statistical);
       controllerMusic.downloadMusic(musicUrl, musicImage, musicId);
+    }
+  }
+
+  updateMeditationMinute(
+      int meditationMinute, bool listenedCount, String idUserr) async {
+    final idUser = await user.getUser();
+    final statisticals = await controllerStatistical.getDetailStatistical(
+        musicId, dateStatistical());
+    String id = statisticals.id ?? "";
+    if (await controllerStatistical.checkStatistical(
+            musicId, dateStatistical()) &&
+        statisticals.date == dateStatistical()) {
+      await controllerStatistical.addIdUser(id, "${idUser?.id!}$idUserr");
+      int totalMeditationMinute = statisticals.meditationMinute!;
+      totalMeditationMinute += meditationMinute;
+      await controllerStatistical.updateMeditationMinuteStatistical(
+          id, totalMeditationMinute);
+      await controllerStatistical.updateListenedCountStatistical(
+          id, listenedCount);
+      if (await currentStreak.checkCurrentStreak(idUser!.id!)) {
+        final currentStreakByUser =
+            await currentStreak.getCurrentStreakByUser(idUser.id!);
+        String idCurrentStreak = currentStreakByUser?.id ?? "";
+        int totalCountStreak = currentStreakByUser!.streakCount;
+
+        if (await currentStreak.checkDateCurrentStreak(
+            idCurrentStreak, dateStatistical())) {
+          currentStreak.addDateNow(idCurrentStreak, dateStatistical());
+          totalCountStreak += 1;
+          currentStreak.updateCountCurrentStreak(
+              idCurrentStreak, totalCountStreak);
+        }
+        if (await currentStreak.checkDateBehindNow(
+            idCurrentStreak, dateStatistical())) {
+          currentStreak.addDateNow(idCurrentStreak, dateStatistical());
+          currentStreak.updateCountCurrentStreak(idCurrentStreak, 1);
+        }
+      } else {
+        await currentStreak.createCurrentStreak(
+          CurrentStreakModel(
+              date: [dateStatistical()], userId: idUser.id!, streakCount: 1),
+        );
+      }
+    } else {
+      StatisticalModel statistical = StatisticalModel(
+          meditationMinute: meditationMinute,
+          listenedCount: listenedCount,
+          date: dateStatistical(),
+          view: view,
+          idUser: ["${idUser!.id}$idUserr"],
+          favourite: favourite,
+          download: download,
+          idMusic: musicId);
+      controllerStatistical.createStatistical(statistical);
+      await controllerStatistical.updateMeditationMinuteStatistical(
+          id, meditationMinute);
     }
   }
 
@@ -212,13 +346,16 @@ class _DetailMusicState extends State<DetailMusic>
             advancedPlayer
                 .seek(advancedPlayer.position - advancedPlayer.position);
             advancedPlayer.play();
+            startListeningTime();
           } else {
             advancedPlayer
                 .seek(advancedPlayer.position - const Duration(seconds: 10));
             advancedPlayer.play();
+            startListeningTime();
           }
           _animationController.repeat();
           advancedPlayer.play();
+          startListeningTime();
           setState(() {
             isPlaying = true;
           });
@@ -244,13 +381,16 @@ class _DetailMusicState extends State<DetailMusic>
             int b = a.toInt();
             advancedPlayer.seek(advancedPlayer.position + Duration(seconds: b));
             advancedPlayer.play();
+            startListeningTime();
           } else {
             advancedPlayer
                 .seek(advancedPlayer.position + const Duration(seconds: 10));
             advancedPlayer.play();
+            startListeningTime();
           }
           _animationController.repeat();
           advancedPlayer.play();
+          startListeningTime();
           setState(() {
             isPlaying = true;
           });
@@ -318,6 +458,7 @@ class _DetailMusicState extends State<DetailMusic>
               _animationController.repeat();
               isPlaying = true;
               advancedPlayer.play();
+              startListeningTime();
               if (a == _duration.inSeconds.toDouble()) {
                 advancedPlayer.load();
               }
@@ -325,6 +466,10 @@ class _DetailMusicState extends State<DetailMusic>
               _animationController.stop();
               isPlaying = false;
               advancedPlayer.pause();
+              updateMeditationMinute(
+                  meditationMinute.inSeconds, listenedCount, "MM");
+              listeningTimer?.cancel();
+              meditationMinute = Duration.zero;
             }
           });
           //
@@ -394,6 +539,7 @@ class _DetailMusicState extends State<DetailMusic>
               changeToSecond(value.toInt());
               value = value;
               advancedPlayer.play();
+              startListeningTime();
               _animationController.repeat();
               isPlaying = true;
             },
@@ -535,14 +681,37 @@ class _DetailMusicState extends State<DetailMusic>
                       child: IconButton(
                         alignment: Alignment.center,
                         onPressed: () async {
-                          if (checkDownload) {
-                            DialogMessage.show(
-                                context, "The song has been downloaded");
+                          ConnectivityResult connectivityResult =
+                              await (Connectivity().checkConnectivity());
+                          if (await user.getDowloadCellular() && connectivityResult == ConnectivityResult.mobile) {
+                           if (checkDownload) {
+                              // ignore: use_build_context_synchronously
+                              DialogMessage.show(
+                                  context, "The song has been downloaded");
+                            } else {
+                              await updateDownload();
+                              setState(() {
+                                checkDownloaded = !checkDownloaded;
+                              });
+                            }
                           } else {
-                            await updateDownload();
-                            setState(() {
-                              checkDownloaded = !checkDownloaded;
-                            });
+                            if(connectivityResult == ConnectivityResult.mobile){
+                              // ignore: use_build_context_synchronously
+                              DialogMessage.show(
+                                context, "Downloading using mobile data is not allowed"
+                              );
+                            }else{
+                              if (checkDownload) {
+                              // ignore: use_build_context_synchronously
+                              DialogMessage.show(
+                                  context, "The song has been downloaded");
+                            } else {
+                              await updateDownload();
+                              setState(() {
+                                checkDownloaded = !checkDownloaded;
+                              });
+                            }
+                            }
                           }
                         },
                         icon: checkDownloaded

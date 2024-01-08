@@ -1,10 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/controller/language_controller.dart';
 
 var otp;
-class OTPScreen extends StatelessWidget {
+class OTPScreen extends StatefulWidget {
   const OTPScreen({
     super.key,
     required this.text,
@@ -13,7 +15,40 @@ class OTPScreen extends StatelessWidget {
 
   final String text;
   final Function() onPressed;
- 
+
+  @override
+  State<OTPScreen> createState() => _OTPScreenState();
+}
+
+class _OTPScreenState extends State<OTPScreen> {
+  int _start = 60;
+  late Timer _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _startTimer();
+  }
+
+  void _startTimer() {
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        if (_start > 0) {
+          _start--;
+        } else {
+          _timer.cancel();
+        }
+      });
+    });
+  }
+
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,14 +59,18 @@ class OTPScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(translation(context).tOtpTitle,
-                  style: Primaryfont.bold(100).copyWith(color: Colors.black)),
+                  style: Primaryfont.bold(100).copyWith(color: Colors.black),),
               Text(translation(context).tOtpSubTitle.toUpperCase(),
-                  style: Primaryfont.bold(14).copyWith(color: Colors.black)),
+                  style: Primaryfont.bold(14).copyWith(color: Colors.black),),
+              const SizedBox(
+                height: 40.0,
+              ),
+              Text("$_start s", style: Primaryfont.medium(20).copyWith(color: Colors.red),), 
               const SizedBox(
                 height: 40.0,
               ),
               Text(
-                '${translation(context).tOtpMessage} $text',
+                '${translation(context).tOtpMessage} ${widget.text}',
                 textAlign: TextAlign.center,
               ),
               const SizedBox(
@@ -50,7 +89,7 @@ class OTPScreen extends StatelessWidget {
                 width: double.infinity,
                 height: 70,
                 child: ElevatedButton(
-                  onPressed: onPressed,
+                  onPressed: widget.onPressed,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
                     shadowColor: Colors.pink,

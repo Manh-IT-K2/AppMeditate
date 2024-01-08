@@ -392,7 +392,8 @@ class _BodyFormWidgetAccountInforMainState
                         DialogMessage.show(context,
                             translation(context).txtMessageCheckPhoneE1);
                       } else {
-                        controller.phoneAuthentication(phoneNumber);
+                        String modifiedNumber = phoneNumber.replaceAll(RegExp(r'[() ]'), '');
+                        controller.phoneAuthentication(modifiedNumber);
                         Get.to(
                             () => OTPScreen(
                                   text: controller.phone.text.trim(),

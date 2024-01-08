@@ -74,7 +74,7 @@ class _MusicPageState extends State<MusicPage> with TickerProviderStateMixin {
             left: 0,
             right: 0,
             bottom: 20,
-            child: FutureBuilder<List<MusicsModel>>(
+            child: FutureBuilder<List<MusicsModel>?>(
               future: contronller.getAllMusic(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {

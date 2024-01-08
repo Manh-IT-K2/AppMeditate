@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:meditation_app/Pages/container_page.dart';
+import 'package:meditation_app/Pages/reminders_page.dart';
 import 'package:meditation_app/Utils/theme.dart';
+import 'package:meditation_app/Widgets/reminder_page_widget/reminder_footer_widget.dart';
 
 class ReminderTimeSelectsWidget extends StatelessWidget {
   const ReminderTimeSelectsWidget({
@@ -22,6 +25,7 @@ class ReminderTimeSelectsWidget extends StatelessWidget {
             SizedBox(
               width: 50,
               child: ListWheelScrollView.useDelegate(
+                onSelectedItemChanged: (value) => SaveChange.hour = "$value",
                 itemExtent: 50,
                 perspective: 0.005,
                 diameterRatio: 1.2,
@@ -46,7 +50,7 @@ class ReminderTimeSelectsWidget extends StatelessWidget {
             SizedBox(
               width: 50,
               child: ListWheelScrollView.useDelegate(
-                //onSelectedItemChanged: (value) => print(value),
+                onSelectedItemChanged: (value) => SaveChange.minute = "$value",
                 itemExtent: 50,
                 perspective: 0.005,
                 diameterRatio: 1.2,
@@ -70,6 +74,7 @@ class ReminderTimeSelectsWidget extends StatelessWidget {
             SizedBox(
               width: 50,
               child: ListWheelScrollView.useDelegate(
+                onSelectedItemChanged: (value) => SaveChange.timeFormat = "$value",
                 itemExtent: 50,
                 perspective: 0.005,
                 diameterRatio: 1.2,

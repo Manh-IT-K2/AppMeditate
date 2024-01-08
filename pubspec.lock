@@ -478,6 +478,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.0"
+  flutter_dnd:
+    dependency: "direct main"
+    description:
+      name: flutter_dnd
+      sha256: b892f10b6a0a567b7f3481a2f3dd36fcd03380f90ca748219aa40648ac33b121
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.4+1"
   flutter_facebook_auth:
     dependency: "direct main"
     description:
@@ -742,7 +750,7 @@ packages:
     source: hosted
     version: "2.2.0"
   http:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: http
       sha256: "5895291c13fa8a3bd82e76d5627f69e0d85ca6a30dcac95c4ea19a5d555879c2"
@@ -1283,7 +1291,7 @@ packages:
     source: hosted
     version: "1.9.1"
   sqflite:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: sqflite
       sha256: b4d6710e1200e96845747e37338ea8a819a12b51689a3bcf31eff0003b37a0b9

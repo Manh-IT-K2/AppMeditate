@@ -96,6 +96,43 @@ class UsersRepository extends GetxController {
     }
   }
 
+  // update dowload cellular
+  Future<void> updateDowloadCellular(String userId, bool dowloadCellular) async {
+    try {
+      await _db.collection("users")
+      .doc(userId)
+      .update({"dowloadCellular": dowloadCellular});
+    } catch (e) {
+      if (kDebugMode) {
+        print(e.toString());
+      }
+    }
+  }
+
+  // update do not disturb
+  Future<void> updateDoNotDisturb(String userId, bool doNotDisturb) async {
+    try {
+      await _db.collection("users").doc(userId)
+      .update({"doNotDisturb" : doNotDisturb});
+    } catch (e) {
+      if (kDebugMode) {
+        print(e.toString());
+      }
+    }
+  }
+
+  // update reminder time
+  Future<void> updateReminderTime(String userId, String reminderTime) async {
+    try {
+      await _db.collection("users").doc(userId)
+      .update({"reminderTime" : reminderTime});
+    } catch (e) {
+      if (kDebugMode) {
+        print(e.toString());
+      }
+    }
+  }
+
   // update username
   Future<void> updateUsername(String userId, String userName) async {
     try {
@@ -125,6 +162,37 @@ class UsersRepository extends GetxController {
     final userData =
         snapshot.docs.map((e) => UsersModel.fromSnapshot(e)).single;
     return userData;
+  }
+
+  // get dowload cellular
+  Future<bool> getDowloadCellular(String userName) async {
+    bool dowCe = false;
+    final snapshot = await _db.collection("users")
+    .where("userName", isEqualTo: userName)
+    .get();
+    final dowloadCellular = snapshot.docs.map((e) => UsersModel.fromSnapshot(e)).single;
+    if(dowloadCellular.dowloadCellular == null){
+      dowCe = false;
+    }else{
+      dowCe = dowloadCellular.dowloadCellular!;
+    }
+    return dowCe;
+  }
+
+  // get do not disturb
+  Future<bool> getDoNotDisturb(String userName) async {
+    bool doNot = false;
+    final snapshot = await _db.collection("users")
+    .where("userName", isEqualTo: userName)
+    .get();
+    final doNotDisturb = snapshot.docs.map((e) => UsersModel.fromSnapshot(e)).single;
+    if(doNotDisturb.doNotDisturb == null){
+      doNot = false;
+    }else{
+      doNot = doNotDisturb.doNotDisturb!;
+    }
+    return doNot;
+
   }
 
   // get user with phone

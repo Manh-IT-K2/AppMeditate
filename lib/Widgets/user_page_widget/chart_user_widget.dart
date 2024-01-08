@@ -1,8 +1,10 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Utils/theme.dart';
 import 'package:meditation_app/controller/language_controller.dart';
+import 'package:meditation_app/controller/statistical_controller.dart';
 
 // thanh cá nhân
 class IndividualBar {
@@ -54,6 +56,7 @@ class BarData {
     ];
   }
 }
+
 Widget getBottomTitles(double value, TitleMeta meta) {
   const style =
       TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 14);
@@ -110,119 +113,166 @@ Widget getBottomTitles(double value, TitleMeta meta) {
   }
   return SideTitleWidget(child: text, axisSide: meta.axisSide);
 }
-class ChartUserWidget extends StatelessWidget {
-  const ChartUserWidget();
+
+class ChartUserWidget extends StatefulWidget {
+  const ChartUserWidget({super.key});
+
+  @override
+  State<ChartUserWidget> createState() => _ChartUserWidgetState();
+}
+
+class _ChartUserWidgetState extends State<ChartUserWidget> {
+  late int byTime;
+  String choseTime = "Second";
+  List listTime = ["Second", "Minute", "Hour"];
+
+  @override
+  void initState() {
+    byTime = 1;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final controllerStatistical = Get.put(StatisticalController());
+
     // list of weekly expense
-    List<double> weekkySummary = [
-      70.40,
-      30.50,
-      42.42,
-      100.0,
-      50.08,
-      88.99,
-      20.06
-    ];
-    BarData myBarData = BarData(
-        sunAmount: weekkySummary[0],
-        monAmount: weekkySummary[1],
-        tueAmount: weekkySummary[2],
-        wedAmount: weekkySummary[3],
-        thurAmount: weekkySummary[4],
-        friAmount: weekkySummary[5],
-        satAmount: weekkySummary[6]);
-    myBarData.initializeBarData();
-    return Container(
-      margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
-      height: 210,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20), color: Colors.white),
-      child: Column(
-        children: [
-          Container(
+    Future<List<double>> fetchWeeklySummary() async {
+      return [
+        await controllerStatistical.getMeditationOfSunday(byTime),
+        await controllerStatistical.getMeditationOfMonday(byTime),
+        await controllerStatistical.getMeditationOfTuesday(byTime),
+        await controllerStatistical.getMeditationOfWednesday(byTime),
+        await controllerStatistical.getMeditationOfThursday(byTime),
+        await controllerStatistical.getMeditationOfFriday(byTime),
+        await controllerStatistical.getMeditationOfSaturday(byTime),
+      ];
+    }
+
+    return FutureBuilder<List<double>>(
+      future: fetchWeeklySummary(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return const CircularProgressIndicator();
+        } else {
+          // If the data is available, build the widget using the fetched data
+          List<double> weekkySummary =
+              snapshot.data ?? [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+          BarData myBarData = BarData(
+            sunAmount: weekkySummary[0],
+            monAmount: weekkySummary[1],
+            tueAmount: weekkySummary[2],
+            wedAmount: weekkySummary[3],
+            thurAmount: weekkySummary[4],
+            friAmount: weekkySummary[5],
+            satAmount: weekkySummary[6],
+          );
+          myBarData.initializeBarData();
+          return Container(
             margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            height: 210,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20), color: Colors.white),
+            child: Column(
               children: [
-                Text(
-                  translation(context).txtLast7days,
-                  style: Primaryfont.bold(14).copyWith(color: Colors.black),
+                Container(
+                  margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        translation(context).txtLast7days,
+                        style:
+                            Primaryfont.bold(14).copyWith(color: Colors.black),
+                      ),
+                      SizedBox(
+                        width: 65,
+                        height: 30,
+                        child: DropdownButton<String>(
+                          borderRadius: BorderRadius.circular(10),
+                          value: choseTime,
+                          onChanged: (newValue) {
+                            setState(() {
+                              choseTime = newValue!;
+                              if (choseTime == "Second") {
+                                byTime = 1;
+                              } else if (choseTime == "Minute") {
+                                byTime = 60;
+                              } else if (choseTime == "Hour") {
+                                byTime = 3600;
+                              }
+                            });
+                          },
+                          items: listTime
+                              .map<DropdownMenuItem<String>>((value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(
+                                value,
+                                style: Primaryfont.medium(10),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      translation(context).txtMinute,
-                      style: Primaryfont.ligh(14)
-                          .copyWith(color: kColorDartPrimary),
+                Container(
+                  height: 130,
+                  margin: const EdgeInsets.only(top: 20),
+                  child: BarChart(
+                    BarChartData(
+                      maxY: 1000,
+                      minY: 0,
+                      gridData: FlGridData(
+                        show: true,
+                        drawVerticalLine: false,
+                        drawHorizontalLine: false,
+                      ),
+                      borderData: FlBorderData(show: false),
+                      titlesData: FlTitlesData(
+                        show: true,
+                        topTitles: AxisTitles(
+                          sideTitles: SideTitles(showTitles: false),
+                        ),
+                        leftTitles: AxisTitles(
+                          sideTitles: SideTitles(showTitles: false),
+                        ),
+                        bottomTitles: AxisTitles(
+                          sideTitles: SideTitles(
+                            showTitles: true,
+                            getTitlesWidget: getBottomTitles,
+                          ),
+                        ),
+                      ),
+                      barGroups: myBarData.barData
+                          .map(
+                            (data) => BarChartGroupData(
+                              x: data.x,
+                              barRods: [
+                                BarChartRodData(
+                                  toY: data.y,
+                                  color: kColorPrimary,
+                                  width: 25,
+                                  borderRadius: BorderRadius.circular(5),
+                                  // backDrawRodData: BackgroundBarChartRodData(
+                                  //     show: true,
+                                  //     toY: 120,
+                                  //     color: Color.fromARGB(255, 233, 232, 232))
+                                ),
+                              ],
+                            ),
+                          )
+                          .toList(),
                     ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    const Icon(
-                      Icons.arrow_drop_down,
-                      color: Colors.black,
-                      size: 20,
-                    ),
-                  ],
-                )
+                  ),
+                ),
               ],
             ),
-          ),
-          Container(
-            height: 130,
-            margin: const EdgeInsets.only(top: 20),
-            child: BarChart(
-              BarChartData(
-                maxY: 100,
-                minY: 0,
-                gridData: FlGridData(
-                  show: true,
-                  drawVerticalLine: false,
-                  drawHorizontalLine: false,
-                ),
-                borderData: FlBorderData(show: false),
-                titlesData: FlTitlesData(
-                  show: true,
-                  topTitles: AxisTitles(
-                    sideTitles: SideTitles(showTitles: false),
-                  ),
-                  leftTitles: AxisTitles(
-                    sideTitles: SideTitles(showTitles: false),
-                  ),
-                  bottomTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      showTitles: true,
-                      getTitlesWidget: getBottomTitles,
-                    ),
-                  ),
-                ),
-                barGroups: myBarData.barData
-                    .map(
-                      (data) => BarChartGroupData(
-                        x: data.x,
-                        barRods: [
-                          BarChartRodData(
-                            toY: data.y,
-                            color: kColorPrimary,
-                            width: 25,
-                            borderRadius: BorderRadius.circular(5),
-                            // backDrawRodData: BackgroundBarChartRodData(
-                            //     show: true,
-                            //     toY: 120,
-                            //     color: Color.fromARGB(255, 233, 232, 232))
-                          ),
-                        ],
-                      ),
-                    )
-                    .toList(),
-              ),
-            ),
-          ),
-        ],
-      ),
+          );
+        }
+      },
     );
   }
 }

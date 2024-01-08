@@ -1,18 +1,21 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:math';
+import 'package:timezone/timezone.dart' as tz;
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:meditation_app/Constant/colors.dart';
 import 'package:meditation_app/Constant/image_string.dart';
 import 'package:meditation_app/Utils/theme.dart';
-import 'package:meditation_app/Widgets/detail_setting_page_widget/detail_setting_notification/callback_dispatcher.dart';
+import 'package:meditation_app/Widgets/detail_setting_page_widget/detail_setting_notification/firebase_messaging_service.dart';
 import 'package:meditation_app/controller/language_controller.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:workmanager/workmanager.dart';
+import 'package:rxdart/subjects.dart';
 
 class BedtimeReminderScreen extends StatefulWidget {
   @override
@@ -24,11 +27,18 @@ class _BedtimeReminderScreenState extends State<BedtimeReminderScreen> {
   String formattedDate = '';
   TimeOfDay selectedTimeSleep = const TimeOfDay(hour: 00, minute: 00);
   TimeOfDay selectedTimeWakeUp = const TimeOfDay(hour: 00, minute: 00);
-  late DateTime selectedDateTime;
   bool permissionRequested = false;
+  BehaviorSubject<ReceivedNotification?> didReceiveLocalNotificationSubject =
+      BehaviorSubject<ReceivedNotification?>();
+  Stream<ReceivedNotification?> get didReceiveLocalNotificationStream =>
+      didReceiveLocalNotificationSubject.stream;
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+
   @override
   void initState() {
     initNotification();
+    //init();
     // Sử dụng Timer.periodic để cập nhật thời gian sau mỗi giây
     Timer.periodic(const Duration(seconds: 1), (timer) {
       DateTime now = DateTime.now();
@@ -46,8 +56,30 @@ class _BedtimeReminderScreenState extends State<BedtimeReminderScreen> {
     super.initState();
   }
 
+  // void init() async {
+  //   await FirebaseMessagingService().initialize();
+  // }
+  Future<void> onDidReceiveLocalNotification(
+      int? id, String? title, String? body, String? payload) async {
+    didReceiveLocalNotificationSubject.add(
+      ReceivedNotification(
+        id: id,
+        title: title,
+        body: body,
+        payload: payload,
+      ),
+    );
+  }
+
+  Future<void> onSelectNotification(String? payload) async {
+    if (payload != null) {
+      // Xử lý sự kiện khi người dùng nhấn vào thông báo
+      // Ví dụ: mở màn hình cụ thể
+    }
+  }
+
   // chose time wake up
-  void _selectedTimeWakeUp()  async {
+  void _selectedTimeWakeUp() async {
     TimeOfDay? selectedTime = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.now(),
@@ -99,7 +131,6 @@ class _BedtimeReminderScreenState extends State<BedtimeReminderScreen> {
     }
   }
 
-  // chose bedtime sleep
   Future<void> _selectedTimeSleep() async {
     // Hỏi người dùng chọn thời gian
     TimeOfDay? selectedTime = await showTimePicker(
@@ -112,25 +143,9 @@ class _BedtimeReminderScreenState extends State<BedtimeReminderScreen> {
       setState(() {
         selectedTimeSleep = selectedTime;
       });
-      await saveTimeOfDaySleep(selectedTimeSleep);
-      DateTime now = DateTime.now();
-      DateTime scheduledTime = DateTime(
-        now.year,
-        now.month,
-        now.day,
-        selectedTime.hour,
-        selectedTime.minute,
-      );
 
-      // Đặt lịch chạy công việc
-      Workmanager().cancelByUniqueName(
-          "showNotificationTask"); // Hủy tất cả các công việc cũ
-      Workmanager().registerOneOffTask(
-        "showNotification", // Tên công việc
-        "showNotificationTask", // Tên task
-        initialDelay:
-            scheduledTime.difference(now), // Khoảng thời gian trì hoãn
-      );
+      await saveTimeOfDaySleep(selectedTimeSleep);
+      await scheduleWakeUpNotification(selectedTime);
     }
   }
 
@@ -205,8 +220,8 @@ class _BedtimeReminderScreenState extends State<BedtimeReminderScreen> {
                 children: [
                   Text(
                     formattedTime,
-                    style:
-                        Primaryfont.bold(14).copyWith(color: greetingColorText, height: 1.8),
+                    style: Primaryfont.bold(14)
+                        .copyWith(color: greetingColorText, height: 1.8),
                   ),
                   const SizedBox(
                     width: 10,
@@ -359,19 +374,16 @@ class _BedtimeReminderScreenState extends State<BedtimeReminderScreen> {
                               color: Colors.white),
                           child: IconButton(
                             onPressed: () async {
-                              
                               if (Platform.isAndroid || Platform.isIOS) {
                                 var status =
                                     await Permission.notification.status;
                                 if (status.isGranted) {
-                                  initNotification();
                                   _selectedTimeSleep();
                                 } else if (status.isDenied) {
                                   if (!permissionRequested) {
                                     var requestStatus =
                                         await Permission.notification.request();
                                     if (requestStatus.isGranted) {
-                                      initNotification();
                                       _selectedTimeSleep();
                                     } else {
                                       permissionRequested = true;
@@ -381,7 +393,6 @@ class _BedtimeReminderScreenState extends State<BedtimeReminderScreen> {
                                   }
                                 }
                               } else {
-                                initNotification();
                                 _selectedTimeSleep();
                               }
                             },
@@ -434,7 +445,7 @@ class _BedtimeReminderScreenState extends State<BedtimeReminderScreen> {
                               );
                             } else {
                               return Text(
-                               translation(context).txtLoading,
+                                translation(context).txtLoading,
                                 style: Primaryfont.bold(10)
                                     .copyWith(color: Colors.grey),
                               );
@@ -451,7 +462,7 @@ class _BedtimeReminderScreenState extends State<BedtimeReminderScreen> {
                               borderRadius: BorderRadius.circular(15),
                               color: Colors.white),
                           child: IconButton(
-                            onPressed: () async{
+                            onPressed: () async {
                               _selectedTimeWakeUp();
                               await saveTimeOfDayWakeUp(selectedTimeWakeUp);
                             },
@@ -600,4 +611,18 @@ class ClockPainter extends CustomPainter {
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return true;
   }
+}
+
+class ReceivedNotification {
+  final int? id;
+  final String? title;
+  final String? body;
+  final String? payload;
+
+  ReceivedNotification({
+    this.id,
+    this.title,
+    this.body,
+    this.payload,
+  });
 }

@@ -12,6 +12,9 @@ class UsersModel {
   final int statusChageUser;
   final String ? image;
   final bool typeImage;
+  final bool? dowloadCellular;
+  final bool? doNotDisturb;
+  final String? reminderTime;
 
   UsersModel({
     this.id, 
@@ -25,7 +28,10 @@ class UsersModel {
     this.gender, 
     this.birtDay,
     this.joinDay,
-    this.image
+    this.image,
+    this.dowloadCellular,
+    this.doNotDisturb,
+    this.reminderTime,
 
   });
   // : id = id ?? const Uuid().v4();
@@ -43,7 +49,10 @@ class UsersModel {
       "joinDay": joinDay,
       "statusChageUser": statusChageUser,
       "image": image,
-      "typeImage": typeImage
+      "typeImage": typeImage,
+      "dowloadCellular": dowloadCellular,
+      "doNotDisturb": doNotDisturb,
+      "reminderTime": reminderTime,
     };
   }
 
@@ -66,6 +75,9 @@ class UsersModel {
         joinDay: data["joinDay"],
         statusChageUser: data["statusChageUser"],
         image: data["image"],
-        typeImage: data["typeImage"] ?? "");
+        typeImage: data["typeImage"] ?? "",
+        dowloadCellular: data["dowloadCellular"],
+        doNotDisturb: data["doNotDisturb"],
+        reminderTime: data["reminderTime"],);
   }
 }

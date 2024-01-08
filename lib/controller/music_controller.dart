@@ -16,10 +16,18 @@ class MusicController extends GetxController {
   final idTopic = Get.put(TopicController());
 
   // get all music
-  Future<List<MusicsModel>> getAllMusic() async {
+Future<List<MusicsModel>?> getAllMusic() async {
+  try {
     String id = await idTopic.getChoseTopic();
-    return musicRepo.getMusicList(id);
+    return await musicRepo.getMusicList(id);
+  } catch (e) {
+    if (kDebugMode) {
+      print("Error getting all music: $e");
+    }
+    return null;
   }
+}
+
 
   // get list music meditation chose
   Future<List<MusicsModel>> getMusicMeditate(String idMeditation) async {

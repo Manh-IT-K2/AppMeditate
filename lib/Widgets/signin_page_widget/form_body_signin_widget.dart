@@ -236,7 +236,7 @@ class form_body_signin_widget extends StatelessWidget {
                   child: Text(
                     translation(context).txtSignUp,
                     style:
-                        Primaryfont.medium(14).copyWith(color: kColorPrimary),
+                        Primaryfont.medium(12).copyWith(color: kColorPrimary),
                   ),
                 ),
               ],

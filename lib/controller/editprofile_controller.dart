@@ -30,7 +30,36 @@ class EditProfileController extends GetxController {
   Future<void> updateUser(UsersModel user, String id) async {
     await userRepo.updateUser(user, id);
   }
+  
+  //
+  Future<void> updateDowloadCellular(bool dowloadCellular) async {
+    final id = await getUser();
+    await userRepo.updateDowloadCellular(id!.id!, dowloadCellular);
+  }
 
+  // update do not disturb
+  Future<void> updateDoNotDisturb(bool doNotDisturb) async {
+    final id = await getUser();
+    await userRepo.updateDoNotDisturb(id!.id!, doNotDisturb);
+  }
+
+  // update reminder time
+  Future<void> updateReminderTime(String reminderTime) async {
+    final id = await getUser();
+    await userRepo.updateReminderTime(id!.id!, reminderTime);
+  }
+
+  // get dowload cellular
+  Future<bool> getDowloadCellular() async {
+    final userName = await userRepoo.getStringUsername(); 
+    return await userRepo.getDowloadCellular(userName);
+  }
+
+  // get do not disturb
+  Future<bool> getDoNotDisturb() async {
+    final userName = await userRepoo.getStringUsername();
+    return await userRepo.getDoNotDisturb(userName);
+  }
   // update phone
   Future<void> updatePhone(String userId, String phone) async {
     await userRepo.updatePhone(userId, phone);
