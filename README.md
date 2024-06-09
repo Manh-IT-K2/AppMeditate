@@ -62,35 +62,35 @@ Youtube: https://www.youtube.com/watch?v=60rsHodIXvY
 
 | Introduce | Sign Up | Sign In | Welcome |
 |:---------:|:-------:|:-------:|:----------------:|
-| <img src="./assets/images/screen_image/screen_introduce.png" height="200"> | <img src="./assets/images/screen_image/screen_signup.png" height="200"> | <img src="./assets/images/screen_image/screen_signin.png" height="200"> | <img src="./assets/images/screen_image/screen_welcome.png" height="200"> |
+| <img src="./assets/images/screen_image/screen_introduce.png" height="300"> | <img src="./assets/images/screen_image/screen_signup.png" height="300"> | <img src="./assets/images/screen_image/screen_signin.png" height="300"> | <img src="./assets/images/screen_image/screen_welcome.png" height="300"> |
 
 | Home | Meditate | Sleep Stories | User |
 |:----:|:--------:|:-------------:|:------------:|
-| <img src="./assets/images/screen_image/screen_home.png" height="200"> | <img src="./assets/images/screen_image/screen_meditate.png" height="200"> | <img src="./assets/images/screen_image/screen_sleep.png" height="200"> | <img src="./assets/images/screen_image/screen_user.png" height="200"> |
+| <img src="./assets/images/screen_image/screen_home.png" height="300"> | <img src="./assets/images/screen_image/screen_meditate.png" height="300"> | <img src="./assets/images/screen_image/screen_sleep.png" height="300"> | <img src="./assets/images/screen_image/screen_user.png" height="300"> |
 
 | Music Chill | Play Music | Detail Meditate | Detail Sleep |
 |:-----------:|:----------:|:---------------:|:------------:|
-| <img src="./assets/images/screen_image/screen_music_chill.png" height="200"> | <img src="./assets/images/screen_image/screen_play_music.png" height="200"> | <img src="./assets/images/screen_image/screen_detail_meditate.png" height="200"> | <img src="./assets/images/screen_image/screen_detail_spleep.png" height="200"> |
+| <img src="./assets/images/screen_image/screen_music_chill.png" height="300"> | <img src="./assets/images/screen_image/screen_play_music.png" height="300"> | <img src="./assets/images/screen_image/screen_detail_meditate.png" height="300"> | <img src="./assets/images/screen_image/screen_detail_spleep.png" height="300"> |
 
 | Setting | Be Premium | My Favourite | My Offline |
 |:-------:|:----------:|:------------:|:----------:|
-| <img src="./assets/images/screen_image/screen_setting.png" height="200"> | <img src="./assets/images/screen_image/screen_premium.png" height="200"> | <img src="./assets/images/screen_image/screen_favorite.png" height="200"> | <img src="./assets/images/screen_image/screen_dowload.png" height="200"> |
+| <img src="./assets/images/screen_image/screen_setting.png" height="300"> | <img src="./assets/images/screen_image/screen_premium.png" height="300"> | <img src="./assets/images/screen_image/screen_favorite.png" height="300"> | <img src="./assets/images/screen_image/screen_dowload.png" height="300"> |
 
-| Edit Profile | Edit Avatar | Change Password | Alarm |
+| Edit Profile | Edit Avatar | Chose Time Alarm | Alarm |
 |:------------:|:-----------:|:---------------:|:-----:|
-| <img src="./assets/images/screen_image/screen_edit_profile.png" height="200"> | <img src="./assets/images/screen_image/screen_edit_avt.png" height="200"> | <img src="./assets/images/screen_image/screen_changePw.png" height="200"> | <img src="./assets/images/screen_image/screen_alarm.png" height="200"> |
+| <img src="./assets/images/screen_image/screen_edit_profile.png" height="300"> | <img src="./assets/images/screen_image/screen_edit_avt.png" height="300"> | <img src="./assets/images/screen_image/screen_chose_time_alarm.png" height="300"> | <img src="./assets/images/screen_image/screen_alarm.png" height="300"> |
 
 | Forgot Password | Fogot Password Use Email | Fogot Password Use Phone | Fogot Password Use Username |
 |:---------------:|:------------------------:|:------------------------:|:---------------------------:|
-| <img src="./assets/images/screen_image/screen_forgot_password.png" height="200"> | <img src="./assets/images/screen_image/screen_forgot_email.png" height="200"> | <img src="./assets/images/screen_image/screen_forgot_phone.png" height="200"> | <img src="./assets/images/screen_image/screen_forgot_username.png" height="200"> |
+| <img src="./assets/images/screen_image/screen_forgot_password.png" height="300"> | <img src="./assets/images/screen_image/screen_forgot_email.png" height="300"> | <img src="./assets/images/screen_image/screen_forgot_phone.png" height="300"> | <img src="./assets/images/screen_image/screen_forgot_username.png" height="300"> |
 
 | Change Password Use Forgot| Change Password | Veryfi Code | Change Language |
 |:------------:|:-----------:|:---------------:|:-----:|
-| <img src="./assets/images/screen_image/screen_change_forgotPw.png" height="200"> | <img src="./assets/images/screen_image/screen_changePw.png" height="200"> | <img src="./assets/images/screen_image/screen_code.png" height="200"> | <img src="./assets/images/screen_image/screen_change_language.png" height="200"> |
+| <img src="./assets/images/screen_image/screen_change_forgotPW.png" height="300"> | <img src="./assets/images/screen_image/screen_changePw.png" height="300"> | <img src="./assets/images/screen_image/screen_code.png" height="300"> | <img src="./assets/images/screen_image/screen_change_language.png" height="300"> |
 
 | Chose Topic | Time Notify Turn App | Podcast English | Music Relaxation |
 |:------------:|:-----------:|:---------------:|:-----:|
-| <img src="./assets/images/screen_image/screen_chose_topic.png" height="200"> | <img src="./assets/images/screen_image/screen_time_notify.png" height="200"> | <img src="./assets/images/screen_image/screen_podcast_english.png" height="200"> | <img src="./assets/images/screen_image/screen_music_relaxation.png" height="200"> |
+| <img src="./assets/images/screen_image/screen_chose_topic.png" height="300"> | <img src="./assets/images/screen_image/screen_time_notify.png" height="300"> | <img src="./assets/images/screen_image/screen_podcast_english.png" height="300"> | <img src="./assets/images/screen_image/screen_music_relaxation.png" height="300"> |
 
 
 ### Make sure to star the repository if you find it helpful!
