@@ -104,8 +104,7 @@ Related functions:
 
 | Edit Profile | Edit Avatar | Chose Time Alarm | Alarm |
 |:------------:|:-----------:|:---------------:|:------:|
-| <img src="./assets/images/screen_image/screen_edit_profile.png" height="400"> | <img src="./assets/images/screen_image/screen_edit_avt.png" height=400"> | 
-<img src="./assets/images/screen_image/screen_chose_time_alarm.png" height="400"> | <img src="./assets/images/screen_image/screen_alarm.png" height="400"> |
+| <img src="./assets/images/screen_image/screen_edit_profile.png" height="400"> | <img src="./assets/images/screen_image/screen_edit_avt.png" height="400"> | <img src="./assets/images/screen_image/screen_chose_time_alarm.png" height="400"> | <img src="./assets/images/screen_image/screen_alarm.png" height="400"> |
 
 | Chose Topic | Time Notify Turn App | Podcast English | Music Relaxation |
 |:-----------:|:--------------------:|:---------------:|:----------------:|
