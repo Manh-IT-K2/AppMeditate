@@ -70,15 +70,28 @@ Youtube: https://www.youtube.com/watch?v=60rsHodIXvY
 
 | Music Chill | Play Music | Detail Meditate | Detail Sleep |
 |:-----------:|:----------:|:---------------:|:------------:|
-| <img src="./assets/images/screen_image/screen_music_chill.png" height="200"> | <img src="./assets/images/screen_image/screen_play_music.png" height="200"> | <img src="./assets/images/screen_image/screen_detail_meditate.png" height="200"> | <img src="./assets/images/screen_image/screen_detail_sleep.png" height="200"> |
+| <img src="./assets/images/screen_image/screen_music_chill.png" height="200"> | <img src="./assets/images/screen_image/screen_play_music.png" height="200"> | <img src="./assets/images/screen_image/screen_detail_meditate.png" height="200"> | <img src="./assets/images/screen_image/screen_detail_spleep.png" height="200"> |
 
 | Setting | Be Premium | My Favourite | My Offline |
 |:-------:|:----------:|:------------:|:----------:|
-| <img src="./assets/images/screen_image/screen_setting.png" height="200"> | <img src="./assets/images/screen_image/screen_premium.png" height="200"> | <img src="./assets/images/screen_image/screen_favourite.png" height="200"> | <img src="./assets/images/screen_image/screen_dowload.png" height="200"> |
+| <img src="./assets/images/screen_image/screen_setting.png" height="200"> | <img src="./assets/images/screen_image/screen_premium.png" height="200"> | <img src="./assets/images/screen_image/screen_favorite.png" height="200"> | <img src="./assets/images/screen_image/screen_dowload.png" height="200"> |
 
 | Edit Profile | Edit Avatar | Change Password | Alarm |
 |:------------:|:-----------:|:---------------:|:-----:|
 | <img src="./assets/images/screen_image/screen_edit_profile.png" height="200"> | <img src="./assets/images/screen_image/screen_edit_avt.png" height="200"> | <img src="./assets/images/screen_image/screen_changePw.png" height="200"> | <img src="./assets/images/screen_image/screen_alarm.png" height="200"> |
+
+| Forgot Password | Fogot Password Use Email | Fogot Password Use Phone | Fogot Password Use Username |
+|:---------------:|:------------------------:|:------------------------:|:---------------------------:|
+| <img src="./assets/images/screen_image/screen_forgot_password.png" height="200"> | <img src="./assets/images/screen_image/screen_forgot_email.png" height="200"> | <img src="./assets/images/screen_image/screen_forgot_phone.png" height="200"> | <img src="./assets/images/screen_image/screen_forgot_username.png" height="200"> |
+
+| Change Password Use Forgot| Change Password | Veryfi Code | Change Language |
+|:------------:|:-----------:|:---------------:|:-----:|
+| <img src="./assets/images/screen_image/screen_change_forgotPw.png" height="200"> | <img src="./assets/images/screen_image/screen_changePw.png" height="200"> | <img src="./assets/images/screen_image/screen_code.png" height="200"> | <img src="./assets/images/screen_image/screen_change_language.png" height="200"> |
+
+| Chose Topic | Time Notify Turn App | Podcast English | Music Relaxation |
+|:------------:|:-----------:|:---------------:|:-----:|
+| <img src="./assets/images/screen_image/screen_chose_topic.png" height="200"> | <img src="./assets/images/screen_image/screen_time_notify.png" height="200"> | <img src="./assets/images/screen_image/screen_podcast_english.png" height="200"> | <img src="./assets/images/screen_image/screen_music_relaxation.png" height="200"> |
+
 
 ### Make sure to star the repository if you find it helpful!
 <a href="https://github.com/Manh-IT-K2/AppMeditate/stargazers"><img src="https://img.shields.io/github/stars/Manh-IT-K2/AppMeditate?color=yellow" alt="Stars Badge"/></a>
