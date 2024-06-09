@@ -1,61 +1,87 @@
 # APP MEDITATE
-The development of social networks has had a great influence on the lives of the entire society in recent years. In the era called The Built World according to the opinion of Thomas L. Friedman, author of the book The World is Flat (Biological World), no one can deny the benefits of social networks. Besides the many benefits that social networks bring to users such as quick information, a rich amount of continuously updated information, many entertainment utilities... there is also an important aspect. , drastically changing the protocol between individuals, groups, and countries communicating with each other, which is connectivity. Thus, social networks have become a popular means with many diverse features for users to connect, share, and receive information quickly and effectively.
-For the above reason, the group decided to choose a social application network as the group's planning topic.
+In building the Meditate application, the main goal is to create a platform to support users in mental training and improving health through meditation. This app offers a variety of guided meditations, suitable for many levels from beginners to experienced people. Users can choose meditations based on duration and goals such as reducing stress, improving sleep, or increasing concentration. In addition, the app also integrates features such as daily meditation reminders, progress tracking, and a community for users to share experiences and encourage each other. A simple, user-friendly interface and high-quality sound are important factors that help users have the most profound and effective meditation experience.
 
 ![Logo](./assets/images/screen_image/logo.png)
 ## Authors
 - [Quan Văn Mạnh](https://github.com/Manh-IT-K2)
 
 ## Project Description:
-This is a social networking application built with features such as chat, chat group, follow, post, post story, log in (account, google), register, scan QR code (personal page) ,... The application is built according to Instagram's model and improved to suit the project
+Meditation application is built with functions including register/login, change password, forgot password, log in with facebook/google, listen to meditation music, edit personal information, change language,...
 ## Tech Stack Used:
 ```bash
-    - Frontend:Material,XML,ML Kit 
-    - Backend:Java(Spring Boot),MongoDB(Cloud),Frisebase,Pusher,Socket,Retrofit2,Glide
+    * Dart
+    * Firebase
 ```
 ## Main features of the application:
 ```bash
 1. Register:
-    - User fills in information: username, email, password.
-    - Click "sendOtp" to send OTP to email.
-    - Enter the OTP code to complete account registration.
+    - User fills in information: username, password.
+    - Note that the password must be from 8 - 16 characters, which must include 1 uppercase letter, 1 number, 1 lowercase letter and 1 special character.
 2. Login:
     - Enter your email and password to log in to the application.
     - Sign in with Google: Select a Google account to sign in.
+    - Sign in with Facebook: Select Facebook account to sign in.
 Related functions:
     - Forgot password:
-    - Enter your registered email.
-    - The OTP code will be sent to your email to reset your password.
-3. Post:
-    - Create a post:
-    - Select 1 or more photos from phone memory or take a photo from the camera.
-    - Add content as desired.
-    - Like the post, view and search for people who liked the post.
-    - Comment and reply to posts using text or icons.
-    - Drop a heart, delete comment.
-4. Post stories:
-    - Post a story with 1 photo from phone memory.
-    - Add text and stickers that can be moved freely.
-    - View stories:
-    - Each story has a running time of 5 seconds.
-    - Automatically move to the next story if available, otherwise return to the main screen.
-    - View the list of people who have viewed your story.
-5. Search:
-    - Approximate search by username and post content.
-    - When typing a character, the system will load users and posts with similar characters in the search bar.
-6. Search in chat:
-    - Approximate search by username.
-    - When typing characters, the system will load users with similar characters in the search bar.
-7. Follow others:
-    - Can follow or unfollow other users.
-8. Chat:
-    - Message people you follow or create a chat group.
-    - Send messages using stickers.
-9. View personal page:
-    - Users can view posts and liked posts.
-    - See the number of people who have followed you (Following) and who follow you (Follower).
-    - Unfollow or follow new users.
+      + Enter your registered email or phone or username.
+      + The OTP code will be sent to your email/phone to reset your password(username is not needed).
+    - Change password:
+      + Enter your old password.
+      + Enter the new password that needs to be changed and you're done.
+3. Play meditate music:
+    - Select the song you want to listen to and press play.
+    - You can rewind, pause, add to favorites or download.
+    - After listening to a song, you will have a streak and it will increase and maintain as you listen regularly. If you don't listen for a day, you will lose the streak.
+4. Edit Profile:
+    - You can edit your username but can only change it once.
+    - Edit full name, email link/phone number, select date of birth
+    - Change your avatar and avatar frame.
+5. Change Language:
+    - Select the language you want to change including English, French, Chinese, Thai, French, Korean, Vietnamese
 ```
+
+## Dependencies used in the project
+```bash
+ ## -- FIREBASE PACKAGE
+  firebase_core: ^2.8.0
+  firebase_auth: ^4.3.0
+  cloud_firestore: ^4.5.0
+  ## -- STATE MANAGEMENT
+  get: ^4.6.5
+  ## -- DayTime
+  intl: ^0.18.0
+  ## -- OTP TEXTFIELD PACKAGE
+  flutter_otp_text_field: ^1.1.1
+  ## -- Send OTP Email
+  mailer: ^6.0.1
+  ## -- sign in google
+  google_sign_in: ^6.1.0
+  ## -- sign in facebook 
+  flutter_facebook_auth: ^5.0.9
+  ## -- savechage login
+  shared_preferences: ^2.1.1
+  ## -- rotation
+  flutter_spinkit: ^5.2.0
+  ## -- chose image library
+  image_cropper: ^3.0.1
+  image_picker: ^0.8.5+3
+  permission_handler: ^10.3.0
+  ## -- download link music http
+  dio: ^5.2.1+1
+  ## -- file storage
+  path_provider: ^2.0.15
+  ## -- image gif
+  gif_view: ^0.3.1
+  ## -- connection internet
+  connectivity_plus: ^4.0.1
+  ## -- Delete app
+  firebase_analytics: ^10.4.3
+  ## -- check image when error internet
+  cached_network_image: ^3.2.3
+  ## -- notification
+  flutter_local_notifications: ^14.1.1
+```
+
 ## [Project Demo Link]([https://www.youtube.com/watch?v=60rsHodIXvY](https://www.youtube.com/watch?v=60rsHodIXvY))
 Youtube: https://www.youtube.com/watch?v=60rsHodIXvY
 ## Application interface:
