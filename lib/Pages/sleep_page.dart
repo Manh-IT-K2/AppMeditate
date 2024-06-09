@@ -30,13 +30,13 @@ class SleepPage extends StatelessWidget {
                     txtHeaderSubTitle:
                         translation(context).txtSleepHeaderSubTitle),
                 const SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
                 const HeaderCircleWidget(
                   color: Color.fromARGB(255, 52, 64, 153),
                 ),
                 Positioned.fill(
-                  top: 180,
+                  top: 160,
                   child: Column(
                     children: [
                       TitleSuggetWidget(

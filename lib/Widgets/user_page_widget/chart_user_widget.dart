@@ -152,9 +152,7 @@ class _ChartUserWidgetState extends State<ChartUserWidget> {
     return FutureBuilder<List<double>>(
       future: fetchWeeklySummary(),
       builder: (context, snapshot) {
-        if (!snapshot.hasData) {
-          return const CircularProgressIndicator();
-        } else {
+      
           // If the data is available, build the widget using the fetched data
           List<double> weekkySummary =
               snapshot.data ?? [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
@@ -271,7 +269,7 @@ class _ChartUserWidgetState extends State<ChartUserWidget> {
               ],
             ),
           );
-        }
+        
       },
     );
   }

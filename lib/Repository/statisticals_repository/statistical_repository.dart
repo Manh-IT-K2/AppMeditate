@@ -263,15 +263,18 @@ Future<List<StatisticalModel>> getMeditationOfFri() async {
 Future<List<StatisticalModel>> getMeditationOfSat() async {
   final list = <StatisticalModel>[];
   final snapshot = await _db.collection("statisticals").where("date", isGreaterThanOrEqualTo: "Sat").get();
-  for(var docSnapshot in snapshot.docs){
-    final data = StatisticalModel.fromDocumentSnapshot(docSnapshot);
-    if(data.date!.contains("Sat")){
-      list.add(data);
+  if (snapshot.docs.isNotEmpty) {
+    for (var docSnapshot in snapshot.docs) {
+      final data = StatisticalModel.fromDocumentSnapshot(docSnapshot);
+      if (data.date!.contains("Sat")) {
+        list.add(data);
+      }
     }
+  }else{
+    return [];
   }
   return list;
 }
-
 // get statistical meditation minute of "Sun"
 Future<List<StatisticalModel>> getMeditationOfSun() async {
   final list = <StatisticalModel>[];

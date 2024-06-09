@@ -30,25 +30,27 @@ class StatisticalController extends GetxController {
     DateFormat dateFormat = DateFormat("E dd/MM/yyyy");
     DateTime latestDate = DateTime(2000);
 
-    for (var i = 0; i < list.length; i++) {
-      DateTime dateTime = dateFormat.parse(list[i].date!);
-      // Check if the record is from Monday
-      if (dateTime.weekday == DateTime.monday) {
-        // Check if the date is later than the latestDate
-        if (dateTime.isAfter(latestDate)) {
-          latestDate = dateTime;
+    if (list.isNotEmpty) {
+      for (var i = 0; i < list.length; i++) {
+        DateTime dateTime = dateFormat.parse(list[i].date!);
+        // Check if the record is from Monday
+        if (dateTime.weekday == DateTime.monday) {
+          // Check if the date is later than the latestDate
+          if (dateTime.isAfter(latestDate)) {
+            latestDate = dateTime;
+          }
         }
       }
-    }
-    // Now, calculate the total meditation minutes for the latest Monday
-    for (var i = 0; i < list.length; i++) {
-      DateTime dateTime = dateFormat.parse(list[i].date!);
-      // Check if the record is from Monday and belongs to the same date as latestDate
-      if (dateTime.weekday == DateTime.monday &&
-          dateTime.year == latestDate.year &&
-          dateTime.month == latestDate.month &&
-          dateTime.day == latestDate.day) {
-        totalMeditationMinutes += list[i].meditationMinute!.toDouble();
+      // Now, calculate the total meditation minutes for the latest Monday
+      for (var i = 0; i < list.length; i++) {
+        DateTime dateTime = dateFormat.parse(list[i].date!);
+        // Check if the record is from Monday and belongs to the same date as latestDate
+        if (dateTime.weekday == DateTime.monday &&
+            dateTime.year == latestDate.year &&
+            dateTime.month == latestDate.month &&
+            dateTime.day == latestDate.day) {
+          totalMeditationMinutes += list[i].meditationMinute!.toDouble();
+        }
       }
     }
     return totalMeditationMinutes / byTime;
@@ -61,25 +63,27 @@ class StatisticalController extends GetxController {
     DateFormat dateFormat = DateFormat("E dd/MM/yyyy");
     DateTime latestDate = DateTime(2000);
 
-    for (var i = 0; i < list.length; i++) {
-      DateTime dateTime = dateFormat.parse(list[i].date!);
-      // Check if the record is from Monday
-      if (dateTime.weekday == DateTime.tuesday) {
-        // Check if the date is later than the latestDate
-        if (dateTime.isAfter(latestDate)) {
-          latestDate = dateTime;
+    if (list.isNotEmpty) {
+      for (var i = 0; i < list.length; i++) {
+        DateTime dateTime = dateFormat.parse(list[i].date!);
+        // Check if the record is from Monday
+        if (dateTime.weekday == DateTime.tuesday) {
+          // Check if the date is later than the latestDate
+          if (dateTime.isAfter(latestDate)) {
+            latestDate = dateTime;
+          }
         }
       }
-    }
-    // Now, calculate the total meditation minutes for the latest Monday
-    for (var i = 0; i < list.length; i++) {
-      DateTime dateTime = dateFormat.parse(list[i].date!);
-      // Check if the record is from Monday and belongs to the same date as latestDate
-      if (dateTime.weekday == DateTime.tuesday &&
-          dateTime.year == latestDate.year &&
-          dateTime.month == latestDate.month &&
-          dateTime.day == latestDate.day) {
-        totalMeditationMinutes += list[i].meditationMinute!.toDouble();
+      // Now, calculate the total meditation minutes for the latest Monday
+      for (var i = 0; i < list.length; i++) {
+        DateTime dateTime = dateFormat.parse(list[i].date!);
+        // Check if the record is from Monday and belongs to the same date as latestDate
+        if (dateTime.weekday == DateTime.tuesday &&
+            dateTime.year == latestDate.year &&
+            dateTime.month == latestDate.month &&
+            dateTime.day == latestDate.day) {
+          totalMeditationMinutes += list[i].meditationMinute!.toDouble();
+        }
       }
     }
     return totalMeditationMinutes / byTime;
@@ -92,25 +96,27 @@ class StatisticalController extends GetxController {
     DateFormat dateFormat = DateFormat("E dd/MM/yyyy");
     DateTime latestDate = DateTime(2000);
 
-    for (var i = 0; i < list.length; i++) {
-      DateTime dateTime = dateFormat.parse(list[i].date!);
-      // Check if the record is from Monday
-      if (dateTime.weekday == DateTime.wednesday) {
-        // Check if the date is later than the latestDate
-        if (dateTime.isAfter(latestDate)) {
-          latestDate = dateTime;
+    if (list.isNotEmpty) {
+      for (var i = 0; i < list.length; i++) {
+        DateTime dateTime = dateFormat.parse(list[i].date!);
+        // Check if the record is from Monday
+        if (dateTime.weekday == DateTime.wednesday) {
+          // Check if the date is later than the latestDate
+          if (dateTime.isAfter(latestDate)) {
+            latestDate = dateTime;
+          }
         }
       }
-    }
-    // Now, calculate the total meditation minutes for the latest Monday
-    for (var i = 0; i < list.length; i++) {
-      DateTime dateTime = dateFormat.parse(list[i].date!);
-      // Check if the record is from Monday and belongs to the same date as latestDate
-      if (dateTime.weekday == DateTime.wednesday &&
-          dateTime.year == latestDate.year &&
-          dateTime.month == latestDate.month &&
-          dateTime.day == latestDate.day) {
-        totalMeditationMinutes += list[i].meditationMinute!.toDouble();
+      // Now, calculate the total meditation minutes for the latest Monday
+      for (var i = 0; i < list.length; i++) {
+        DateTime dateTime = dateFormat.parse(list[i].date!);
+        // Check if the record is from Monday and belongs to the same date as latestDate
+        if (dateTime.weekday == DateTime.wednesday &&
+            dateTime.year == latestDate.year &&
+            dateTime.month == latestDate.month &&
+            dateTime.day == latestDate.day) {
+          totalMeditationMinutes += list[i].meditationMinute!.toDouble();
+        }
       }
     }
     return totalMeditationMinutes / byTime;
@@ -123,25 +129,27 @@ class StatisticalController extends GetxController {
     DateFormat dateFormat = DateFormat("E dd/MM/yyyy");
     DateTime latestDate = DateTime(2000);
 
-    for (var i = 0; i < list.length; i++) {
-      DateTime dateTime = dateFormat.parse(list[i].date!);
-      // Check if the record is from Monday
-      if (dateTime.weekday == DateTime.thursday) {
-        // Check if the date is later than the latestDate
-        if (dateTime.isAfter(latestDate)) {
-          latestDate = dateTime;
+    if (list.isNotEmpty) {
+      for (var i = 0; i < list.length; i++) {
+        DateTime dateTime = dateFormat.parse(list[i].date!);
+        // Check if the record is from Monday
+        if (dateTime.weekday == DateTime.thursday) {
+          // Check if the date is later than the latestDate
+          if (dateTime.isAfter(latestDate)) {
+            latestDate = dateTime;
+          }
         }
       }
-    }
-    // Now, calculate the total meditation minutes for the latest Monday
-    for (var i = 0; i < list.length; i++) {
-      DateTime dateTime = dateFormat.parse(list[i].date!);
-      // Check if the record is from Monday and belongs to the same date as latestDate
-      if (dateTime.weekday == DateTime.thursday &&
-          dateTime.year == latestDate.year &&
-          dateTime.month == latestDate.month &&
-          dateTime.day == latestDate.day) {
-        totalMeditationMinutes += list[i].meditationMinute!.toDouble();
+      // Now, calculate the total meditation minutes for the latest Monday
+      for (var i = 0; i < list.length; i++) {
+        DateTime dateTime = dateFormat.parse(list[i].date!);
+        // Check if the record is from Monday and belongs to the same date as latestDate
+        if (dateTime.weekday == DateTime.thursday &&
+            dateTime.year == latestDate.year &&
+            dateTime.month == latestDate.month &&
+            dateTime.day == latestDate.day) {
+          totalMeditationMinutes += list[i].meditationMinute!.toDouble();
+        }
       }
     }
     return totalMeditationMinutes / byTime;
@@ -154,25 +162,27 @@ class StatisticalController extends GetxController {
     DateFormat dateFormat = DateFormat("E dd/MM/yyyy");
     DateTime latestDate = DateTime(2000);
 
-    for (var i = 0; i < list.length; i++) {
-      DateTime dateTime = dateFormat.parse(list[i].date!);
-      // Check if the record is from Monday
-      if (dateTime.weekday == DateTime.friday) {
-        // Check if the date is later than the latestDate
-        if (dateTime.isAfter(latestDate)) {
-          latestDate = dateTime;
+    if (list.isNotEmpty) {
+      for (var i = 0; i < list.length; i++) {
+        DateTime dateTime = dateFormat.parse(list[i].date!);
+        // Check if the record is from Monday
+        if (dateTime.weekday == DateTime.friday) {
+          // Check if the date is later than the latestDate
+          if (dateTime.isAfter(latestDate)) {
+            latestDate = dateTime;
+          }
         }
       }
-    }
-    // Now, calculate the total meditation minutes for the latest Monday
-    for (var i = 0; i < list.length; i++) {
-      DateTime dateTime = dateFormat.parse(list[i].date!);
-      // Check if the record is from Monday and belongs to the same date as latestDate
-      if (dateTime.weekday == DateTime.friday &&
-          dateTime.year == latestDate.year &&
-          dateTime.month == latestDate.month &&
-          dateTime.day == latestDate.day) {
-        totalMeditationMinutes += list[i].meditationMinute!.toDouble();
+      // Now, calculate the total meditation minutes for the latest Monday
+      for (var i = 0; i < list.length; i++) {
+        DateTime dateTime = dateFormat.parse(list[i].date!);
+        // Check if the record is from Monday and belongs to the same date as latestDate
+        if (dateTime.weekday == DateTime.friday &&
+            dateTime.year == latestDate.year &&
+            dateTime.month == latestDate.month &&
+            dateTime.day == latestDate.day) {
+          totalMeditationMinutes += list[i].meditationMinute!.toDouble();
+        }
       }
     }
     return totalMeditationMinutes / byTime;
@@ -185,25 +195,27 @@ class StatisticalController extends GetxController {
     DateFormat dateFormat = DateFormat("E dd/MM/yyyy");
     DateTime latestDate = DateTime(2000);
 
-    for (var i = 0; i < list.length; i++) {
-      DateTime dateTime = dateFormat.parse(list[i].date!);
-      // Check if the record is from Monday
-      if (dateTime.weekday == DateTime.saturday) {
-        // Check if the date is later than the latestDate
-        if (dateTime.isAfter(latestDate)) {
-          latestDate = dateTime;
+    if (list != []) {
+      for (var i = 0; i < list.length; i++) {
+        DateTime dateTime = dateFormat.parse(list[i].date!);
+        // Check if the record is from Monday
+        if (dateTime.weekday == DateTime.saturday) {
+          // Check if the date is later than the latestDate
+          if (dateTime.isAfter(latestDate)) {
+            latestDate = dateTime;
+          }
         }
       }
-    }
-    // Now, calculate the total meditation minutes for the latest Monday
-    for (var i = 0; i < list.length; i++) {
-      DateTime dateTime = dateFormat.parse(list[i].date!);
-      // Check if the record is from Monday and belongs to the same date as latestDate
-      if (dateTime.weekday == DateTime.saturday &&
-          dateTime.year == latestDate.year &&
-          dateTime.month == latestDate.month &&
-          dateTime.day == latestDate.day) {
-        totalMeditationMinutes += list[i].meditationMinute!.toDouble();
+      // Now, calculate the total meditation minutes for the latest Monday
+      for (var i = 0; i < list.length; i++) {
+        DateTime dateTime = dateFormat.parse(list[i].date!);
+        // Check if the record is from Monday and belongs to the same date as latestDate
+        if (dateTime.weekday == DateTime.saturday &&
+            dateTime.year == latestDate.year &&
+            dateTime.month == latestDate.month &&
+            dateTime.day == latestDate.day) {
+          totalMeditationMinutes += list[i].meditationMinute!.toDouble();
+        }
       }
     }
     return totalMeditationMinutes / byTime;
@@ -216,25 +228,27 @@ class StatisticalController extends GetxController {
     DateFormat dateFormat = DateFormat("E dd/MM/yyyy");
     DateTime latestDate = DateTime(2000);
 
-    for (var i = 0; i < list.length; i++) {
-      DateTime dateTime = dateFormat.parse(list[i].date!);
-      // Check if the record is from Monday
-      if (dateTime.weekday == DateTime.sunday) {
-        // Check if the date is later than the latestDate
-        if (dateTime.isAfter(latestDate)) {
-          latestDate = dateTime;
+    if (list.isNotEmpty) {
+      for (var i = 0; i < list.length; i++) {
+        DateTime dateTime = dateFormat.parse(list[i].date!);
+        // Check if the record is from Monday
+        if (dateTime.weekday == DateTime.sunday) {
+          // Check if the date is later than the latestDate
+          if (dateTime.isAfter(latestDate)) {
+            latestDate = dateTime;
+          }
         }
       }
-    }
-    // Now, calculate the total meditation minutes for the latest Monday
-    for (var i = 0; i < list.length; i++) {
-      DateTime dateTime = dateFormat.parse(list[i].date!);
-      // Check if the record is from Monday and belongs to the same date as latestDate
-      if (dateTime.weekday == DateTime.sunday &&
-          dateTime.year == latestDate.year &&
-          dateTime.month == latestDate.month &&
-          dateTime.day == latestDate.day) {
-        totalMeditationMinutes += list[i].meditationMinute!.toDouble();
+      // Now, calculate the total meditation minutes for the latest Monday
+      for (var i = 0; i < list.length; i++) {
+        DateTime dateTime = dateFormat.parse(list[i].date!);
+        // Check if the record is from Monday and belongs to the same date as latestDate
+        if (dateTime.weekday == DateTime.sunday &&
+            dateTime.year == latestDate.year &&
+            dateTime.month == latestDate.month &&
+            dateTime.day == latestDate.day) {
+          totalMeditationMinutes += list[i].meditationMinute!.toDouble();
+        }
       }
     }
     return totalMeditationMinutes / byTime;

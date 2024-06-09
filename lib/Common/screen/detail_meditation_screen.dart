@@ -65,7 +65,7 @@ class _MeditationDetailPageState extends State<MeditationDetailPage>
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(
-                height: 5,
+                height: 2,
               ),
               IconButton(
                 onPressed: () {

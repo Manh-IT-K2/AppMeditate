@@ -17,7 +17,7 @@ class MeditatePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: kColorLightGrey,
       body: Padding(
-        padding: const EdgeInsets.only(bottom: 20),
+        padding: const EdgeInsets.only(bottom: 19),
         child: SafeArea(
           child: ReponsiveBuilder(
             portrait: Column(
@@ -30,10 +30,8 @@ class MeditatePage extends StatelessWidget {
                   colorTextTitle: Colors.black,
                   colorTextSubTitle: kColorDartPrimary,
                 ),
-                const SizedBox(
-                  height: 25,
-                ),
-                const AppbarWidget(
+              
+                AppbarWidget(
                     sBoder: 30,
                     sIcon: 30,
                     sText: 16,
@@ -66,7 +64,7 @@ class MeditatePage extends StatelessWidget {
                 const SizedBox(
                   height: 25,
                 ),
-                const AppbarWidget(
+                AppbarWidget(
                     sBoder: 50,
                     sIcon: 60,
                     sText: 24,

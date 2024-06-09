@@ -58,13 +58,15 @@ class CurrentStreakController extends GetxController {
     int count = 0;
     final idus = await idUser.getUser();
     final currentStreakByUser = await getCurrentStreakByUser(idus!.id!);
-    String idCurrentStreak = currentStreakByUser?.id ?? "";
-    if (await checkDateBehindNow(idCurrentStreak, dateStatistical())) {
-      updateCountCurrentStreak(idCurrentStreak, 0);
-      count = 0;
-    } else {
-      final streakModel = await getCurrentStreakByUser(userModel!.id!);
-      count = streakModel!.streakCount;
+    if (currentStreakByUser != null) {
+      String idCurrentStreak = currentStreakByUser.id ?? "";
+      if (await checkDateBehindNow(idCurrentStreak, dateStatistical())) {
+        updateCountCurrentStreak(idCurrentStreak, 0);
+        count = 0;
+      } else {
+        final streakModel = await getCurrentStreakByUser(userModel!.id!);
+        count = streakModel!.streakCount;
+      }
     }
     return count;
   }
