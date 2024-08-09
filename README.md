@@ -83,7 +83,7 @@ Related functions:
     - flutter_local_notifications: ^14.1.1
 ```
 
-## [Project Demo Link]())
+## [Project Demo Link]()
 ## Application interface:
 
 | Introduce | Sign Up | Sign In | Welcome |
